@@ -41,6 +41,7 @@
 #include "msg.h"
 #include "parse.h"
 #include "modules.h"
+#include "s_log.h"
 
 
 static void m_join(struct Client *, struct Client *, int, char **);
@@ -237,6 +238,8 @@ m_join(struct Client *client_p, struct Client *source_p,
     }
 
     add_user_to_channel(chptr, source_p, flags, YES);
+
+    activity_log("JOIN %s %s", chptr->chname, source_p->name);
 
     /*
      *  Set timestamp if appropriate, and propagate

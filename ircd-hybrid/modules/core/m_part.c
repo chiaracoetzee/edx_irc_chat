@@ -41,6 +41,7 @@
 #include "modules.h"
 #include "s_conf.h"
 #include "packet.h"
+#include "s_log.h"
 
 static void m_part(struct Client *, struct Client *, int, char *[]);
 
@@ -97,6 +98,8 @@ part_one_client(struct Client *client_p, struct Client *source_p,
 
   if (MyConnect(source_p) && !IsOper(source_p))
     check_spambot_warning(source_p, NULL);
+
+  activity_log("PART %s %s %s", chptr->chname, source_p->name, reason);
 
   /*
    *  Remove user from the old channel (if any)

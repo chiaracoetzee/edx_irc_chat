@@ -593,6 +593,10 @@ introduce_client(struct Client *client_p, struct Client *source_p)
     ubuf[1] = '\0';
   }
 
+  activity_log("CONNECT %s!%s@%s %s",
+	       source_p->name, source_p->username, source_p->host,
+               source_p->info);
+
   /* arghhh one could try not introducing new nicks to ll leafs
    * but then you have to introduce them "on the fly" in SJOIN
    * not fun.

@@ -39,6 +39,7 @@
 #include "irc_string.h"
 #include "hash.h"
 #include "packet.h"
+#include "s_log.h"
 
 struct entity
 {
@@ -478,6 +479,8 @@ msg_channel(int p_or_n, const char *command, struct Client *client_p,
 {
   int result;
 
+  activity_log("%s %s %s %s", command, source_p->name, chptr->chname, text);
+
   if (MyClient(source_p))
   {
     /* idle time shouldnt be reset by notices --fl */
@@ -592,6 +595,8 @@ static void
 msg_client(int p_or_n, const char *command, struct Client *source_p,
            struct Client *target_p, char *text)
 {
+  activity_log("%s %s %s %s", command, source_p->name, target_p->name, text);
+
   if (MyClient(source_p))
   {
     /*

@@ -39,6 +39,7 @@
 #include "hash.h"
 #include "packet.h"
 #include "s_serv.h"
+#include "s_log.h"
 
 
 static void m_kick(struct Client *, struct Client *, int, char *[]);
@@ -193,6 +194,9 @@ m_kick(struct Client *client_p, struct Client *source_p,
 
   if ((who = find_chasing(client_p, source_p, user, &chasing)) == NULL)
     return;
+
+  activity_log("KICK %s %s %s %s", chptr->chname, source_p->name, 
+		who->name, comment);
 
   if ((ms_target = find_channel_link(who, chptr)) != NULL)
   {

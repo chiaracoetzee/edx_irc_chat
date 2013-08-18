@@ -70,6 +70,7 @@
 #define RKPATH  ETCPATH "/rkline.conf"
 #define MPATH   ETCPATH "/ircd.motd"            /* MOTD file */
 #define LPATH   LOGPATH "/ircd.log"             /* ircd logfile */
+#define APATH   LOGPATH "/activity.log"         /* activity log file */
 #define PPATH   ETCPATH "/ircd.pid"             /* pid file */
 #define OPATH   ETCPATH "/opers.motd"           /* oper MOTD file */
 #define LIPATH  ETCPATH "/links.txt"            /* cached links file */
@@ -122,7 +123,7 @@
 #define INIT_LOG_LEVEL L_NOTICE         /* default for log_level */
 
 #define CONNECTTIMEOUT  30      /* Recommended value: 30 */
-#define IDENT_TIMEOUT 10
+#define IDENT_TIMEOUT 0
 
 #define MIN_JOIN_LEAVE_TIME  60
 #define MAX_JOIN_LEAVE_COUNT  25

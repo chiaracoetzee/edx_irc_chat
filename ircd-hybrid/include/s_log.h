@@ -59,7 +59,11 @@ enum {
   LOG_GLINE_TYPE,
   LOG_KILL_TYPE,
   LOG_OPERSPY_TYPE,
-  LOG_IOERR_TYPE
+  LOG_IOERR_TYPE,
+  LOG_ACTIVITY_TYPE
 };
+
+extern void open_activity_log(const char *filename);
+extern void activity_log(char *s, ...);
 
 #endif /* INCLUDED_s_log_h */

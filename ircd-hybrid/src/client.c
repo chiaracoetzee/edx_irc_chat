@@ -995,6 +995,8 @@ exit_client(struct Client *source_p, struct Client *from, const char *comment)
       }
     }
 
+    activity_log("QUIT %s %s", source_p->name, comment);
+
     log_user_exit(source_p);
 
     if (!IsDead(source_p))
@@ -1438,6 +1440,8 @@ change_local_nick(struct Client *client_p, struct Client *source_p, const char *
                nick, ConfigFileEntry.max_nick_time);
     return;
   }
+
+  activity_log("NICK %s %s", source_p->name, nick);
 
   /* Finally, add to hash */
   if (source_p->name[0])

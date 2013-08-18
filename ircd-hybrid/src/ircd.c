@@ -88,6 +88,7 @@ unsigned long connect_id = 0; /* unique connect ID */
 static unsigned long initialVMTop = 0;   /* top of virtual memory at init */
 const char *logFileName = LPATH;
 const char *pidFileName = PPATH;
+const char *activityLogFileName = APATH;
 
 char **myargv;
 char ircd_platform[PLATFORMLEN];
@@ -202,6 +203,8 @@ struct lgetopt myopts[] = {
    STRING, "File to use for xline.conf"},
   {"logfile",    &logFileName, 
    STRING, "File to use for ircd.log"},
+  {"activitylogfile", &activityLogFileName,
+   STRING, "File to use for logging all activity"},
   {"pidfile",    &pidFileName,
    STRING, "File to use for process ID"},
   {"foreground", &server_state.foreground, 
@@ -619,6 +622,7 @@ main(int argc, char *argv[])
   /* We need this to initialise the fd array before anything else */
   fdlist_init();
   init_log(logFileName);
+  open_activity_log(activityLogFileName);
   check_can_use_v6();
   init_comm();         /* This needs to be setup early ! -- adrian */
   /* Check if there is pidfile and daemon already running */
@@ -729,3 +733,54 @@ main(int argc, char *argv[])
   io_loop();
   return(0);
 }
+
+/*
+ * Activity logging
+ *
+ * This is a separate logfile for logging all server activity (messages,
+ * joins, etc)
+ *
+ */
+
+static FILE *activity_log_file = NULL;
+
+/* 
+ * open_activity_log   - open activity log file
+ *
+ * inputs - activity log filename
+ *
+ */
+
+void open_activity_log(const char *filename)
+{
+  activity_log_file = fopen(filename, "a");
+
+  if (activity_log_file == NULL)
+  {
+#ifdef USE_SYSLOG
+    syslog(LOG_ERR, "Unable to open log file: %s: %s",
+           filename, strerror(errno));
+#endif
+  } else {
+    activity_log("START");
+  }
+}
+
+void activity_log(char *s, ...)
+{
+  va_list args;
+
+  if (!activity_log_file)
+    return;
+
+  va_start(args, s);
+
+  fprintf(activity_log_file, "%i ", time(NULL));
+  vfprintf(activity_log_file, s, args);
+  fprintf(activity_log_file, "\n");
+
+  fflush(activity_log_file);
+
+  va_end(args);
+}
+

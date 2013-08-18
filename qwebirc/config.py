@@ -18,7 +18,7 @@ from qwebirc.config_options import *
 #         Hostname (or IP address) of IRC server to connect to.
 # OPTION: IRCPORT
 #         Port of IRC server to connect to.
-IRCSERVER, IRCPORT = "irc.myserver.com", 6667
+IRCSERVER, IRCPORT = "cs1692x.moocforums.org", 6667
 
 # OPTION: SSLPORT
 #         SSL port of IRC server to connect to.
@@ -27,7 +27,7 @@ IRCSERVER, IRCPORT = "irc.myserver.com", 6667
 
 # OPTION: REALNAME
 #         The realname field of IRC clients will be set to this value.
-REALNAME = "http://moo.com/"
+REALNAME = "http://cs1692x.moocforums.org/"
 
 # OPTION: IDENT
 #        ident to use on irc, possible values include:
@@ -90,12 +90,12 @@ WEBIRC_MODE = None
 # OPTION: BASE_URL
 #         URL that this qwebirc instance will be available at, add the
 #         port number if your instance runs on a port other than 80.
-BASE_URL = "http://foo.foo.org/"
+BASE_URL = "http://cs1692x.moocforums.org:9090/"
 
 # OPTION: NETWORK_NAME
 #         The name of your IRC network, displayed throughout the
 #         application.
-NETWORK_NAME = "FooNet"
+NETWORK_NAME = "CS169.2x"
 
 # OPTION: ANALYTICS_HTML
 #         If you have an analytics service, you can paste the HTML
@@ -114,7 +114,7 @@ APP_TITLE = NETWORK_NAME + " Web IRC"
 #         If True then user nicknames will be validated according to
 #         the configuration below, otherwise they will be passed
 #         directly to the ircd.
-NICKNAME_VALIDATE = True
+NICKNAME_VALIDATE = False
 
 # OPTION: NICKNAME_VALID_FIRST_CHAR
 #         A string containing valid characters for the first letter of
@@ -146,11 +146,11 @@ NICKNAME_MAXIMUM_LENGTH = 15
 #
 # OPTION: FEEDBACK_FROM
 #         E-mail address that feedback will originate from.
-FEEDBACK_FROM = "moo@moo.com"
+FEEDBACK_FROM = "dcoetzee@eecs.berkeley.edu"
 
 # OPTION: FEEDBACK_TO:
 #         E-mail address that feedback will be sent to.
-FEEDBACK_TO = "moo@moo.com"
+FEEDBACK_TO = "dcoetzee@eecs.berkeley.edu"
 
 # OPTION: FEEDBACK_SMTP_HOST
 #         Hostname/IP address of SMTP server feedback will be sent

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo
+echo "Starting configuration with default values"
+echo
+
+./configure
+make
+
+echo
+echo "You need root to install Hybserv in system wide directories"
+echo
+
+su root -c "make install"
+
+echo
+echo "Hybserv has been successfully installed!"
+echo

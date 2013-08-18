@@ -1,0 +1,21 @@
+Files you can usually find in bin/ directory:
+
+  * cleandb       - Script to delete old database backups
+  * encryptconf   - Encrypts plaintext O: lines
+  * encryptdb     - Encrypts plaintext nickname/channel databases
+  * finddupe      - Find double nicknames in nick.db (usually not needed)
+  * fixalvl       - Script to remove level access definitions in chan.db
+                    after recompiling services with different ALVL
+                    definitions (usually not needed)
+  * hybserv       - Binary executable
+  * hybserv.conf  - Configuration file for Hybserv
+  * logon.news    - Login news for all users
+  * mkpasswd      - Encrypted password generating utility
+  * motd.dcc      - Motd file for dcc/telnet clients
+  * motd.global   - Motd file for global clients
+  * servchk       - Crontab script to restart Hybserv
+  * settings.conf - Configuration settings for Hybserv
+  * jupes.conf    - Jupes list for Hybserv
+  * glines.conf   - Glines list for Hybserv
+
+Good luck! Don't forget to read documentation.

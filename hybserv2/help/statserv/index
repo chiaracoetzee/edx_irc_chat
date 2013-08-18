@@ -1,0 +1,21 @@
+%b%T%b is a utility allowing IRC users to obtain
+statistics on certain hostnames, domains, or servers.
+To use the following commands, type: %b/msg %T <command>%b.
+For more information on a specific command, type:
+%b/msg %T help <command>%b.
+
+    SHOWADMINS LIST currently identified services admins
+    SHOWOPERS  List currently identified irc operators
+    SHOWSTATS  Statistics for Chan, Nick, Memo Services
+    STATS      Gives general network statistics
+
+%+a%b* * * *
+%+aAdministrator commands:
+%+a%b%b
+%+a    CLEARSTATS Clear statistic information
+%+a    DOMAIN     List statistics for a domain
+%+a    GREPLOG    Grep services logs
+%+a    HOST       List statistics for a hostname
+%+a    REFRESH    Update server lag information
+%+a    SERVER     List statistics for a server
+%+a    SPLIT      Shows infomation about netsplits

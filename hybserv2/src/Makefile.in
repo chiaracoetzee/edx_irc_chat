@@ -1,0 +1,98 @@
+# Hybserv ./src Makefile
+
+
+# Compiler environment and flags
+AR = @AR@
+RANLIB = @RANLIB@
+CC = @CC@
+CFLAGS = @CFLAGS@ -Wall
+CPP = @CPP@
+CPPFLAGS = @CPPFLAGS@ -Wall
+COMPATDIR = ../compat
+LDFLAGS = @LDFLAGS@ -L$(COMPATDIR)
+INCLUDEDIR = ../include
+INCLUDE = -I. -I$(INCLUDEDIR) $(CPPFLAGS)
+DEFS =
+LIBS = @LIBS@
+COMPATLIB = -lmycompat
+MKDEP = @MKDEP@
+RM = @RM@ -f
+
+
+# Sources, objects, etc.
+DEPENDFILE = .depend
+SOURCES =                  \
+  alloc.c                  \
+  channel.c                \
+  chanserv.c               \
+  client.c                 \
+  conf.c                   \
+  crypt.c                  \
+  data.c                   \
+  dcc.c                    \
+  flood.c                  \
+  gline.c                  \
+  global.c                 \
+  hash.c                   \
+  helpserv.c               \
+  hybserv.c                \
+  init.c                   \
+  jupe.c                   \
+  log.c                    \
+  match.c                  \
+  memoserv.c               \
+  misc.c                   \
+  motd.c                   \
+  mystring.c               \
+  nickserv.c               \
+  operserv.c               \
+  seenserv.c               \
+  server.c                 \
+  settings.c               \
+  show.c                   \
+  sock.c                   \
+  statserv.c               \
+  timer.c                  \
+  timestr.c                \
+  version.c                \
+  sprintf_irc.c
+
+LIBOBJS = @LIBOBJS@
+ifdef LIBOBJS
+	LIBS = @LIBS@ $(COMPATLIB)
+endif
+
+OBJECTS = ${SOURCES:.c=$U.o}
+
+
+# Binaries
+HYBSERV = ../bin/hybserv
+
+
+# Targets and rest of the stuff
+all: $(HYBSERV)
+
+$(HYBSERV): $(OBJECTS)
+	$(CC) -o $@ $(OBJECTS) $(LDFLAGS) $(LIBS)
+
+depend:
+	$(MKDEP) $(INCLUDE) $(SOURCES) > $(DEPENDFILE)
+
+clean:
+	$(RM) $(HYBSERV) $(OBJECTS)
+
+distclean: clean
+	$(RM) Makefile
+
+install:
+	@echo "Run make install from top directory!"
+
+.SUFFIXES: .c .o
+
+.c.o:
+	$(CC) $(INCLUDE) $(CFLAGS) -c $<
+
+include $(DEPENDFILE)
+
+# End of src/Makefile
+# vim: ts=4:noet

@@ -1,0 +1,319 @@
+<!--
+ This is the manual page for the Hybserv2 IRC services.
+
+ This file is licensed under the terms of the GNU General Public License,
+ Version 2 or any later version published by the Free Software Foundation.
+
+ Copyright (C) 2006  Dinko Korunic and Hybserv2 coding team
+-->
+
+<!doctype refentry PUBLIC "-//OASIS//DTD DocBook V4.2//EN" [
+  <!ENTITY dhdate      "September 14, 2006">
+  <!ENTITY dhbinary    "hybserv">
+]>
+
+<refentry>
+  <refentryinfo>
+    <address>
+        <email>dinko.korunic@gmail.com</email>,
+    </address>
+
+    <address>
+        <email>dinko.korunic@gmail.com</email>
+    </address>
+
+    <author>
+        <firstname>Dinko</firstname>
+        <surname>Korunic<surname>
+        <email>dinko.korunic@gmail.com</email>
+    </author>
+
+    <copyright>
+      <year>2006</year>
+      <holder>Dinko Korunic and Hybserv2 coding team</holder>
+    </copyright>
+
+    <date>&dhdate;</date>
+  </refentryinfo>
+
+  <refmeta>
+    <refentrytitle>&dhbinary;</refentrytitle>
+    <manvolnum>8</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>&dhbinary;</refname>
+    <refpurpose>
+      daemon which provides Hybrid-compatible IRC services
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>&dhbinary;</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>DESCRIPTION</title>
+
+    <para>
+      This manual page documents briefly the <command>&dhbinary;</command>
+      command.
+    </para>
+
+    <para>
+      <command>&dhbinary;</command> is an IRC Services server, a daemon
+      which connects to a Hybrid-compatible IRC server and provides range
+      of specialized services. Usually those are IRC nickname and channel
+      registration services, providing users the means to officially
+      register their nicknames and channels and regain control of them
+      whenever needed. The latter to is supposed to prevent the takeovers
+      and notorious IRC wars, especially on a larger IRC network.
+    </para>
+
+    <para>
+      Hybserv2 is a new and improved version of the now unsupported Hybserv,
+      sporting new features, bugfixes, and more. Hybserv was specifically
+      designed to run with Hybrid6/7 IRCd, although it should work with Ratbox
+      IRCd and any other Hybrid-based IRCd. These services (more or less same
+      code) are currently used by several other networks such as idolNET,
+      BalcanNET, BGNet, BGFree, UniBG, BCNet, GunNet, ShakeIT, FreeWorld,
+      IRCBG, FreeNode/OPN.
+    </para>
+     
+    <para>
+      When successfully configured and connected,
+      <command>&dhbinary;</command> appears like any other IRC server.
+      Technically it is a virtual server providing one or several
+      sub-services acting like virtual nicknames with administrator or
+      opererator flags.  Those are typically +oi, although services should
+      not need any special flags to function correctly.
+    </para>
+
+    <para>
+      In its default configuration (i.e. with all sub-services enabled)
+      <command>&dhbinary;</command> provides NickServ, ChanServ, MemoServ,
+      OperServ, StatServ, and Global, which are described individually
+      below.
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>NickServ</term>
+
+        <listitem>
+          <para>
+            NickServ allows users to register their nicknames. Every
+            client can become an owner for a nickname by simply defining
+            his own password and identifying each time on IRC network
+            login. NickServ can enforce this registration as mandatory,
+            and it can kill or rename users which do not successfully
+            complete the process of identification in a given period of
+            time. The righteous owners of nicks can also reclaim their
+            nicknames with their registration password, in case of
+            necessity.  Nickname registration allows usage of many other
+            services which are described in the following paragraphs.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ChanServ</term>
+
+        <listitem>
+          <para>
+            ChanServ allows users with registered nicknames to register
+            their own channels. This registration is enforced with a
+            simple access list which defines the access of channel
+            members. The owner (founder of a channel) and his successor
+            can specify for each user (or nickname mask) what is his
+            status in channel: for instance does an op, voice, halfop
+            flags. Those flags can be auto- type (nickname gets a flag
+            automatically when joining the channel) or cmd- type (with a
+            proper access, nickname has to manually enter a command to get
+            an action done). ChanServ can also maintain a blacklist of
+            users with either nicknames or masks which will be
+            automatically kicked and banned from the channel.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>MemoServ</term>
+
+        <listitem>
+          <para>
+            MemoServ is a message service for registered nicknames. As
+            opposed to typical IRC which is a real-time service, it has
+            got off-line capabilities. This means users are able to send
+            messages to each other for later reading, typically on login
+            to an IRC network.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>StatServ</term>
+
+        <listitem>
+          <para>
+            StatServ is a statistical service mainly to be used by admins,
+            but it has got some possibly useful information for users too.
+            It shows active services' admins as well as all active IRC
+            operators (globals and locals), number of registered nicknames
+            and channels and miscellaneous other statistics.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Global</term>
+
+        <listitem>
+          <para>
+            Global usually messages every user on connect with contents of
+            logon.news and allows operators to easily send global messages
+            and notifications to all users.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>OPTIONS</title>
+
+    <para>
+      <command>&dhbinary;</command> does not take any arguments unless
+      invoked as <command>showchans</command>(8) or
+      <command>shownicks</command>(8).
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>SEE ALSO</title>
+
+    <para>
+      <command>showchans</command>(8),
+      <command>shownicks</command>(8),
+      <command>ircd-hybrid</command>(8)
+    </para>
+    <para>
+      <ulink url="http://www.github.com/dkorunic/hybserv2">http://www.github.com/dkorunic/hybserv2</ulink>
+    </para>
+    <para>
+      <ulink url="http://www.ircd-hybrid.net">http://www.ircd-hybrid.net</ulink>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>CAVEATS</title>
+
+    <para>
+      Do not use if you do not have permission from your IRC administrator
+      or if you are not administrator yourself. Caution, may explode in fire!
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>BUGS</title>
+
+    <para>
+      A dozen. Lots of. Numerous. Many. Swarms.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>COPYRIGHT</title>
+
+    <para>
+       Copyright (C) 2006  Dinko Korunic and Hybserv coding team
+    </para>
+
+    <para>
+       Hybserv2 is part of the GNU project and is free software. You can
+       redistribute it and/or modify it under the terms of the GNU General
+       Public License as published by the Free Software Foundation. See the
+       file README in the Hybserv2 distribution for more details regarding
+       redistribution. You should have received a copy of the GNU General
+       Public License along with the source for Hybserv2; see the file
+       COPYING. If not, write to the Free Software Foundation, 59 Temple
+       Place, Suite 330, Boston, MA 02111-1307, USA. 
+     </para>
+
+    <para>
+       Hybserv2 is distributed in the hope that it will be useful, but WITHOUT
+       ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+       FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+       for more details.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>AUTHORS</title>
+
+    <para>
+      This manpage is was originally written by
+      <address>
+        <firstname>Joshua</firstname>
+        <surname>Kwan</surname>
+        <email>joshk@triplehelix.org</email>
+      </address>
+      for <productname>Debian</productname> <acronym>GNU</acronym>
+      <productname>Linux</productname> distribution. It has been
+      rewritten and is now maintained by 
+      <address>
+        <firstname>Dinko</firstname>
+        <surname>Korunic</surname>
+        <email>dinko.korunic@gmail.com</email>.
+      </address>
+    </para>
+
+    <para>
+      Send bug reports or comments to the above address or leave a bug ticket
+      at <ulink url="http://www.github.com/dkorunic/hybserv2">http://www.github.com/dkorunic/hybserv2</ulink>.
+    </para>
+
+    <para>
+      Per Sidewnder's (Cosine's) request, original Hybserv will no longer be
+      supported. So if you have questions or some problems, please upgrade
+      first to a recent stable or even to a development version.  The former
+      Hybserv development team has decided to spin off and focus its energy
+      towards the Hybserv2 project. Like the name implies, this new version is
+      even better. If there is something you would like to see added to
+      Hybserv2, please let us know as we are always looking for fresh ideas. 
+    </para>
+
+    <para>
+      Hybserv was first coded by
+      <address>
+        <firstname>Patrick</firstname>
+        <surname>Alken</surname>
+        <email>wnder@underworld.net</email>
+      </address>
+      and is now maintained by the Hybserv2 coding team, unless otherwise
+      mentioned in the code. For more information see the README file in
+      Hybserv2 distribution.
+    </para>
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-default-dtd-file:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim: et tw=78 syn=sgml
+vi: ts=2 sw=2
+-->

@@ -1,0 +1,309 @@
+  + = Added a feature
+  - = Fixed a bug
+  * = Changed something
+  ^ = Other
+
+Hybserv-1.9.5
+
+  ^ stage to REL_1_9_4 [04/07/2013]
+  - huge amount of various fixes practically in all components (15
+    occurences of dead code blocks, 13 occurences of unchecked return
+    values, 2 occurences of uninitialized variables usage, 13 occurences
+    of resource leakage, 3 occurences of forward NULL references, 2
+    occurences of reverse NULL references, 11 occurences of code without
+    effect, 2 occurences of unused variables, 6 occurences of possible
+    negative returns used in unsigned environment, 1 sizeof mismatch, 1
+    buffer size overflow, 2 string size overflows, 3 overruns)
+  - fix in SplitBuf(), mystring.c: when params include \t in a
+    command such as /msg nickserv help \t, a crash occurs [Kamen Sabeff]
+  - fixed crash when SecureMessaging is on and someone sends a message in
+    a channel where service nicks reside [Kamen Sabeff]
+  + fixed some issues with nickname enforcement + added changes [Kamen
+    Sabeff]:
+    - NS can use KILL if for some reason svsnick/forcenick can't succeed
+      OR if after maximum five tries the random generated nickname is in
+    - use (unlikely, but still possible)
+      the GHOST command now uses KILL immediately if the nickname to be
+      ghosted is NS identified 
+  * services cannot op/deop themselves when the command comes from
+    regular users [Kamen Sabeff]
+  - fix is for a rare occasion when two or more bots set identical
+    ban/exception/etc simultaneously, so if expirebans is on, chanserv
+    removes the same ban many times in a row [Kamen Sabeff]
+  + logout command for OpenServ [Kamen Sabeff]
+  - ReadHub() fix for correct reconnect in case of conn close [Kamen
+    Sabeff]
+  + NoAdd nickname option for channels [Kamen Sabeff]
+  - fixing missing help files
+  + DELME command for users to delete themselves from channel lists [Kamen
+    Sabeff]
+  - fixes for fake server handling (jupe), wildcard handling (don't use
+    irc.* in jupe names, etc.) [Kamen Sabeff]
+  + set of smarter nickname expire patches [Kamen Sabeff]
+  * add Fuckover docs back [Kamen Sabeff]
+  - fix SeenServ devoiced behaviour [Kamen Sabeff]
+  - hide level settings from ordinary non-access users [Kamen Sabeff]
+  - fix for NickServer ns access add crash and not matching a hostmask
+    already in ns access list [Kamen Sabeff]
+  + people with access level for ACCESS can see the list [Kamen Sabeff]
+  - QUIT messages for all services which resolves splits on DIE and
+    RESTART [Kamen Sabeff]
+
+Hybserv-1.9.4
+
+  ^ stage to REL_1_9_4 [09/20/2009]
+  - update last seen address when UnSecure is on [Kamen Sabeff]
+  + add NoLink command to NickServ [Kamen Sabeff]
+  - fix release cycle after ghost-ing self
+  * release immediately after collide on user-ghost
+  + don't allow manual squit of a juped server
+  - fix crash when first time setting channel topic via ChanServ
+  - rewrite n_drop logic to behave correctly when given password is OK but
+    sender matches too wide O line (*@* for instance)
+  * send need to identify message on n_drop() from user matching an admin
+    line (but not valid admin) instead of bad pass message
+  * ADVFLOOD protection is now default; SVSNICK should be always preferred
+    over FORCENICK
+  - update docs to reflect SourceForge migration
+  - fixed leak in Substitute(), triggered on help with unregistered or
+    unprivileged user
+  - fixed leak on jump in s_server
+  - fixed memory leak in ClearConfLines() with UserList
+  - don't send motd if re-registered via TS
+  - don't change topic when old topic and new topic are the same
+  - fixed memory leaks in os_loaddata(), LoadSettings() and
+    ClearDirectives()
+  - enlarge default MAX hash values
+  - fix compilation issues when #undef SEENSERVICES
+  * be more descriptive on AllowKillImmed
+  - improve svn version detection in configure script for newer Subversion
+  - fix OperServ stats m documentation (memory stats have been removed)
+
+Hybserv-1.9.3
+
+  ^ stage to REL_1_9_3 [11/10/2006]
+  + allow ExpireBans settings per channel [Kamen Sabeff]
+  + a dozen of enforce/svsnick/forcenick changes: don't collide pseudo
+    nicknames or jupes, make difference between ghost and recover, when
+    forcenicked/svsnicked do issue pseudo nickname [Kamen Sabeff]
+  - fix several memory leaks [Kamen Sabeff]
+  + import password required changes from ShakeIT [Kamen Sabeff]:
+    + current password on drop is now required
+    + old password on set password is now required to sucessfully change
+    to new password
+  + import MinNickAge code from ShakeIT [Kamen Sabeff]
+  ^ update INSTALL docs
+  ^ updated SGML documentation/manpages; updated installation procedures
+    to install various docs and manpages in $(PREFIX)/hybserv/doc
+  - fix #128: Unforbid still forces nick change
+  ^ initial import of Debian *.sgml sources for manpages [thanks to Joshua
+    Kwan and Aurélien GÉRÔME]
+  * check for mkdir command/path and fill $(MKDIR) in Makefiles
+  - merge #127 back in and re-fix #125
+  - fix #127: NickServ: deleting [%s] caused deletion of channel [%s] not
+    shown on partyline [Brian Brazil]
+  - fix #125: fix regression in FALLBACK_TO_KILL [Brian Brazil]
+  * give grace period of 30secs for unforbidden nickname
+  * misc changes on sock code to better detect server disconnects
+  + recalculate TZ/DST every full hour [thanks Ilian]
+  - finally confirm TZ offset calculation is proper [thanks Ilian]
+  * when writing oper.db, enter write O-line info of each registered oper
+    so that we can easily match
+  * new GetUser logic
+  * rip off CalcMem, it was reporting invalid memory usage anyways
+  - write only active & OperServ registered opers in oper.db with TS
+  * localtime fixes -- instead of gmtime() use localtime() which
+    supposedly knows of DST; fix long-standing GMT bug
+  * update MaxLogs docs: upgrade, src, etc.
+  - fix #120: don't show notice if person issuing NS INFO command is
+    yourself
+  * undef GECOSBANS as default, undef HYBRID_GLINES as default for Hybrid7
+    [thanks Ales Tokic]
+  + SeenServ will rejoin channel after kick
+  * smaller fixes for autoconf
+  - fix #119: tabs/spaces issues in nickserv.c
+  - fix #118: minor typo in msg when adding an autokick [Brian]
+  - fixed several ircncmp() uses with wrong length
+  - fix #115: missing read of LASTSERV from oper.db [Brian Brazil]
+  + fix #116: don't write out nick_ts if identified within last 5 minutes
+    [Brian Brazil]
+  + fix #117: invalidate nick_ts when user is KILLed [Brian Brazil]
+  * add support for Boehm GC
+  - fix #114: get record_restart_ts working with netsplits again [Brian
+    Brazil]
+  * fix #111: make FALLBACK_TO_KILL mandatory and integrated with rest of
+    collide()
+  * fix #112: update pubcommands help page
+  * fix for #104, use more standard RecordCommand for GREPLOG
+  + add PUBCOMMANDS enhancements from Ilian Jovchev
+  * fix for #105, log the New Max *** counters [Brian, again :)]
+  + use line-buffered stream for logs
+  + fix for #106, don't open logfile for each entry - now we open and
+    close logs only when needed [thanks Brian Brazil]
+  - fix docs to close #94 again [thanks Brian Brazil]
+  + be more paranoid on NICK, non-netsplit QUIT - mark old nicknames as
+    unusable for RECORD_RESTART_TS [suggestion from Brian Brazil]
+  - fix #103: MLOCK + causes services to split
+  - fix #93: when expiring channels check if any members idle there and
+    what is their access
+  - fix #94: when channel is CS_RESTRICTED it is enough to have CA_CMDOP
+    instead of CS_AUTOOP
+  - fix #91: RECORD_RESTART_TS supersedes RECORD_SPLIT_TS, remove all
+    RECORD_SPLIT_TS code
+  - fix #101: LEVEL LIST is now logged
+  + when recording TS, record a servername for the originating nickname
+    too and do both servername and ts check for opers and plain users
+  + be smarter in collide() - don't do pseudo nicknames when no need
+  - fix possible bug with nickserv ghost/collide pseudo nick never leaving
+    [needs further testing]
+  - fix compile problem with PUBCOMMAND in server.c
+  - fix issue with forbidden channels and expired founder/sucessor in
+    cs_loaddata()
+
+Hybserv-1.9.2
+
+  ^ stage to REL_1_9_2 [03/17/2006]
+  - OperServ should join channels which are to be monitored [partially
+    done]
+  * better services admin checks for sadmin-privilege commands [thanks
+    Ilian]
+  * rearrange cs/ss_part code into DeleteChan()
+  * fix warnings when undef SERVICES_FIGHT_FIX
+  + add NickServ clearnoexp
+  * update ChanServ clearnoexp behaviour - lastused flag should be updated
+    on clear expire [from Ilian Jovchev/ShakeIT
+  + when adding already added entry in channel access list, update
+    added_by nickname [from Ilian Jovchev/ShakeIT]
+  - fix for long-standing linked nicknames circular bug [thank you Ilian
+    Jovchev and ShakeIT!]
+  * changes for ss_part/ss_join/es_part/es_join [mostly by ShakeIT]
+  + SeenServ on channels, pubcommands for SeenServ: !seen, !seennick, !op
+    and !deop [from t0sh and CoolCold, heavily edited]
+  - fix leap years timeago() bug [reported by Todor Dimitrov]
+  * fix incompatibility with m_forcenick.c and Hybrid 7.2
+  + add NeverOP patch [from CoolCold], user with such flag won't be opped
+    when he/she joins any channel - and it is user-selectable
+  + keep track of who added a hostmask in the access list [from sofit]
+  ^ fixes for n_noexpire [from sofit]
+  - fix crash in port listener when got socket = -1 [socket() would fail
+    on one of interface's addresses]
+  ^ release collide timer immediately after FORCENICK/SVSNICK; use
+    FALLBACK_TO_KILL to make sure that nickname gets collided for sure,
+    even on mixed networks [some servers without FORCENICK/SVSNICK
+    command]
+  - fix the crash in HasAccess() caused by order of NULLptr checks [thanks
+    Todor Dimitrov]
+  - fix crash in set level, no check for index == 0
+  - fix smartmasking if . is in username
+  - fix some of AutoOp issues
+  - allow user to dehalfop himself, as well as halfop ALL [all channels he
+    is on]
+  + add secure messaging [from CoolCold, heavily edited]
+  - fix inconsistencies with NS_FORBID, NS_COLLIDE and NS_RELEASE usage
+  - fix log rotation bug
+  + add ability to notify opers on INFO [from CoolCold]
+  - fix log rotation and greplog issues with LogPath
+  - fix GetLink() issue in HasAccess() which occuren when !AutoOpAdmins:
+    admins woudn't get +o on channels where they had normal access
+  - fix several off-by-one errors
+  * fix m_forcenick.c to compile under Hybrid 7.1.3 [from sofit]
+  * update AutoOpAdmins documentation [from Brian Brazil]
+  * enforce usage of LogPath, for logs to be in a directory
+  - fixed outstanding bug in InsertLink() where chan access lists where
+    shallow copied, instead of making new instance and deleting old
+  - check for duplicates when adding founder or channel access
+  * fixes for EMPOWERADMINMORE and AutoOPAdmin behaviour [from Brian
+    Brazil]
+  + add OperServ TS saving when restart [from Brian Brazil]
+  + fallback to plain KILL if FORCENICK doesn't suceed [from Brian Brazil]
+  + save authentication TS when netsplit or restart, so users don't have
+    to reauthenticate [from Brian Brazil]
+  - fix network variables misoverride in configure
+  + patch from Brian Brazil to send notices in m_forcenick
+  - fix missing global help in helpserv as well as other similar bugs
+  - fixed missing Nickserv ACCESS for administrators
+  - fixed local listener issue [listening bug, resolve bug]
+  ^ moved compatibility stuff into compat/, made fallbacks if we
+    don't have strtoul, strerror, strdup
+  ^ new logging scheme applied
+  + add password recovery and recover phrase into NickServ [thanks bane!]
+  - fixes for broken getaddrinfo() on some glibc2 platforms [thanks knight
+    and adx]
+
+Hybserv-1.9.1
+
+  ^ stage it to REL_1_9_1 [09/26/2005]
+  + Substitute now works for dcc motd and server [logon] motd
+  * rewrote Substitute code
+  * rewrote core string/array handling functions SplitBuf() and
+    GetString()
+  + add basic IPv6 support and getaddrinfo/getnameinfo stuff
+  + add configurable FORCENICK/SVSNICK prefix
+  + strlcat/strlcpy merge, lot of memory stuff fixes, better internal
+    spill control, less malloc/realloc stuff, less useless memsets
+  - fix excessive writesock usage, fix several DCC-related issues
+  - greplog fixes
+  - fixes for NickServ's set EXPIRE
+  * rewrote n_set* group of functions to allow SET <nickname> PARAM
+    [flags] for any nickname linked with sender nickame and for admins to be
+    able to change settings for users, if EMPOWERADMINMORE
+  + add MinChanUsers, which allows administrator to set minimum channel
+    users requirement for channel registration
+  - fix reload coring services
+  * new channels registered by opers are not NOEXPIRE by default
+  + implement options for ChanServ LIST
+  + add reason informations for nick and channel forbid [can be seen with
+    info commands]
+  - fix smaller leak in DeleteChan
+  - fix forbidden channels dissapearing after save
+  + add --enable-efence support
+  + add --with-network, possible targets are idolnet, balcannet, hybrid,
+    hybrid7, dancer
+  - fix a dozen of format string vulnerabilities [thanks Ales Tokic for
+    notice]
+  + import newer match.c, which has '#' wildcard [thanks Ales Tokic for
+    notice]
+  + add --enable-asserts, --enable-gimmecore and --enable-daemontools
+  + add --enable-warnings, --with-nicklen, --with-chanellen and
+    --with-topiclen
+  - several Solaris fuckups fixed
+  - fix for invalid link count [fix from sofit]
+  - fix for autovoice/autoop for operserv admins, problem with
+    EMPOWERADMINS_MORE [fix from sofit]
+  * global code and style cleanups
+  * massive rewrite of includes and better detection of system
+    headers/functions
+  - fix trace to show channels when using -long parameters
+  * Makefile and configure script changes
+  * totally rip out mode +a support, since there is no anonops in recent
+    Hybrid7
+  ^ move autoconf stuff from autoconf/ to root .
+  * halfops support is now under #define HYBRID7_HALFOPS
+  - fix cs_invite() not to invite if channel isn't +i
+  - fix SJOIN event to remove invite and ban exceptions properly, dump old
+    data as required
+  * rip off TakeOver() and rewrite o_secure() - idea is to use as much as
+    possible of already written ChanServ code; new code will autoop Admins
+    only if AutoOpAdmins is set.. and will do stuff is should have been
+    doing already [but it didn't]
+  ^ since I've migrated to Subversion, we've lost automatic ChangeLog, so
+    I'll be manually writing the changes every now and then
+  * fix ghost to use instant collide, instead of KILL
+  * don't allow ghosting self
+  * don't allow op all if NOCHANOPS
+  - fix clearnoexp, add pattern matching
+  * updates for NickServ's list command:
+    + implement matching flags
+    + remove display limits
+    ^ update documentation
+  * rip off unseen - it was buggy and ugly anyway, and I'm not fond of
+    repairing the broken code
+  * regularly part channels which ChanServ shouldn't be on
+  + code FORCENICK_LEN
+  * when manually adding nicknames to collision list, notify them with
+    proper messaging
+  + add FORCENICK
+  + add SVSNICK
+  * update config.h defaults to Hybrid7 [yay, at last!]
+
+# vim: ft=changelog:ts=2:et

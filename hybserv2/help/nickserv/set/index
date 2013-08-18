@@ -1,0 +1,30 @@
+Syntax: %bSET <nickname> <option> [parameters]%b
+
+Configures various nickname options. Note that most of the
+settings should be applied to %bmaster%b nickname.
+
+%bOptions:%b
+    AUTOMASK   Auto add new hostmasks on %bIDENTIFY%b
+    EMAIL      Associate an email address with your nick
+    GSM        Set number of mobile phone for this user
+    HIDE       Hide information in your %bINFO%b reply
+    KILL       Turn kill protection on or off
+    MASTER     Reset the master nickname for your link
+    MEMOS      Allow memos sent to your nick
+    NOADD      Disable adding to channel access lists
+    NOLINK     Disable linking to your nick
+    NOTIFY     Turn notification of new memos on/off
+    PASSWORD   Reset your nickname password
+    PHONE      Set the phone for this user
+    PHRASE     Set password recovery phrase used with %bRECOVERPASS%b
+    PRIVATE    Hide nickname information from %bLIST%bs
+    PRIVMSG    Services will either privmsg or notice you
+    SECURE     Turn nickname security on or off
+    SIGNON     Turn notification of memos on signon on/off
+    NEVEROP    Turn auto-opping on join on/off
+    UIN        Set ICQ UIN for this user
+    UNSECURE   Set nickname security very low
+    URL        Associate a url with your nick
+
+Type %b/msg %N HELP SET option%b for more information
+on a specific option.

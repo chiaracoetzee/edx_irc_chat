@@ -1,0 +1,86 @@
+Today's MOTD
+------------
+As long as the answer is right, who cares if the question is wrong?
+
+
+Pending bugs:
+-------------
+*) fix -> NS_IDENTIFIED - always master
+*) n_info -> use nick specific stuff, not master!
+
+*) improve hashing
+*) remove MaxTrace
+*) fix absolutely ugly code formatting! [progress..]
+*) splint check
+*) diet libc compatibility fixes
+*) move most of txt constants into a header, for easier localisation
+*) check capabs of host server, including nicklen - report if nicklen >
+   hybserv nicklen[!]
+*) bunch of *old* stuff I've found around:
+  - take IP bans into account
+  - add /cs getkey (returns channel key), for same accesslvl as /cs invite
+  - /cs info on private channel should require 1, not CMDINVITE
+*) fix *LOCK functions (topic and mode lock)
+*) > I plan on just setting the nickflood level higher in config.h, but
+   could there be a configurable option via a operserv set command?
+   Also, are there docs on what each operserv set variable is? Some of them
+   are obvious, and then again, some aren't...
+*) check dccprocess with similar bug as botprocess..
+*) nickserv and chanserv have to be always enabled - fix this.
+*) channel modes don't always get synced on restart
+*) fix invalid gnote count
+*) check for OnAccessList() without master nick call - only when necessary
+*) send all mlock modes on channel creation
+*) OperServ does not completely support hybrid7 modes yet, (for example
+   .channel command or SECURE)
+*) sed helpfiles so that they have proper time values
+   NOTE: this should be done via %v or %t.. something like it
+
+
+Features yet to come:
+---------------------
+*) (13:37:00) padde: Any chance there could be coded an option, that would
+   allow to specify a range of ports to be used to DCC services?
+   (13:37:00) padde: would be usefull if the services is behind firewall
+*)PuNkSterQFeTus: Heres an idea
+  PuNkSterQFeTus: Instead of just /kill chan
+  PuNkSterQFeTus: how about adding /kline chan
+*) hide nick options..
+*) blackbook for all operserv commands. searcheable, add, remove, list.
+*) adx wishlist:
+  1)
+  <adx> for example, to create a new operserv's command
+  <adx> "RESTRICT"
+  <adx> you pass the mask, for example *!*@you.are.a.bad.guy
+  <adx> then you can set some restrictions
+  <adx> for example
+  <adx> -nonickreg
+  <adx> -max 5 (connections)
+  <adx> -nolink
+  <adx> etc...
+  3)
+  put operserv glines in oper.db
+*) rewrite documentation
+*) modularisation (_very_ unlikely to happen)
+*) completely document API
+*) localisation
+*) misc stuff:
+   private notes on channel and user records, available only to staff
+   PGP/GPG keys per user
+   multiple URL's, multiple email addresses (with limits)
+   geek code
+*) use btree&mmap (additionally use adns and glib)
+*) improve block allocator
+*) add cidr & ranged ip's
+*) add tcpwrap capatibilities
+*) ziplinks (perhaps use servlink?)
+*) ideas by "John Binder" <jbinder@kgazd.bme.hu>:
+   flood ctrl for services itself
+   flood ctrl for channels: public flood, join-part flood, kick flood,
+    deop flood, nick flood -> however, for some features it is obvious
+    that chanserv/operserv will have to reside on channels, which I
+    dislike (-kre)
+*) implement modes flood trigger (and below)
+*) add some features from http://www.appwatch.com/Linux/App/879/data.html
+*) be compatibile with other ircds (!!)
+*) umode +g ACCEPT list (BR's idea)

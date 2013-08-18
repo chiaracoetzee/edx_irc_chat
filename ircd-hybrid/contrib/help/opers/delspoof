@@ -1,0 +1,8 @@
+# $Id: delspoof 33 2005-10-02 20:50:00Z knight $
+DELSPOOF <user@hostname> 
+
+The DELSPOOF command will remove a auth {} block for any user you request.
+
+For example to delete the spoof for god:
+
+DELSPOOF *god@10.0.0.*

@@ -1,0 +1,2651 @@
+2006-07-17 02:30:03  lusky
+
+	* [r726] include/patchlevel.h:
+	  bump version to 7.2.2
+
+2006-07-16 15:41:33  adx
+
+	* [r723] src/hostmask.c:
+	  + fixed a bug where auths/klines/glines with digit wildcards (#)
+	    were not handled correctly
+
+2006-07-15 12:23:07  michael
+
+	* [r718] messages/Makefile.in:
+	  - Updated messages/Makefile.in for ircd-brazilian_pt.lang
+
+2006-07-15 06:22:58  adx
+
+	* [r716] src/s_user.c:
+	  + added DEAF isupport
+
+2006-07-14 17:01:55  michael
+
+	* [r715] Makefile.in, configure, configure.ac, contrib/Makefile.in, 
+	  contrib/help/Makefile.in, doc/Makefile.in, etc/Makefile.in, 
+	  help/Makefile.in, include/setup.h.in, lib/Makefile.in, 
+	  lib/pcre/Makefile.in, messages/Makefile.in, 
+	  modules/Makefile.in, servlink/Makefile.in, src/Makefile.in, 
+	  tools/Makefile.in:
+	  - Rebuilt configure using autoconf 2.60
+
+2006-07-14 08:01:10  michael
+
+	* [r714] RELNOTES:
+	  - Updated RELNOTES
+
+2006-07-12 08:37:35  michael
+
+	* [r713] src/hook.c:
+	  - fixed core on MODRESTART as reported by xZ/CoolCold
+
+2006-07-08 08:02:15  michael
+
+	* [r711] src/ircd_lexer.l, src/lex.yy.c:
+	  - Also show the full path of .included configuration files when reporting
+	    syntax errors.  This is just cosmetical.
+
+2006-07-08 06:28:31  michael
+
+	* [r710] RELNOTES:
+	  - Updated RELNOTES
+
+2006-07-07 04:56:45  michael
+
+	* [r708] src/irc_reslib.c:
+	  - Applied nenolod's parse_resvconf() fix
+
+2006-07-02 07:36:17  michael
+
+	* [r707] RELNOTES:
+	  - Updated RELNOTES
+
+2006-07-02 07:25:55  michael
+
+	* [r706] modules/core/m_nick.c, src/client.c:
+	  - ACCEPT fixes as reported by ThaPrince
+
+2006-06-29 13:05:34  db
+
+	* [r705] messages/ircd-brazilian_pt.lang:
+	  - Add Brazilian to 7.2 as well
+	    Marcelo Lipienski <und3rl1n3d@gmail.com>
+
+2006-06-22 05:34:55  michael
+
+	* [r698] contrib/ip_cloaking.c:
+	  - Fixed core in make_virthost() with host names that doesn't have a dot
+	    in it.  Reported by CoolCold
+
+2006-06-21 03:52:16  michael
+
+	* [r696] src/s_auth.c:
+	  - Fixed small memory leak in delete_auth()
+
+2006-06-17 07:34:25  michael
+
+	* [r690] contrib/m_force.c:
+	  - Backported r689 (the name of the source was appended to the RPL_TOPICTIME
+	    numeric instead of the target's name in mo_forcejoin)
+
+2006-06-17 05:46:45  michael
+
+	* [r687] RELNOTES:
+	  - Updated RELNOTES
+
+2006-06-16 08:22:31  michael
+
+	* [r685] INSTALL, configure, configure.ac, doxygen.conf, src/version.c:
+	  - Updated copyright years in version.c and INSTALL
+	  - Bumped version to 7.2.2 in configure.ac and doxygen.conf
+
+2006-06-15 10:28:59  michael
+
+	* [r683] RELNOTES, src/s_bsd.c:
+	  - close_connection(): Fixed some harmless bug that could result in incorrect
+	    sent statistics in "STATS t"
+	  - Updated RELNOTES
+
+2006-06-13 12:51:10  adx
+
+	* [r675] src/channel.c:
+	  + patch against truncated NAMES output
+	  
+	  Submitted by: Murat Deligonul <deligonul@gmail.com>
+
+2006-06-13 03:38:50  michael
+
+	* [r673] src/s_conf.c:
+	  - check_classes(): Only call destroy_cidr_class() on a class that is ready
+	    for deletion, otherwise the current cidr count would become unadjusted in
+	    case a disabled class gets re-enabled later on.
+
+2006-06-13 03:28:30  michael
+
+	* [r672] src/s_conf.c:
+	  - Fixed possible core introduced by previous commit
+	  - Put some asserts into detach_conf()
+
+2006-06-13 03:15:38  michael
+
+	* [r671] include/s_conf.h, src/ircd_parser.y, src/messages.tab, 
+	  src/s_conf.c, src/y.tab.c:
+	  - Fixed class limit bug as spotted by stu.  ("REHASH" would always reset
+	    current user count)
+	  - Made "STATS y|Y" show inactive (deleted) classes that still have attached
+	    clients
+
+2006-06-12 08:20:55  michael
+
+	* [r670] RELNOTES, include/balloc.h, src/balloc.c:
+	  - balloc.(c|h): backported r544 (Killed Block::used_list)
+	  - Update RELNOTES
+
+2006-06-11 09:39:25  michael
+
+	* [r668] lib/pcre/README, src/y.tab.c, src/y.tab.h:
+	  - Rebuilt y.tab.(c|h) using bison 2.3
+	  - Bumped pcrelib version to 6.4.  There were no changes since 6.3 that would
+	    have affected our hacked version of the pcre library, so this is mainly to
+	    satisfy paranoid I-always-need-the-latest-version people
+
+2006-06-10 19:35:38  stu
+
+	* [r666] modules/core/m_message.c:
+	  Fix compile error.  Be more careful with the so called stable branch :)
+
+2006-06-10 10:34:01  michael
+
+	* [r664] src/s_auth.c:
+	  - Fixed compile error in s_auth.c
+
+2006-06-09 14:51:22  adx
+
+	* [r660] include/numeric.h, messages/ircd-dutch.lang, 
+	  messages/ircd-german.lang, messages/ircd-polish.lang, 
+	  messages/ircd-standard.example.lang, 
+	  messages/ircd-swedish.lang, modules/m_whois.c, 
+	  src/messages.tab:
+	  + backported numeric changes
+
+2006-06-08 03:00:17  michael
+
+	* [r650] include/client.h, src/client.c, src/s_auth.c:
+	  - Fixed bug that would exit unknown clients in check_unknowns_list() that are
+	    still processing auth/dns queries.
+	    Basically check_unknowns_list() should only exit clients that have finished
+	    auth/dns and didn't send a NICK/USER combination since they have been
+	    released from auth.
+	  
+	    Reported by ThaPrince.
+
+2006-06-07 08:42:00  michael
+
+	* [r646] modules/m_set.c:
+	  - Fixed old bug that would forbid SPAMNUM to be disabled via "SET SPAMNUM 0"
+
+2006-06-01 10:12:21  michael
+
+	* [r639] etc/example.conf, etc/example.efnet.conf:
+	  - Updated example configuration files
+
+2006-06-01 10:00:50  adx
+
+	* [r637] src/match.c:
+	  + added invisible character ^O (cancel all formatting)
+
+2006-06-01 09:10:18  db
+
+	* [r635] src/match.c:
+	  - actually remove the chars that should not be marked as visible chan chars
+
+2006-06-01 08:34:29  db
+
+	* [r634] src/channel.c:
+	  - At least I noticed it myself, I got it completely backwards
+	    when folding in Michael's suggested optimisation.
+
+2006-06-01 08:30:29  db
+
+	* [r633] include/irc_string.h, src/channel.c, src/match.c:
+	  - optimise Michael's fake channel catcher.
+	    Make it work first, then optimise.
+
+2006-06-01 06:53:00  michael
+
+	* [r632] RELNOTES, contrib/m_force.c, etc/example.conf, 
+	  etc/example.efnet.conf, include/channel.h, 
+	  include/irc_string.h, include/s_conf.h, modules/core/m_join.c, 
+	  modules/core/m_mode.c, modules/core/m_sjoin.c, 
+	  modules/m_cburst.c, modules/m_lljoin.c, modules/m_names.c, 
+	  src/channel.c, src/ircd_lexer.l, src/ircd_parser.y, 
+	  src/lex.yy.c, src/match.c, src/s_conf.c, src/y.tab.c, 
+	  src/y.tab.h:
+	  - Added channel::disable_fake_channels which disallows creation of channels
+	    that have ascii 2, 3, 31 and 160 in their names.
+	  - Minor improvements and cleanups to channel name validation routines
+	    backported from 7.3
+
+2006-05-26 07:33:57  michael
+
+	* [r627] src/s_user.c:
+	  - Fixed compile warning in change_simple_umode as reported by Volk
+
+2006-05-25 06:22:02  michael
+
+	* [r624] src/s_conf.c:
+	  - Fixed an off-by one bug in the ip limiting code as reported by Volk
+
+2006-05-24 14:54:19  michael
+
+	* [r620] contrib/m_killhost.c:
+	  - Unbroke KILLHOST
+
+2006-05-23 03:22:23  michael
+
+	* [r619] src/messages.tab, src/s_conf.c, src/y.tab.c, src/y.tab.h:
+	  - Backported r376 (STATS y now shows the total number of clients in a class)
+	  - Rebuilt y.tab.c using bison 2.2
+
+2006-05-23 03:07:53  michael
+
+	* [r618] include/s_conf.h, src/s_conf.c:
+	  - attach_conf():  We even need to increment CurrUserCount if a class got
+	    attached to a server or operator.  Spotted by stu.
+	  - Removed IRCD_SOCKET_ERROR define
+
+2006-05-22 03:21:17  michael
+
+	* [r617] src/client.c:
+	  - report_error() expects two %s conversion specifiers as reported by ThaPrince.
+	    This function really should get rewritten at given time.  It just confuses
+	    people.
+
+2006-05-22 03:10:56  michael
+
+	* [r616] contrib/m_clearchan.c:
+	  - Backported m_clearchan:kick_list fixes
+
+2006-05-18 07:43:38  michael
+
+	* [r611] modules/m_kline.c:
+	  - Fixed /dline nick for ipv6 servers
+
+2006-05-16 03:14:39  michael
+
+	* [r606] modules/core/m_message.c:
+	  - ERR_NOSUCHNICK should actually be sent to local clients trying to PRIVMSG
+	    a non existant nick starting with a digit.
+
+2006-05-13 12:59:28  michael
+
+	* [r601] include/dalloca.h, src/ircd_parser.y, src/y.tab.c, src/y.tab.h:
+	  - Removed dalloca.h
+
+2006-05-13 05:08:47  michael
+
+	* [r598] src/ircd_signal.c:
+	  - Added missing sigaction for SIGALRM
+
+2006-05-13 04:45:18  michael
+
+	* [r597] RELNOTES:
+	  - Updated RELNOTES
+
+2006-05-12 17:44:39  michael
+
+	* [r596] src/s_conf.c:
+	  - Cosmetical fix to "STATS k|K".  temporary regexp based k-lines should
+	    be prefixed with 'kR' and permanent ones with 'KR'.
+
+2006-05-12 17:17:16  michael
+
+	* [r595] src/ircd_parser.y, src/y.tab.c:
+	  - Backported core fix for regexp k-lines
+
+2006-05-12 16:05:57  michael
+
+	* [r594] src/ircd_signal.c:
+	  - Ignore signal SIGXFSZ which killed the ircd process on daxnet because of
+	    a file size limit set too low.  That way, write() and friends will abort
+	    and errno will be set to EFBIG.  We may think about a NOTICE which could
+	    be sent to operators on a failed write attempt to either the log files
+	    or k/x-line files.
+
+2006-05-12 01:47:32  michael
+
+	* [r593] contrib/m_killhost.c, include/irc_string.h, include/s_conf.h, 
+	  modules/m_testline.c, src/channel_mode.c, src/irc_string.c, 
+	  src/ircd_parser.y, src/s_conf.c, src/y.tab.c, src/y.tab.h:
+	  - Backported RKLINE fix so the user and host portion of a banmask don't get
+	    cut off after 10 and 63 chars, respectively.
+	    A split_nuh() rewrite was required for this.
+	  - Removed now unused xstrldup() function
+
+2006-05-11 08:43:02  michael
+
+	* [r592] src/s_user.c:
+	  - Merged check_xline() and check_regexp_xline into a single function
+
+2006-05-08 14:40:00  michael
+
+	* [r589] modules/m_admin.c, modules/m_motd.c, src/s_user.c:
+	  - Clear the TS6 CAPAB bit possibly set on an unregistered client connection
+	    in mr_motd(), mr_admin() and register_local_user(). This is a kludge for now.
+
+2006-05-08 09:22:59  michael
+
+	* [r588] modules/m_restart.c, src/restart.c:
+	  - m_restart(): don't send restart notices twice to locally connected clients
+
+2006-05-08 07:05:46  michael
+
+	* [r585] src/balloc.c:
+	  - Proper typecasting in newblock()
+
+2006-05-07 11:26:45  michael
+
+	* [r584] RELNOTES, etc/example.conf, etc/example.efnet.conf, 
+	  include/s_conf.h, modules/m_stats.c, src/ircd_lexer.l, 
+	  src/ircd_parser.y, src/lex.yy.c, src/y.tab.c, src/y.tab.h:
+	  - Added new general::stats_e_disabled configuration option.  Known from RB,
+	    all it does is to disable "STATS e", which is a good idea if you have any
+	    exempted server ips.
+	  - Updated RELNOTES
+
+2006-05-07 08:58:29  michael
+
+	* [r583] etc/example.conf, etc/example.efnet.conf:
+	  - Cleaned up example.conf
+	  - Copied example.conf over to example.efnet.conf and restored
+	    efnet specific values
+
+2006-05-02 16:47:11  michael
+
+	* [r582] src/s_log.c, src/s_user.c:
+	  - The 2nd and 3rd character of a SID may be a digit as well.
+	    Spotted by ThaPrince
+	  - Fixed compile warnings in log_user_exit()
+
+2006-05-02 03:50:39  michael
+
+	* [r581] src/s_log.c:
+	  - log_user_exit(): removed extranous newline character in log message.
+	    fixed invalid casts
+
+2006-05-01 09:02:52  michael
+
+	* [r579] RELNOTES:
+	  - Update RELNOTES
+
+2006-05-01 07:41:09  michael
+
+	* [r575] modules/m_cap.c, modules/m_help.c, modules/m_links.c, 
+	  src/s_conf.c:
+	  - Fixed a bunch of compile warnings
+
+2006-05-01 07:22:11  michael
+
+	* [r574] INSTALL:
+	  - Updated INSTALL.  --with-maxcon doesn't exist anymore
+
+2006-05-01 05:40:37  michael
+
+	* [r573] include/s_user.h, modules/m_pass.c, src/ircd_parser.y, 
+	  src/s_user.c, src/y.tab.c:
+	  - ts6 fixes as explained on irc
+
+2006-04-30 12:57:48  michael
+
+	* [r572] contrib/m_clearchan.c, include/channel.h, src/channel.c, 
+	  src/channel_mode.c, src/send.c:
+	  - Backported changes made in HEAD to get rid of Channel::locmembers.
+	    This is mainly to save about 5megs of ram on networks like efnet where
+	    we have about 600k allocated Membership structures.
+
+2006-04-27 17:52:26  michael
+
+	* [r570] RELNOTES, contrib/help/opers/mkpasswd:
+	  - Updated RELNOTES
+	  - Fixed mkpasswd help file
+
+2006-04-27 09:56:29  michael
+
+	* [r569] contrib/m_mkpasswd.c:
+	  - Fixed core in m_mkpasswd.c as reported by Grigor Josifov
+
+2006-04-27 04:27:30  michael
+
+	* [r567] src/channel.c:
+	  - Added missing bracket
+
+2006-04-26 12:52:00  michael
+
+	* [r565] src/channel.c:
+	  - can_send: splitted up some bigass if() statement
+
+2006-04-23 11:35:58  michael
+
+	* [r564] contrib/m_change.c:
+	  - Allow servers to CHGHOST.  This is mainly to fix an issue with
+	    ip_cloaking module
+
+2006-04-23 05:07:41  michael
+
+	* [r563] src/listener.c:
+	  - Backported accept_connection() cleanup from HEAD
+
+2006-04-23 02:38:25  michael
+
+	* [r560] RELNOTES, modules/m_stats.c:
+	  - Fixed negative "STATS ?" output as reported by ThaPrince
+	  - Updated RELNOTES
+
+2006-04-22 05:39:44  michael
+
+	* [r555] BUGS, INSTALL, RELNOTES, TODO, etc/example.conf:
+	  - Updated RELNOTED.  Added missing entries etc..
+	    BUGS, TODO, INSTALL: likewise
+	  - Fixed formatting in example.conf
+
+2006-04-21 13:01:46  michael
+
+	* [r554] modules/m_gline.c:
+	  - Don't send out multiple "requesting G-Line" notices in case the same oper
+	    is requesting the same gline over and over again.
+
+2006-04-21 11:46:54  michael
+
+	* [r553] modules/m_gline.c:
+	  - Forgot the half of the gline voting fix
+
+2006-04-21 11:37:22  michael
+
+	* [r552] RELNOTES, modules/m_gline.c:
+	  - Fixed g-line voting as discussed on irc
+
+2006-04-20 08:46:18  michael
+
+	* [r549] include/s_bsd.h, src/listener.c, src/s_bsd.c:
+	  - Backported add_connection() speedups
+
+2006-04-20 03:26:01  michael
+
+	* [r548] RELNOTES, etc/example.efnet.conf:
+	  - Updated RELNOTES and example.efnet.conf
+
+2006-04-20 03:23:18  michael
+
+	* [r547] etc/example.conf:
+	  - added missing documentation for connect::vhost
+
+2006-04-05 15:16:50  michael
+
+	* [r545] RELNOTES, contrib/m_force.c:
+	  - Fixed core on FORCEJOIN as reported by CoolCold.
+	      ** Fixed doesn't need to get forward-ported to HEAD
+	  - Updated RELNOTES
+
+2006-03-26 18:35:48  lusky
+
+	* [r541] include/patchlevel.h:
+	  bump version to 7.2.1 (release)
+
+2006-03-24 04:42:22  michael
+
+	* [r537] contrib/m_ojoin.c:
+	  - Backported OJOIN fix from HEAD.  Thanks for remembering me, CoolCold
+
+2006-03-23 04:59:02  michael
+
+	* [r536] include/stdinc.h, modules/m_cap.c:
+	  - Can't use irccmp for qsort(), so let's use stricmp() when compiling on wins0x
+
+2006-03-22 15:43:12  adx
+
+	* [r535] modules/m_cap.c:
+	  + fixed linking error on bcc/win32 about _strcasecmp
+
+2006-03-18 11:47:06  michael
+
+	* [r530] contrib/m_operspy.c:
+	  - Fixed compile error in m_operspy.c.  Reported by Volk
+
+2006-03-18 10:13:11  michael
+
+	* [r528] src/s_user.c:
+	  - Added missing !u@h prefix when sending MODE message back to a client
+
+2006-03-12 09:03:12  michael
+
+	* [r523] RELNOTES:
+	  - Updated RELNOTES
+
+2006-03-12 08:42:20  michael
+
+	* [r522] src/parse.c:
+	  - Backported msg_tree_parse() speedup
+
+2006-03-11 16:37:16  db
+
+	* [r521] src/csvlib.c:
+	  - When checking for first " in a line, make sure it doesn't run off
+	    the end of the line before it finds one.
+
+2006-03-09 05:55:50  michael
+
+	* [r516] include/listener.h:
+	  - Removed unused struct DNSQuery pointer from Listener structure
+
+2006-03-04 11:21:54  michael
+
+	* [r512] contrib/m_services.c, include/modules.h, src/modules.c:
+	  - Fixed static build for m_cap()  (fix doesn't need to get
+	    forward-ported to HEAD)
+	  - Added BS alias for BOTSERV
+
+2006-03-04 03:37:51  michael
+
+	* [r510] src/s_user.c:
+	  - register_remote_user(): Fixed bug where we would increase Count.total and
+	    source_p->from->serv->dep_users for unregistered remote clients and don't
+	    decrease them if we exit the client due to non existand server or fake
+	    direction.
+
+2006-03-04 03:20:28  michael
+
+	* [r507] src/s_user.c, src/whowas.c:
+	  - Removed some outdated XXX comments
+
+2006-03-03 16:08:34  michael
+
+	* [r506] src/channel.c:
+	  - channel_member_names(): properly count the number of prefixes
+	    that will be written to lbuf
+
+2006-03-03 14:53:47  michael
+
+	* [r503] doc/technical/draft-mitchell-irc-capabilities-01.txt, 
+	  include/client.h, include/numeric.h, modules/Makefile.in, 
+	  modules/m_cap.c, modules/m_pong.c, src/channel.c, src/client.c, 
+	  src/messages.tab, src/s_user.c:
+	  - Backported CAP changes from HEAD since it doesn't affect
+	    any of the ircd's core components and should be supported
+	    as soon as possible.
+
+2006-03-01 14:30:58  michael
+
+	* [r498] src/client.c:
+	  - exit_client(): Don't bounce a QUIT back to origin's server
+	    Reported by adx
+
+2006-03-01 13:57:56  michael
+
+	* [r497] contrib/m_operspy.c:
+	  - Fixed bug where "OPERSPY NAMES #channel" would add a
+	    client twice onto a channel's member list if it is
+	    already on that channel.
+
+2006-03-01 11:26:31  michael
+
+	* [r494] modules/core/m_join.c:
+	  - Break the loop if a client has reached its channel limit
+
+2006-03-01 09:13:27  michael
+
+	* [r490] contrib/m_force.c:
+	  - mo_force(): Don't allow servers to be added to a channel.
+	    (could possibly lead to a core)
+
+2006-03-01 07:40:31  michael
+
+	* [r488] modules/core/m_join.c:
+	  - Rewrote m_join(). This was mainly done to fix some bug that can be easily abused.
+	    Details about this bug have been given on IRC.
+
+2006-03-01 05:54:20  michael
+
+	* [r487] modules/core/m_join.c:
+	  - Fixed bug where "JOIN #keyedchan1,#keyedchan2 key1,key2" wouldn't work.
+	    Reported by ThaPrince
+
+2006-02-27 10:17:04  michael
+
+	* [r484] src/match.c:
+	  - Yet another mach_chan fix (broken #*chan vs. &chan match logic
+	                               as pointed out by adx)
+
+2006-02-27 09:49:50  michael
+
+	* [r482] src/listener.c:
+	  - Don't give away IP information unless it's an admin doing /stats P
+
+2006-02-27 08:12:59  michael
+
+	* [r481] src/match.c:
+	  - Backported match_chan() fix to get /list *chan* to work
+
+2006-02-17 05:13:25  michael
+
+	* [r472] modules/m_whois.c:
+	  - Fixed RPL_WHOISACTUALLY as reported by CoolCold
+
+2006-02-16 21:42:23  db
+
+	* [r468] src/irc_res.c:
+	  - Cleaned up the resolver some more, added some comments
+
+2006-02-13 09:19:25  adx
+
+	* [r465] modules/core/m_quit.c:
+	  + backported quit change
+
+2006-02-12 22:30:53  db
+
+	* [r463] src/irc_res.c:
+	  - Redo NXDOMAIN check so IPV6 still works
+
+2006-02-12 15:17:29  michael
+
+	* [r456] src/channel.c:
+	  - Unbreak can_send
+
+2006-02-12 14:01:25  michael
+
+	* [r454] include/channel.h, modules/core/m_message.c, 
+	  modules/core/m_part.c, src/channel.c:
+	  - Get rid of can_send_part. This also fixes a bug where voiced clients
+	    weren't able to send a PART message to the channel.  Reported by ThaPrince.
+
+2006-02-12 11:19:54  michael
+
+	* [r451] src/s_bsd.c:
+	  - Properly close ssl clients
+
+2006-02-12 05:55:28  michael
+
+	* [r448] contrib/spy_trace_notice.c:
+	  - Backported spy_trace_notice module unload fix
+
+2006-02-11 21:59:16  db
+
+	* [r447] include/irc_res.h, src/irc_res.c:
+	  - reported by Jon, resolver was not checking for NXDOMAIN as well as SERVFAIL
+	  this caused odd DNS reports and took longer to connect.
+	  
+	  Tested by Jon (ThaPrince).
+	  
+	  (backported from head)
+
+2006-02-11 18:12:56  michael
+
+	* [r441] src/y.tab.c:
+	  - rebuilt y.tab.c
+
+2006-02-11 18:11:38  michael
+
+	* [r440] src/ircd_parser.y:
+	  - Fixed bug where "listen { flags = ssl; port 1,2,3; }" would result
+	    in only port 1 being set ssl enabled.
+
+2006-02-11 16:58:40  michael
+
+	* [r439] etc/example.conf, src/send.c:
+	  - Fixed typo in example.conf and send.c
+
+2006-02-11 16:53:46  michael
+
+	* [r438] src/send.c:
+	  - Got rid of the last IVARIANT we had and replaced it with two asserts().
+
+2006-02-11 16:35:16  michael
+
+	* [r436] src/fdlist.c:
+	  - Fixed bug in fd_close() that caused a core when calling restart_resolver()
+
+2006-02-11 14:21:50  michael
+
+	* [r435] modules/m_users.c:
+	  - Fixed invalid output of the USERS command as reported by ThaPrince
+
+2006-02-11 10:22:07  michael
+
+	* [r433] src/s_conf.c:
+	  - Don't try to keep pointers to already freed memory on temporary_resv list
+	    when manually removing tempoary N/C resvs.
+
+2006-02-11 09:55:00  michael
+
+	* [r432] src/s_conf.c:
+	  - Fixed possible core in expire_temp_lines()
+
+2006-02-11 07:52:34  michael
+
+	* [r430] src/send.c:
+	  - Fixed same problem for SSL_write.  Some interesting reference
+	    about the problem we experienced can be found at
+	    http://www.mail-archive.com/openssl-dev@openssl.org/msg13939.html
+
+2006-02-11 07:21:51  michael
+
+	* [r428] src/packet.c:
+	  - Fixed bug where all ssl clients would get disconnected in certain situations.
+	    (reported by many people)
+
+2006-02-10 19:58:24  michael
+
+	* [r427] include/modules.h:
+	  - Fixed compile errors
+
+2006-02-10 19:27:28  michael
+
+	* [r425] src/modules.c:
+	  - Add BMASK and TMODE onto message tree when building with static modules.
+	    reported by hb505.
+
+2006-02-10 04:50:59  michael
+
+	* [r416] help/opers/set:
+	  - Backported updated help file for "SET"
+
+2006-02-08 09:42:01  adx
+
+	* [r411] src/irc_res.c:
+	  + fixed unaligned memory reference in resolver
+	  
+	  Submitted by: Immo 'FaUl' Wehrenberg
+
+2006-02-08 09:31:37  michael
+
+	* [r410] doc/kline.txt:
+	  - backported spelling fix
+
+2006-02-03 17:08:10  nenolod
+
+	* [r397] src/s_auth.c:
+	  MFC r396 from ircd-hybrid 7.3 (s_auth.c reliability fixes)
+
+2006-02-03 12:39:45  michael
+
+	* [r395] modules/m_tburst.c:
+	  - Fixed typo
+
+2006-02-03 12:32:17  michael
+
+	* [r394] modules/m_tburst.c:
+	  - Fixed TBURST as reported by ThaPrince
+
+2006-02-03 10:50:47  michael
+
+	* [r393] modules/core/m_join.c:
+	  - Backported max_chans_per_user fix from HEAD
+
+2006-02-03 04:57:22  michael
+
+	* [r391] src/s_serv.c:
+	  - fixed compile error in sendnick_TS()
+
+2006-02-01 16:24:07  michael
+
+	* [r390] etc/example.conf, etc/example.efnet.conf:
+	  - Fixed typo in example configuration files
+
+2006-02-01 07:51:45  michael
+
+	* [r388] src/channel_mode.c:
+	  - Forward-port banfix from 7.2 (reported by ThaPrince)
+
+2006-01-31 07:40:56  adx
+
+	* [r386] src/s_serv.c, src/s_user.c:
+	  + this should fix sockhost relaying (ThaPrince #1)
+
+2006-01-31 07:22:01  michael
+
+	* [r384] src/client.c:
+	  - Soft caller ID fix as per ThaPrince (find_channel_link was
+	    called with wrong pointer)
+
+2006-01-31 07:13:42  michael
+
+	* [r382] modules/m_xline.c:
+	  - Fixed incorrect match handling in relay_xline as reported by ThaPrince.
+	    Damnit match() really shouldn't return 1 on match.  This will be changed
+	    sooner or later.
+
+2006-01-10 05:45:48  michael
+
+	* [r371] RELNOTES, include/channel.h, include/irc_string.h, 
+	  src/channel.c, src/channel_mode.c, src/match.c:
+	  - Imported recent channelban changes from HEAD which have been tested extensively.
+	    The match_cidr() fix didn't work in the first try, so I'm not going to bother
+	    with further debugging.
+	  - Removed match_cidr() and comp_with_mask()
+
+2006-01-09 18:41:29  michael
+
+	* [r368] src/balloc.c:
+	  - Forgot the half of the fix
+
+2006-01-09 18:37:29  michael
+
+	* [r367] src/balloc.c:
+	  - Fixed compile error on srv4 as reported by KEYofR
+
+2006-01-02 17:05:15  adx
+
+	* [r356] contrib/m_force.c, contrib/m_ojoin.c, src/channel.c, 
+	  src/channel_mode.c:
+	  + MFC support for halfop->op rewriting.
+
+2006-01-01 04:44:41  michael
+
+	* [r352] RELNOTES, modules/m_kline.c:
+	  - Don't allow shared k-lines to be set without a valid reason
+
+2005-12-31 04:38:11  michael
+
+	* [r343] contrib/m_change.c:
+	  - Flag the client as being ip-spoofed if setting a new hostname via CHGHOST,
+	    that way non-opers can't figure out the IP with a simple WHOIS.
+	    Suggested by adx
+
+2005-12-27 14:28:58  michael
+
+	* [r342] src/ircd_parser.y, src/y.tab.c:
+	  - Fixed compile error reported by Volk and CoolCold
+
+2005-12-27 08:43:46  michael
+
+	* [r341] help/opers/cmode, src/ircd_parser.y, src/y.tab.c:
+	  - As reported by CoolCold:
+	    - Updated cmode helpfile
+	    - Added support for old-style topicburst = yes|no
+
+2005-12-27 03:24:52  michael
+
+	* [r340] RELNOTES:
+	  - Updated RELNOTES
+
+2005-12-27 03:21:49  michael
+
+	* [r339] src/y.tab.c:
+	  - Someone fixed a core in ircd_parser.y but forgot to rebuild y.tab.c,
+	    so ircd still kept on coring if using 'umodes' option in operator{}
+
+2005-12-27 02:49:27  michael
+
+	* [r338] modules/m_tburst.c:
+	  - Don't allow other servers to send less than 4 parameters within TB
+
+2005-12-26 14:20:47  michael
+
+	* [r337] src/channel.c, src/s_serv.c:
+	  - Improved topic bursting.  Read the comment in s_serv.c:send_tb for
+	    further info
+
+2005-12-26 13:31:08  michael
+
+	* [r336] modules/m_tburst.c:
+	  - This should finally fix the TBURST issue as reported by
+	    ThaPrince. Untested as always
+
+2005-12-26 05:36:42  michael
+
+	* [r335] modules/m_tburst.c:
+	  - Backported TBURST fix from HEAD
+
+2005-12-25 06:01:22  michael
+
+	* [r330] RELNOTES, etc/example.conf, etc/example.efnet.conf:
+	  - Somehow we had a 7.2 release without mentioning the topicburst directive
+	    in connect{} blocks -> updated example confs
+	  - Updated RELNOTES
+
+2005-12-25 05:45:42  michael
+
+	* [r329] include/modules.h, src/modules.c, src/s_serv.c:
+	  - Finish off TBURST (untested)
+
+2005-12-25 04:55:48  michael
+
+	* [r327] include/s_serv.h, modules/m_tburst.c:
+	  - propset svn:keywords "Id" modules/m_tburst.c
+	  - Added CAP_TBURST definition to get m_tburst.c compile
+
+2005-12-25 04:29:11  michael
+
+	* [r326] modules/Makefile.in, modules/m_tb.c:
+	  - Removed m_tb.c and updated Makefile.in
+
+2005-12-25 04:26:45  michael
+
+	* [r325] modules/m_tburst.c:
+	  - Imported m_tburst.c from 7.3
+
+2005-12-24 17:10:42  michael
+
+	* [r324] RELNOTES:
+	  - Updated RELNOTES
+
+2005-12-24 17:04:58  michael
+
+	* [r322] modules/m_invite.c:
+	  - Only locally connected clients should be checked for a valid channelmembership
+	    when processing the INVITE message.  Remote clients that are outside a channel
+	    e.g. services, are allowed to send INVITEs.  This also fixes a bug with anope
+	    services.  Reported by r0d3nt
+
+2005-12-24 10:16:10  michael
+
+	* [r321] RELNOTES:
+	  - Updated RELNOTES
+
+2005-12-24 10:06:49  michael
+
+	* [r319] src/s_serv.c:
+	  - Fixed core in case aconf->cipher_preference and
+	    ConfigFileEntry.default_cipher_preference are both NULL pointers
+	  
+	    Reported by opteron-hani via Joan
+
+2005-12-24 09:51:35  michael
+
+	* [r318] RELNOTES:
+	  - Updated RELNOTES
+
+2005-12-24 09:45:17  michael
+
+	* [r317] include/client.h, modules/m_stats.c, src/channel.c, 
+	  src/client.c:
+	  - Backported revision 315 (trimmed memory usage by moving invited
+	    dlink_list to LocalUser struct)
+
+2005-12-23 05:55:47  michael
+
+	* [r313] modules/m_who.c:
+	  - Don't pace "WHO #somechan" and "WHO *" as this breaks several clients
+
+2005-12-09 06:28:02  adx
+
+	* [r310] contrib/win32build.bat:
+	  + clean up *.tds files after compile
+
+2005-12-09 06:25:44  adx
+
+	* [r309] contrib/m_ctrace.c, contrib/setup-win32.h, 
+	  contrib/win32build.bat:
+	  + fixed bugs related to win32 & static builds
+
+2005-12-09 01:15:41  lusky
+
+	* [r308] RELNOTES, include/patchlevel.h:
+	  - bump patchlevel to 7.2.1beta
+	  - stub 7.2.1beta1 in RELNOTES and add BETA verbage
+
+2005-12-09 00:39:16  lusky
+
+	* [r304] RELNOTES, contrib/ircd-hybrid.spec, include/patchlevel.h:
+	  - bump patchlevel to 7.2.0
+	  - update RELNOTES
+	  - bump version in specfile
+
+2005-12-05 18:13:58  db
+
+	* [r300] src/hostmask.c:
+	  - fixed infinite loop spotted and fixed by
+	    *runedude* Jeremy Sayres and my email is runedude@runedude.net
+
+2005-12-05 17:49:18  db
+
+	* [r298] src/ircd_parser.y:
+	  - This is part of the nasty core fix; the y.tab.c and y.tab.h files
+	    were committed earlier, I have no idea why this file did not get committed.
+
+2005-12-03 08:28:04  db
+
+	* [r287] BUGS, contrib/libc_vprintf.c, contrib/vprintf_fix.patch:
+	  - This BUG is gone so the ancillary files are no longer needed as well
+
+2005-12-03 05:57:47  adx
+
+	* [r285] src/send.c:
+	  + fixed unportable usage of va_list that make ircd cry on amd64
+
+2005-11-24 05:31:22  adx
+
+	* [r282] src/s_bsd_devpoll.c:
+	  + MFC /dev/poll
+
+2005-11-23 18:09:48  db
+
+	* [r280] modules/m_whois.c:
+	  - Back port whois fix from HEAD
+
+2005-11-14 14:39:09  adx
+
+	* [r269] RELNOTES, etc/example.conf, etc/example.efnet.conf, 
+	  modules/m_admin.c, modules/m_links.c, modules/m_lusers.c, 
+	  modules/m_users.c, modules/m_version.c, modules/m_whois.c, 
+	  modules/m_whowas.c:
+	  + more rate limiting fixes
+	  + update RELNOTES
+
+2005-11-14 06:02:39  adx
+
+	* [r268] modules/m_map.c, modules/m_userhost.c, modules/m_users.c, 
+	  modules/m_who.c, modules/m_whois.c:
+	  + add more load2hi protection
+	  + style fixes
+
+2005-11-13 06:11:29  adx
+
+	* [r264] etc/example.conf, etc/example.conf.quick, 
+	  etc/example.efnet.conf, src/s_conf.c:
+	  MFC set +b on opers by default
+
+2005-11-12 13:47:17  michael
+
+	* [r258] src/dynlink.c:
+	  - Fixed another core on dlclose()
+
+2005-11-12 09:18:31  michael
+
+	* [r255] include/modules.h, src/dynlink.c:
+	  - Fixed core on /modunload, /modrestart
+
+2005-11-11 07:36:59  michael
+
+	* [r251] configure, configure.ac, src/y.tab.c, src/y.tab.h:
+	  - Fixed problem where configure wouldn't deal properly with openssl 0.9.8
+	  - Rebuilt y.tab.c using bison 2.1
+
+2005-11-06 06:20:44  adx
+
+	* [r242] INSTALL, src/s_bsd_devpoll.c:
+	  + 7.1 -> 7.2
+
+2005-11-03 10:39:49  michael
+
+	* [r222] modules/core/m_nick.c:
+	  - Added missing 'return' after register_remote_user() call in
+	    nick_from_server()
+
+2005-11-03 09:41:55  db
+
+	* [r219] modules/m_invite.c:
+	  - Use MODE_PRIVATE, MODE_PARANOID isn't defined until HEAD (7.3)
+
+2005-11-03 09:40:19  db
+
+	* [r218] src/modules.c:
+	  - make findmodule_byname case sensitive
+
+2005-11-01 06:48:01  adx
+
+	* [r202] contrib/win32build.bat:
+	  + reverted accidental invalid backport of win32build.bat
+
+2005-11-01 06:41:52  adx
+
+	* [r201] RELNOTES, contrib/win32build.bat, etc/example.conf, 
+	  etc/example.conf.quick, etc/example.efnet.conf, 
+	  include/s_conf.h, modules/m_info.c, modules/m_invite.c, 
+	  src/ircd_lexer.l, src/ircd_parser.y, src/lex.yy.c, 
+	  src/s_conf.c, src/y.tab.c, src/y.tab.h:
+	  MFC:
+	  + removed invite_ops_only, controlled by +p now
+	  + sorted ircd.conf:channel{} a bit
+
+2005-10-30 04:39:59  michael
+
+	* [r195] src/dynlink.c:
+	  - Fixed compile error in load_a_module() with glibc that don't
+	    have a Link_map typedef
+
+2005-10-23 17:35:38  db
+
+	* [r189] src/send.c:
+	  - backported fix from HEAD done by Michael
+	  - Fixed bug in sendto_channel_remote() that would cause
+	    multiple copies of the same message to be sent to the
+	    uplinked server.
+
+2005-10-21 20:00:13  michael
+
+	* [r176] src/irc_string.c:
+	  - Fixed gcc4 related compilewarnings in inet_ntop6().  Reported by ThaPrince
+
+2005-10-21 18:04:25  michael
+
+	* [r172] modules/m_etrace.c:
+	  - ETRACE should spit out an error if used by a non-oper.  Reported by nenolod
+
+2005-10-21 05:37:16  michael
+
+	* [r169] include/client.h, src/irc_res.c, src/s_bsd.c:
+	  - Removed LocalUser.port
+	  - Removed two extra memsets in make_request()
+
+2005-10-21 05:32:05  michael
+
+	* [r167] contrib/m_ctrace.c:
+	  - Fixed compilewarning about unused parc in a more or less clean way.
+	    Reported by Marines
+
+2005-10-21 00:20:48  db
+
+	* [r166] configure, configure.ac, include/setup.h.in, src/dynlink.c:
+	  Backported from HEAD
+	  
+	  - committed configure changes by nenolod (William Pitcock)
+	    to check for HAVE_DLINFO
+	  - fixed logic for picking up address for the mod_list
+
+2005-10-20 17:09:02  adx
+
+	* [r163] include/packet.h, include/send.h, src/ircd.c, src/packet.c, 
+	  src/send.c:
+	  - MFC iorecv/iosend changes to allow charset recoding
+
+2005-10-19 05:39:13  michael
+
+	* [r159] RELNOTES, src/s_user.c:
+	  - Fixed bug where we would increase Count.invisi even
+	    if invisible_on_connect is off
+
+2005-10-18 02:33:24  adx
+
+	* [r157] src/hook.c:
+	  - MFC: fixed register_callback
+
+2005-10-17 22:54:54  db
+
+	* [r155] src/irc_res.c:
+	  (backported from HEAD)
+	  - irc_res.c would send out hundreds? of retry requests on clients that
+	   did not resolve, i.e. SERVFAIL. The code was essentailly ignoring
+	   SERVFAIL hence generating request after request after request.
+	   This appears to fix this major bug. It would be a good idea to add
+	   some logging here however.
+
+2005-10-16 14:21:11  db
+
+	* [r151] src/s_conf.c:
+	  - backported from HEAD flush_deleted_I_P is trying to treat MatchItems
+	    as if they are AccessItems
+	  
+	    I am almost sure this function is redundant as well.
+
+2005-10-16 14:14:43  db
+
+	* [r150] modules/m_testline.c:
+	   - backport fix from HEAD to fix m_testline.c on 7.2
+	     This bug is old. The code was missing a test for a kline conf and the
+	     sendto to print that kline out, in the case where it was a kline against
+	     and IP. i.e. foo@ip.ip.ip.ip it would work in the case where it was
+	     a kline against a dns.
+
+2005-10-16 12:18:18  db
+
+	* [r148] modules/m_testline.c:
+	  - backport fix for memory leak and parv1 from HEAD
+
+2005-10-16 06:07:13  michael
+
+	* [r145] modules/m_whowas.c:
+	  - Limit maximum WHOWAS replies for remote requests to 20, as per H6
+
+2005-10-16 05:49:16  michael
+
+	* [r143] modules/m_whowas.c:
+	  - Fixed a bug where remoteservers would send us an ERROR
+	    on "WHOWAS nick count remoteserver.net".  Propably one
+	    of the oldest bugs that got introduced in 7.0.
+	  
+	    (Backported from HEAD)
+
+2005-10-15 21:20:07  db
+
+	* [r138] modules/m_testline.c:
+	  - fix compile warning
+
+2005-10-15 19:39:54  db
+
+	* [r136] modules/m_testline.c, src/ircd_parser.y, src/y.tab.c, 
+	  src/y.tab.h:
+	  - backport fixes from 7.3 (HEAD) for testline and ~ flags
+
+2005-10-13 15:48:20  michael
+
+	* [r124] etc/example.conf, etc/example.efnet.conf:
+	  - Updated example.conf as suggested by pi
+
+2005-10-11 11:10:35  michael
+
+	* [r105] contrib/m_ctrace.c:
+	  - Fixed compile error in m_ctrace.c
+
+2005-10-10 14:29:05  adx
+
+	* [r103] modules/m_links.c:
+	  - MFC: fixed core on /links
+
+2005-10-10 08:17:19  michael
+
+	* [r102] src/ircd_parser.y, src/s_conf.c, src/y.tab.c, src/y.tab.h:
+	  - That one should be the propper fix for GDENY items.  Previous fix broke
+	    the ability of stacking user/name/action combinations.
+	    That fix still needs to go into -HEAD, and VERY important, into 7.1.3.
+	    Someone please test this, e.g. write a small dump function that spits out
+	    GDENY items.
+
+2005-10-09 10:43:13  michael
+
+	* [r100] include/ircd_defs.h, modules/core/m_join.c, src/s_conf.c:
+	  - CHANNELLEN vs. LOCAL_CHANNELLEN fix.  Local JOINs are limited to 50chars whereas
+	    remote SJOINs/JOINs can be upto 200chars for backwards compatibility.
+
+2005-10-08 12:27:32  db
+
+	* [r96] src/y.tab.c, src/y.tab.h:
+	  - And update the parser files
+
+2005-10-08 12:26:37  db
+
+	* [r95] src/ircd_parser.y:
+	  - At the very least, don't create a gdeny conf with a NULL name,
+	    this is bad manners.
+
+2005-10-08 07:26:25  michael
+
+	* [r94] RELNOTES:
+	  - Updated 7.2 RELNOTES
+
+2005-10-08 07:24:01  michael
+
+	* [r93] modules/m_whois.c:
+	  - Fixed bug in m_whois() that would allow users to send a WHOIS to remote
+	    servers with an empty argument via "WHOIS someserver.org :"
+
+2005-10-03 19:44:13  adx
+
+	* [r66] help/opers/stats:
+	  - added /stats h to help
+
+2005-10-03 08:13:38  michael
+
+	* [r58] src/s_conf.c:
+	  - Reverted oper_privs_as_string() back to its previous version which is easier
+	    to maintain when adding new operflags. Even the one who wrote the new version
+	    introduced a bug by not taking care to keep the oper_flags_table in sync
+	    with the OPER_FLAGS_* bits.  (which also no one really wants to do ...)
+	  - Updated it to deal with new 'remoteban', 'operwall' and 'operspy' flags
+
+2005-10-03 07:33:30  michael
+
+	* [r56] RELNOTES, etc/example.conf, etc/example.efnet.conf, 
+	  include/s_conf.h, src/ircd_lexer.l, src/ircd_parser.y, 
+	  src/lex.yy.c, src/s_user.c, src/y.tab.c, src/y.tab.h:
+	  - Re-added an equivalent of H6's sixth O-line field (Modes to get on operup).
+	  - Updated efnet's example.conf to reflect the new
+	    opers_bypass_callerid directive
+	  - Misc style corrections to s_user.c while on it
+
+2005-10-02 21:14:44  lusky
+
+	* [r46] include/serno.h:
+	  MFC: switch to static "SVN" string
+
+2005-10-02 19:25:27  adx
+
+	* [r42] src/s_serv.c:
+	  - *hopefully* this hack fixes cryptlinks+ts6 instead of breaking them ;)
+
+2005-10-02 18:39:02  adx
+
+	* [r40] etc/example.conf, etc/example.efnet.conf:
+	  - documented cidr_bitlen
+
+2005-10-02 18:27:12  adx
+
+	* [r38] src/ircd_parser.y, src/y.tab.c, src/y.tab.h:
+	  - MFC disallow ':' at the beginning and ' ' in server passwords
+
+2005-10-02 17:05:51  lusky
+
+	* [r34] /ircd-hybrid-7.2:
+	  create 7.2 branch, we can move/rename it as needed.
+
+2005-10-02 16:50:00  knight
+
+	* [r33] /ircd-hybrid/BUGS, /ircd-hybrid/Hybrid-team, 
+	  /ircd-hybrid/INSTALL, /ircd-hybrid/LICENSE, 
+	  /ircd-hybrid/Makefile.in, /ircd-hybrid/README.FIRST, 
+	  /ircd-hybrid/README.PLATFORMS, /ircd-hybrid/RELNOTES, 
+	  /ircd-hybrid/TODO, /ircd-hybrid/configure, 
+	  /ircd-hybrid/configure.ac, /ircd-hybrid/contrib/Makefile.in, 
+	  /ircd-hybrid/contrib/README, 
+	  /ircd-hybrid/contrib/README.cloaking, 
+	  /ircd-hybrid/contrib/challenge.irc, 
+	  /ircd-hybrid/contrib/example_module.c, 
+	  /ircd-hybrid/contrib/help/Makefile.in, 
+	  /ircd-hybrid/contrib/help/opers/capture, 
+	  /ircd-hybrid/contrib/help/opers/chghost, 
+	  /ircd-hybrid/contrib/help/opers/chgident, 
+	  /ircd-hybrid/contrib/help/opers/chgname, 
+	  /ircd-hybrid/contrib/help/opers/classlist, 
+	  /ircd-hybrid/contrib/help/opers/clearchan, 
+	  /ircd-hybrid/contrib/help/opers/ctrace, 
+	  /ircd-hybrid/contrib/help/opers/delspoof, 
+	  /ircd-hybrid/contrib/help/opers/flags, 
+	  /ircd-hybrid/contrib/help/opers/forcejoin, 
+	  /ircd-hybrid/contrib/help/opers/forcepart, 
+	  /ircd-hybrid/contrib/help/opers/index, 
+	  /ircd-hybrid/contrib/help/opers/jupe, 
+	  /ircd-hybrid/contrib/help/opers/ltrace, 
+	  /ircd-hybrid/contrib/help/opers/mkpasswd, 
+	  /ircd-hybrid/contrib/help/opers/ojoin, 
+	  /ircd-hybrid/contrib/help/opers/opme, 
+	  /ircd-hybrid/contrib/help/opers/spoof, 
+	  /ircd-hybrid/contrib/help/opers/svsnick, 
+	  /ircd-hybrid/contrib/help/opers/uncapture, 
+	  /ircd-hybrid/contrib/help/users/index, 
+	  /ircd-hybrid/contrib/ip_cloaking.c, 
+	  /ircd-hybrid/contrib/ircd-hybrid.spec, 
+	  /ircd-hybrid/contrib/ircd.init.in, 
+	  /ircd-hybrid/contrib/libc_vprintf.c, 
+	  /ircd-hybrid/contrib/m_capture.c, 
+	  /ircd-hybrid/contrib/m_change.c, 
+	  /ircd-hybrid/contrib/m_classlist.c, 
+	  /ircd-hybrid/contrib/m_clearchan.c, 
+	  /ircd-hybrid/contrib/m_ctrace.c, 
+	  /ircd-hybrid/contrib/m_flags.c, /ircd-hybrid/contrib/m_force.c, 
+	  /ircd-hybrid/contrib/m_jupe.c, 
+	  /ircd-hybrid/contrib/m_killhost.c, 
+	  /ircd-hybrid/contrib/m_ltrace.c, 
+	  /ircd-hybrid/contrib/m_mkpasswd.c, 
+	  /ircd-hybrid/contrib/m_ojoin.c, 
+	  /ircd-hybrid/contrib/m_operspy.c, 
+	  /ircd-hybrid/contrib/m_opme.c, 
+	  /ircd-hybrid/contrib/m_services.c, 
+	  /ircd-hybrid/contrib/m_spoof.c, 
+	  /ircd-hybrid/contrib/setup-win32.h, 
+	  /ircd-hybrid/contrib/spy_admin_notice.c, 
+	  /ircd-hybrid/contrib/spy_info_notice.c, 
+	  /ircd-hybrid/contrib/spy_links_notice.c, 
+	  /ircd-hybrid/contrib/spy_motd_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_p_notice.c, 
+	  /ircd-hybrid/contrib/spy_trace_notice.c, 
+	  /ircd-hybrid/contrib/spy_whois_notice.c, 
+	  /ircd-hybrid/contrib/vprintf_fix.patch, 
+	  /ircd-hybrid/contrib/win32build.bat, /ircd-hybrid/doc/CIDR.txt, 
+	  /ircd-hybrid/doc/LazyLinks.txt, /ircd-hybrid/doc/Makefile.in, 
+	  /ircd-hybrid/doc/challenge.txt, 
+	  /ircd-hybrid/doc/guidelines.txt, /ircd-hybrid/doc/index.txt, 
+	  /ircd-hybrid/doc/ircd.8, /ircd-hybrid/doc/kline.txt, 
+	  /ircd-hybrid/doc/messages.txt, /ircd-hybrid/doc/modeg.txt, 
+	  /ircd-hybrid/doc/modes.txt, /ircd-hybrid/doc/resv.txt, 
+	  /ircd-hybrid/doc/server-version-info, 
+	  /ircd-hybrid/doc/serverhide.txt, 
+	  /ircd-hybrid/doc/technical/Persistent_Clients.txt, 
+	  /ircd-hybrid/doc/technical/README.openssl, 
+	  /ircd-hybrid/doc/technical/cryptlink.txt, 
+	  /ircd-hybrid/doc/technical/event.txt, 
+	  /ircd-hybrid/doc/technical/fd-management.txt, 
+	  /ircd-hybrid/doc/technical/file-management.txt, 
+	  /ircd-hybrid/doc/technical/hostmask.txt, 
+	  /ircd-hybrid/doc/technical/index.txt, 
+	  /ircd-hybrid/doc/technical/network.txt, 
+	  /ircd-hybrid/doc/technical/rfc1459.txt, 
+	  /ircd-hybrid/doc/technical/rfc2812.txt, 
+	  /ircd-hybrid/doc/technical/rfc2813.txt, 
+	  /ircd-hybrid/doc/technical/send.txt, 
+	  /ircd-hybrid/doc/technical/ts3.txt, 
+	  /ircd-hybrid/doc/technical/ts5.txt, 
+	  /ircd-hybrid/doc/technical/ts6.txt, 
+	  /ircd-hybrid/doc/technical/whats-new-code.txt, 
+	  /ircd-hybrid/doc/whats-new.txt, /ircd-hybrid/doxygen.conf, 
+	  /ircd-hybrid/etc/Makefile.in, /ircd-hybrid/etc/example.conf, 
+	  /ircd-hybrid/etc/example.conf.quick, 
+	  /ircd-hybrid/etc/example.efnet.conf, 
+	  /ircd-hybrid/etc/simple.conf, /ircd-hybrid/help/Makefile.in, 
+	  /ircd-hybrid/help/opers/accept, /ircd-hybrid/help/opers/admin, 
+	  /ircd-hybrid/help/opers/away, /ircd-hybrid/help/opers/capab, 
+	  /ircd-hybrid/help/opers/cburst, 
+	  /ircd-hybrid/help/opers/challenge, 
+	  /ircd-hybrid/help/opers/client, /ircd-hybrid/help/opers/close, 
+	  /ircd-hybrid/help/opers/cmode, /ircd-hybrid/help/opers/connect, 
+	  /ircd-hybrid/help/opers/cryptlink, /ircd-hybrid/help/opers/die, 
+	  /ircd-hybrid/help/opers/dline, /ircd-hybrid/help/opers/drop, 
+	  /ircd-hybrid/help/opers/eob, /ircd-hybrid/help/opers/error, 
+	  /ircd-hybrid/help/opers/etrace, /ircd-hybrid/help/opers/gline, 
+	  /ircd-hybrid/help/opers/hash, /ircd-hybrid/help/opers/help, 
+	  /ircd-hybrid/help/opers/index, /ircd-hybrid/help/opers/info, 
+	  /ircd-hybrid/help/opers/invite, /ircd-hybrid/help/opers/ison, 
+	  /ircd-hybrid/help/opers/join, /ircd-hybrid/help/opers/kick, 
+	  /ircd-hybrid/help/opers/kill, /ircd-hybrid/help/opers/kline, 
+	  /ircd-hybrid/help/opers/knock, /ircd-hybrid/help/opers/knockll, 
+	  /ircd-hybrid/help/opers/links, /ircd-hybrid/help/opers/list, 
+	  /ircd-hybrid/help/opers/lljoin, /ircd-hybrid/help/opers/llnick, 
+	  /ircd-hybrid/help/opers/locops, /ircd-hybrid/help/opers/lusers, 
+	  /ircd-hybrid/help/opers/map, /ircd-hybrid/help/opers/modlist, 
+	  /ircd-hybrid/help/opers/modload, 
+	  /ircd-hybrid/help/opers/modrestart, 
+	  /ircd-hybrid/help/opers/modunload, 
+	  /ircd-hybrid/help/opers/motd, /ircd-hybrid/help/opers/names, 
+	  /ircd-hybrid/help/opers/nburst, /ircd-hybrid/help/opers/nick, 
+	  /ircd-hybrid/help/opers/notice, /ircd-hybrid/help/opers/omotd, 
+	  /ircd-hybrid/help/opers/oper, /ircd-hybrid/help/opers/operwall, 
+	  /ircd-hybrid/help/opers/part, /ircd-hybrid/help/opers/pass, 
+	  /ircd-hybrid/help/opers/ping, /ircd-hybrid/help/opers/pong, 
+	  /ircd-hybrid/help/opers/post, /ircd-hybrid/help/opers/privmsg, 
+	  /ircd-hybrid/help/opers/quit, /ircd-hybrid/help/opers/rehash, 
+	  /ircd-hybrid/help/opers/restart, /ircd-hybrid/help/opers/resv, 
+	  /ircd-hybrid/help/opers/rkline, /ircd-hybrid/help/opers/rxline, 
+	  /ircd-hybrid/help/opers/server, /ircd-hybrid/help/opers/set, 
+	  /ircd-hybrid/help/opers/sjoin, /ircd-hybrid/help/opers/squit, 
+	  /ircd-hybrid/help/opers/stats, /ircd-hybrid/help/opers/svinfo, 
+	  /ircd-hybrid/help/opers/testgecos, 
+	  /ircd-hybrid/help/opers/testline, 
+	  /ircd-hybrid/help/opers/testmask, /ircd-hybrid/help/opers/time, 
+	  /ircd-hybrid/help/opers/topic, /ircd-hybrid/help/opers/trace, 
+	  /ircd-hybrid/help/opers/uhelp, /ircd-hybrid/help/opers/umode, 
+	  /ircd-hybrid/help/opers/undline, 
+	  /ircd-hybrid/help/opers/ungline, 
+	  /ircd-hybrid/help/opers/unkline, 
+	  /ircd-hybrid/help/opers/unresv, 
+	  /ircd-hybrid/help/opers/unxline, /ircd-hybrid/help/opers/user, 
+	  /ircd-hybrid/help/opers/userhost, 
+	  /ircd-hybrid/help/opers/users, /ircd-hybrid/help/opers/version, 
+	  /ircd-hybrid/help/opers/wallops, /ircd-hybrid/help/opers/who, 
+	  /ircd-hybrid/help/opers/whois, /ircd-hybrid/help/opers/whowas, 
+	  /ircd-hybrid/help/opers/xline, /ircd-hybrid/help/users/index, 
+	  /ircd-hybrid/help/users/info, /ircd-hybrid/help/users/notice, 
+	  /ircd-hybrid/help/users/privmsg, /ircd-hybrid/help/users/stats, 
+	  /ircd-hybrid/help/users/umode, /ircd-hybrid/include/balloc.h, 
+	  /ircd-hybrid/include/channel.h, 
+	  /ircd-hybrid/include/channel_mode.h, 
+	  /ircd-hybrid/include/client.h, /ircd-hybrid/include/common.h, 
+	  /ircd-hybrid/include/dalloca.h, /ircd-hybrid/include/dbuf.h, 
+	  /ircd-hybrid/include/defaults.h, /ircd-hybrid/include/event.h, 
+	  /ircd-hybrid/include/fdlist.h, /ircd-hybrid/include/fileio.h, 
+	  /ircd-hybrid/include/handlers.h, /ircd-hybrid/include/hash.h, 
+	  /ircd-hybrid/include/hook.h, /ircd-hybrid/include/hostmask.h, 
+	  /ircd-hybrid/include/inet_misc.h, 
+	  /ircd-hybrid/include/irc_getaddrinfo.h, 
+	  /ircd-hybrid/include/irc_getnameinfo.h, 
+	  /ircd-hybrid/include/irc_res.h, 
+	  /ircd-hybrid/include/irc_reslib.h, 
+	  /ircd-hybrid/include/irc_string.h, /ircd-hybrid/include/ircd.h, 
+	  /ircd-hybrid/include/ircd_defs.h, 
+	  /ircd-hybrid/include/ircd_getopt.h, 
+	  /ircd-hybrid/include/ircd_handler.h, 
+	  /ircd-hybrid/include/ircd_signal.h, 
+	  /ircd-hybrid/include/list.h, /ircd-hybrid/include/listener.h, 
+	  /ircd-hybrid/include/m_info.h, /ircd-hybrid/include/memory.h, 
+	  /ircd-hybrid/include/modules.h, /ircd-hybrid/include/motd.h, 
+	  /ircd-hybrid/include/msg.h, /ircd-hybrid/include/numeric.h, 
+	  /ircd-hybrid/include/packet.h, /ircd-hybrid/include/parse.h, 
+	  /ircd-hybrid/include/patchlevel.h, 
+	  /ircd-hybrid/include/restart.h, /ircd-hybrid/include/resv.h, 
+	  /ircd-hybrid/include/rlimits.h, /ircd-hybrid/include/rsa.h, 
+	  /ircd-hybrid/include/s_auth.h, /ircd-hybrid/include/s_bsd.h, 
+	  /ircd-hybrid/include/s_conf.h, /ircd-hybrid/include/s_gline.h, 
+	  /ircd-hybrid/include/s_log.h, /ircd-hybrid/include/s_misc.h, 
+	  /ircd-hybrid/include/s_serv.h, /ircd-hybrid/include/s_stats.h, 
+	  /ircd-hybrid/include/s_user.h, /ircd-hybrid/include/send.h, 
+	  /ircd-hybrid/include/serno.h, /ircd-hybrid/include/setup.h.in, 
+	  /ircd-hybrid/include/sprintf_irc.h, 
+	  /ircd-hybrid/include/stdinc.h, 
+	  /ircd-hybrid/include/supported.h, /ircd-hybrid/include/tools.h, 
+	  /ircd-hybrid/include/userhost.h, /ircd-hybrid/include/whowas.h, 
+	  /ircd-hybrid/install-sh, /ircd-hybrid/lib/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/AUTHORS, /ircd-hybrid/lib/pcre/LICENCE, 
+	  /ircd-hybrid/lib/pcre/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/README, /ircd-hybrid/lib/pcre/pcre.h, 
+	  /ircd-hybrid/lib/pcre/pcre_chartables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_compile.c, 
+	  /ircd-hybrid/lib/pcre/pcre_exec.c, 
+	  /ircd-hybrid/lib/pcre/pcre_fullinfo.c, 
+	  /ircd-hybrid/lib/pcre/pcre_globals.c, 
+	  /ircd-hybrid/lib/pcre/pcre_internal.h, 
+	  /ircd-hybrid/lib/pcre/pcre_study.c, 
+	  /ircd-hybrid/lib/pcre/pcre_tables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_try_flipped.c, 
+	  /ircd-hybrid/messages/Makefile.in, 
+	  /ircd-hybrid/messages/README, /ircd-hybrid/messages/ayb.lang, 
+	  /ircd-hybrid/messages/custom.lang, 
+	  /ircd-hybrid/messages/ircd-croatian.lang, 
+	  /ircd-hybrid/messages/ircd-danish.lang, 
+	  /ircd-hybrid/messages/ircd-dutch.lang, 
+	  /ircd-hybrid/messages/ircd-french.lang, 
+	  /ircd-hybrid/messages/ircd-german.lang, 
+	  /ircd-hybrid/messages/ircd-norwegian.lang, 
+	  /ircd-hybrid/messages/ircd-polish.lang, 
+	  /ircd-hybrid/messages/ircd-russian.lang, 
+	  /ircd-hybrid/messages/ircd-spanish.lang, 
+	  /ircd-hybrid/messages/ircd-standard.example.lang, 
+	  /ircd-hybrid/messages/ircd-swedish.lang, 
+	  /ircd-hybrid/modules/Makefile.in, 
+	  /ircd-hybrid/modules/core/m_die.c, 
+	  /ircd-hybrid/modules/core/m_join.c, 
+	  /ircd-hybrid/modules/core/m_kick.c, 
+	  /ircd-hybrid/modules/core/m_kill.c, 
+	  /ircd-hybrid/modules/core/m_message.c, 
+	  /ircd-hybrid/modules/core/m_mode.c, 
+	  /ircd-hybrid/modules/core/m_nick.c, 
+	  /ircd-hybrid/modules/core/m_part.c, 
+	  /ircd-hybrid/modules/core/m_quit.c, 
+	  /ircd-hybrid/modules/core/m_server.c, 
+	  /ircd-hybrid/modules/core/m_sjoin.c, 
+	  /ircd-hybrid/modules/core/m_squit.c, 
+	  /ircd-hybrid/modules/m_accept.c, 
+	  /ircd-hybrid/modules/m_admin.c, /ircd-hybrid/modules/m_away.c, 
+	  /ircd-hybrid/modules/m_capab.c, 
+	  /ircd-hybrid/modules/m_cburst.c, 
+	  /ircd-hybrid/modules/m_challenge.c, 
+	  /ircd-hybrid/modules/m_close.c, 
+	  /ircd-hybrid/modules/m_connect.c, 
+	  /ircd-hybrid/modules/m_cryptlink.c, 
+	  /ircd-hybrid/modules/m_drop.c, /ircd-hybrid/modules/m_encap.c, 
+	  /ircd-hybrid/modules/m_eob.c, /ircd-hybrid/modules/m_etrace.c, 
+	  /ircd-hybrid/modules/m_gline.c, /ircd-hybrid/modules/m_hash.c, 
+	  /ircd-hybrid/modules/m_help.c, /ircd-hybrid/modules/m_info.c, 
+	  /ircd-hybrid/modules/m_invite.c, /ircd-hybrid/modules/m_ison.c, 
+	  /ircd-hybrid/modules/m_kline.c, /ircd-hybrid/modules/m_knock.c, 
+	  /ircd-hybrid/modules/m_links.c, /ircd-hybrid/modules/m_list.c, 
+	  /ircd-hybrid/modules/m_lljoin.c, 
+	  /ircd-hybrid/modules/m_llnick.c, 
+	  /ircd-hybrid/modules/m_locops.c, 
+	  /ircd-hybrid/modules/m_lusers.c, /ircd-hybrid/modules/m_map.c, 
+	  /ircd-hybrid/modules/m_motd.c, /ircd-hybrid/modules/m_names.c, 
+	  /ircd-hybrid/modules/m_nburst.c, 
+	  /ircd-hybrid/modules/m_omotd.c, /ircd-hybrid/modules/m_oper.c, 
+	  /ircd-hybrid/modules/m_operwall.c, 
+	  /ircd-hybrid/modules/m_pass.c, /ircd-hybrid/modules/m_ping.c, 
+	  /ircd-hybrid/modules/m_pong.c, /ircd-hybrid/modules/m_post.c, 
+	  /ircd-hybrid/modules/m_rehash.c, 
+	  /ircd-hybrid/modules/m_restart.c, 
+	  /ircd-hybrid/modules/m_resv.c, /ircd-hybrid/modules/m_rkline.c, 
+	  /ircd-hybrid/modules/m_rxline.c, /ircd-hybrid/modules/m_set.c, 
+	  /ircd-hybrid/modules/m_stats.c, 
+	  /ircd-hybrid/modules/m_svinfo.c, /ircd-hybrid/modules/m_tb.c, 
+	  /ircd-hybrid/modules/m_testline.c, 
+	  /ircd-hybrid/modules/m_testmask.c, 
+	  /ircd-hybrid/modules/m_time.c, /ircd-hybrid/modules/m_topic.c, 
+	  /ircd-hybrid/modules/m_trace.c, /ircd-hybrid/modules/m_user.c, 
+	  /ircd-hybrid/modules/m_userhost.c, 
+	  /ircd-hybrid/modules/m_users.c, 
+	  /ircd-hybrid/modules/m_version.c, 
+	  /ircd-hybrid/modules/m_wallops.c, /ircd-hybrid/modules/m_who.c, 
+	  /ircd-hybrid/modules/m_whois.c, 
+	  /ircd-hybrid/modules/m_whowas.c, 
+	  /ircd-hybrid/modules/m_xline.c, 
+	  /ircd-hybrid/servlink/Makefile.in, 
+	  /ircd-hybrid/servlink/README, /ircd-hybrid/servlink/TODO, 
+	  /ircd-hybrid/servlink/control.c, 
+	  /ircd-hybrid/servlink/control.h, /ircd-hybrid/servlink/io.c, 
+	  /ircd-hybrid/servlink/io.h, /ircd-hybrid/servlink/servlink.c, 
+	  /ircd-hybrid/servlink/servlink.h, /ircd-hybrid/src/Makefile.in, 
+	  /ircd-hybrid/src/balloc.c, /ircd-hybrid/src/channel.c, 
+	  /ircd-hybrid/src/channel_mode.c, /ircd-hybrid/src/client.c, 
+	  /ircd-hybrid/src/crypt.c, /ircd-hybrid/src/csvlib.c, 
+	  /ircd-hybrid/src/dbuf.c, /ircd-hybrid/src/dynlink.c, 
+	  /ircd-hybrid/src/event.c, /ircd-hybrid/src/fdlist.c, 
+	  /ircd-hybrid/src/fileio.c, /ircd-hybrid/src/getopt.c, 
+	  /ircd-hybrid/src/hash.c, /ircd-hybrid/src/hook.c, 
+	  /ircd-hybrid/src/hostmask.c, /ircd-hybrid/src/inet_misc.c, 
+	  /ircd-hybrid/src/irc_getaddrinfo.c, 
+	  /ircd-hybrid/src/irc_getnameinfo.c, /ircd-hybrid/src/irc_res.c, 
+	  /ircd-hybrid/src/irc_reslib.c, /ircd-hybrid/src/irc_string.c, 
+	  /ircd-hybrid/src/ircd.c, /ircd-hybrid/src/ircd_lexer.l, 
+	  /ircd-hybrid/src/ircd_parser.y, /ircd-hybrid/src/ircd_signal.c, 
+	  /ircd-hybrid/src/lex.yy.c, /ircd-hybrid/src/list.c, 
+	  /ircd-hybrid/src/listener.c, /ircd-hybrid/src/m_error.c, 
+	  /ircd-hybrid/src/match.c, /ircd-hybrid/src/memory.c, 
+	  /ircd-hybrid/src/messages.tab, /ircd-hybrid/src/modules.c, 
+	  /ircd-hybrid/src/motd.c, /ircd-hybrid/src/numeric.c, 
+	  /ircd-hybrid/src/packet.c, /ircd-hybrid/src/parse.c, 
+	  /ircd-hybrid/src/restart.c, /ircd-hybrid/src/resv.c, 
+	  /ircd-hybrid/src/rsa.c, /ircd-hybrid/src/s_auth.c, 
+	  /ircd-hybrid/src/s_bsd.c, /ircd-hybrid/src/s_bsd_devpoll.c, 
+	  /ircd-hybrid/src/s_bsd_epoll.c, 
+	  /ircd-hybrid/src/s_bsd_kqueue.c, /ircd-hybrid/src/s_bsd_poll.c, 
+	  /ircd-hybrid/src/s_bsd_select.c, 
+	  /ircd-hybrid/src/s_bsd_sigio.c, /ircd-hybrid/src/s_bsd_win32.c, 
+	  /ircd-hybrid/src/s_conf.c, /ircd-hybrid/src/s_gline.c, 
+	  /ircd-hybrid/src/s_log.c, /ircd-hybrid/src/s_misc.c, 
+	  /ircd-hybrid/src/s_serv.c, /ircd-hybrid/src/s_stats.c, 
+	  /ircd-hybrid/src/s_user.c, /ircd-hybrid/src/send.c, 
+	  /ircd-hybrid/src/snprintf.c, /ircd-hybrid/src/sprintf_irc.c, 
+	  /ircd-hybrid/src/tools.c, /ircd-hybrid/src/version.c, 
+	  /ircd-hybrid/src/whowas.c, /ircd-hybrid/src/y.tab.c, 
+	  /ircd-hybrid/src/y.tab.h, /ircd-hybrid/tools/Makefile.in, 
+	  /ircd-hybrid/tools/README, /ircd-hybrid/tools/README.mkpasswd, 
+	  /ircd-hybrid/tools/encspeed.c, /ircd-hybrid/tools/mkkeypair, 
+	  /ircd-hybrid/tools/mkpasswd.c, 
+	  /ircd-hybrid/tools/rsa_respond/Makefile.in, 
+	  /ircd-hybrid/tools/rsa_respond/README, 
+	  /ircd-hybrid/tools/rsa_respond/configure, 
+	  /ircd-hybrid/tools/rsa_respond/configure.ac, 
+	  /ircd-hybrid/tools/rsa_respond/respond.c, 
+	  /ircd-hybrid/tools/untabify, /ircd-hybrid/tools/win32/kill.c, 
+	  /ircd-hybrid/tools/win32/rehash.c, 
+	  /ircd-hybrid/tools/win32/remotd.c:
+	  - svn:keywords
+
+2005-10-02 16:41:23  knight
+
+	* [r32] /ircd-hybrid/BUGS, /ircd-hybrid/Hybrid-team, 
+	  /ircd-hybrid/INSTALL, /ircd-hybrid/LICENSE, 
+	  /ircd-hybrid/Makefile.in, /ircd-hybrid/README.FIRST, 
+	  /ircd-hybrid/README.PLATFORMS, /ircd-hybrid/RELNOTES, 
+	  /ircd-hybrid/TODO, /ircd-hybrid/configure, 
+	  /ircd-hybrid/configure.ac, /ircd-hybrid/contrib/Makefile.in, 
+	  /ircd-hybrid/contrib/README, 
+	  /ircd-hybrid/contrib/README.cloaking, 
+	  /ircd-hybrid/contrib/challenge.irc, 
+	  /ircd-hybrid/contrib/example_module.c, 
+	  /ircd-hybrid/contrib/help/Makefile.in, 
+	  /ircd-hybrid/contrib/help/opers/capture, 
+	  /ircd-hybrid/contrib/help/opers/chghost, 
+	  /ircd-hybrid/contrib/help/opers/chgident, 
+	  /ircd-hybrid/contrib/help/opers/chgname, 
+	  /ircd-hybrid/contrib/help/opers/classlist, 
+	  /ircd-hybrid/contrib/help/opers/clearchan, 
+	  /ircd-hybrid/contrib/help/opers/ctrace, 
+	  /ircd-hybrid/contrib/help/opers/delspoof, 
+	  /ircd-hybrid/contrib/help/opers/flags, 
+	  /ircd-hybrid/contrib/help/opers/forcejoin, 
+	  /ircd-hybrid/contrib/help/opers/forcepart, 
+	  /ircd-hybrid/contrib/help/opers/index, 
+	  /ircd-hybrid/contrib/help/opers/jupe, 
+	  /ircd-hybrid/contrib/help/opers/ltrace, 
+	  /ircd-hybrid/contrib/help/opers/mkpasswd, 
+	  /ircd-hybrid/contrib/help/opers/ojoin, 
+	  /ircd-hybrid/contrib/help/opers/opme, 
+	  /ircd-hybrid/contrib/help/opers/spoof, 
+	  /ircd-hybrid/contrib/help/opers/svsnick, 
+	  /ircd-hybrid/contrib/help/opers/uncapture, 
+	  /ircd-hybrid/contrib/help/users/index, 
+	  /ircd-hybrid/contrib/ip_cloaking.c, 
+	  /ircd-hybrid/contrib/ircd-hybrid.spec, 
+	  /ircd-hybrid/contrib/ircd.init.in, 
+	  /ircd-hybrid/contrib/libc_vprintf.c, 
+	  /ircd-hybrid/contrib/m_capture.c, 
+	  /ircd-hybrid/contrib/m_change.c, 
+	  /ircd-hybrid/contrib/m_classlist.c, 
+	  /ircd-hybrid/contrib/m_clearchan.c, 
+	  /ircd-hybrid/contrib/m_ctrace.c, 
+	  /ircd-hybrid/contrib/m_flags.c, /ircd-hybrid/contrib/m_force.c, 
+	  /ircd-hybrid/contrib/m_jupe.c, 
+	  /ircd-hybrid/contrib/m_killhost.c, 
+	  /ircd-hybrid/contrib/m_ltrace.c, 
+	  /ircd-hybrid/contrib/m_mkpasswd.c, 
+	  /ircd-hybrid/contrib/m_ojoin.c, 
+	  /ircd-hybrid/contrib/m_operspy.c, 
+	  /ircd-hybrid/contrib/m_opme.c, 
+	  /ircd-hybrid/contrib/m_services.c, 
+	  /ircd-hybrid/contrib/m_spoof.c, 
+	  /ircd-hybrid/contrib/setup-win32.h, 
+	  /ircd-hybrid/contrib/spy_admin_notice.c, 
+	  /ircd-hybrid/contrib/spy_info_notice.c, 
+	  /ircd-hybrid/contrib/spy_links_notice.c, 
+	  /ircd-hybrid/contrib/spy_motd_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_p_notice.c, 
+	  /ircd-hybrid/contrib/spy_trace_notice.c, 
+	  /ircd-hybrid/contrib/spy_whois_notice.c, 
+	  /ircd-hybrid/contrib/vprintf_fix.patch, 
+	  /ircd-hybrid/contrib/win32build.bat, /ircd-hybrid/doc/CIDR.txt, 
+	  /ircd-hybrid/doc/LazyLinks.txt, /ircd-hybrid/doc/Makefile.in, 
+	  /ircd-hybrid/doc/challenge.txt, 
+	  /ircd-hybrid/doc/guidelines.txt, /ircd-hybrid/doc/index.txt, 
+	  /ircd-hybrid/doc/ircd.8, /ircd-hybrid/doc/kline.txt, 
+	  /ircd-hybrid/doc/messages.txt, /ircd-hybrid/doc/modeg.txt, 
+	  /ircd-hybrid/doc/modes.txt, /ircd-hybrid/doc/resv.txt, 
+	  /ircd-hybrid/doc/server-version-info, 
+	  /ircd-hybrid/doc/serverhide.txt, 
+	  /ircd-hybrid/doc/technical/Persistent_Clients.txt, 
+	  /ircd-hybrid/doc/technical/README.openssl, 
+	  /ircd-hybrid/doc/technical/cryptlink.txt, 
+	  /ircd-hybrid/doc/technical/event.txt, 
+	  /ircd-hybrid/doc/technical/fd-management.txt, 
+	  /ircd-hybrid/doc/technical/file-management.txt, 
+	  /ircd-hybrid/doc/technical/hostmask.txt, 
+	  /ircd-hybrid/doc/technical/index.txt, 
+	  /ircd-hybrid/doc/technical/network.txt, 
+	  /ircd-hybrid/doc/technical/rfc1459.txt, 
+	  /ircd-hybrid/doc/technical/rfc2812.txt, 
+	  /ircd-hybrid/doc/technical/rfc2813.txt, 
+	  /ircd-hybrid/doc/technical/send.txt, 
+	  /ircd-hybrid/doc/technical/ts3.txt, 
+	  /ircd-hybrid/doc/technical/ts5.txt, 
+	  /ircd-hybrid/doc/technical/ts6.txt, 
+	  /ircd-hybrid/doc/technical/whats-new-code.txt, 
+	  /ircd-hybrid/doc/whats-new.txt, /ircd-hybrid/doxygen.conf, 
+	  /ircd-hybrid/etc/Makefile.in, /ircd-hybrid/etc/example.conf, 
+	  /ircd-hybrid/etc/example.conf.quick, 
+	  /ircd-hybrid/etc/example.efnet.conf, 
+	  /ircd-hybrid/etc/simple.conf, /ircd-hybrid/help/Makefile.in, 
+	  /ircd-hybrid/help/opers/accept, /ircd-hybrid/help/opers/admin, 
+	  /ircd-hybrid/help/opers/away, /ircd-hybrid/help/opers/capab, 
+	  /ircd-hybrid/help/opers/cburst, 
+	  /ircd-hybrid/help/opers/challenge, 
+	  /ircd-hybrid/help/opers/client, /ircd-hybrid/help/opers/close, 
+	  /ircd-hybrid/help/opers/cmode, /ircd-hybrid/help/opers/connect, 
+	  /ircd-hybrid/help/opers/cryptlink, /ircd-hybrid/help/opers/die, 
+	  /ircd-hybrid/help/opers/dline, /ircd-hybrid/help/opers/drop, 
+	  /ircd-hybrid/help/opers/eob, /ircd-hybrid/help/opers/error, 
+	  /ircd-hybrid/help/opers/etrace, /ircd-hybrid/help/opers/gline, 
+	  /ircd-hybrid/help/opers/hash, /ircd-hybrid/help/opers/help, 
+	  /ircd-hybrid/help/opers/index, /ircd-hybrid/help/opers/info, 
+	  /ircd-hybrid/help/opers/invite, /ircd-hybrid/help/opers/ison, 
+	  /ircd-hybrid/help/opers/join, /ircd-hybrid/help/opers/kick, 
+	  /ircd-hybrid/help/opers/kill, /ircd-hybrid/help/opers/kline, 
+	  /ircd-hybrid/help/opers/knock, /ircd-hybrid/help/opers/knockll, 
+	  /ircd-hybrid/help/opers/links, /ircd-hybrid/help/opers/list, 
+	  /ircd-hybrid/help/opers/lljoin, /ircd-hybrid/help/opers/llnick, 
+	  /ircd-hybrid/help/opers/locops, /ircd-hybrid/help/opers/lusers, 
+	  /ircd-hybrid/help/opers/map, /ircd-hybrid/help/opers/modlist, 
+	  /ircd-hybrid/help/opers/modload, 
+	  /ircd-hybrid/help/opers/modrestart, 
+	  /ircd-hybrid/help/opers/modunload, 
+	  /ircd-hybrid/help/opers/motd, /ircd-hybrid/help/opers/names, 
+	  /ircd-hybrid/help/opers/nburst, /ircd-hybrid/help/opers/nick, 
+	  /ircd-hybrid/help/opers/notice, /ircd-hybrid/help/opers/omotd, 
+	  /ircd-hybrid/help/opers/oper, /ircd-hybrid/help/opers/operwall, 
+	  /ircd-hybrid/help/opers/part, /ircd-hybrid/help/opers/pass, 
+	  /ircd-hybrid/help/opers/ping, /ircd-hybrid/help/opers/pong, 
+	  /ircd-hybrid/help/opers/post, /ircd-hybrid/help/opers/privmsg, 
+	  /ircd-hybrid/help/opers/quit, /ircd-hybrid/help/opers/rehash, 
+	  /ircd-hybrid/help/opers/restart, /ircd-hybrid/help/opers/resv, 
+	  /ircd-hybrid/help/opers/rkline, /ircd-hybrid/help/opers/rxline, 
+	  /ircd-hybrid/help/opers/server, /ircd-hybrid/help/opers/set, 
+	  /ircd-hybrid/help/opers/sjoin, /ircd-hybrid/help/opers/squit, 
+	  /ircd-hybrid/help/opers/stats, /ircd-hybrid/help/opers/svinfo, 
+	  /ircd-hybrid/help/opers/testgecos, 
+	  /ircd-hybrid/help/opers/testline, 
+	  /ircd-hybrid/help/opers/testmask, /ircd-hybrid/help/opers/time, 
+	  /ircd-hybrid/help/opers/topic, /ircd-hybrid/help/opers/trace, 
+	  /ircd-hybrid/help/opers/uhelp, /ircd-hybrid/help/opers/umode, 
+	  /ircd-hybrid/help/opers/undline, 
+	  /ircd-hybrid/help/opers/ungline, 
+	  /ircd-hybrid/help/opers/unkline, 
+	  /ircd-hybrid/help/opers/unresv, 
+	  /ircd-hybrid/help/opers/unxline, /ircd-hybrid/help/opers/user, 
+	  /ircd-hybrid/help/opers/userhost, 
+	  /ircd-hybrid/help/opers/users, /ircd-hybrid/help/opers/version, 
+	  /ircd-hybrid/help/opers/wallops, /ircd-hybrid/help/opers/who, 
+	  /ircd-hybrid/help/opers/whois, /ircd-hybrid/help/opers/whowas, 
+	  /ircd-hybrid/help/opers/xline, /ircd-hybrid/help/users/index, 
+	  /ircd-hybrid/help/users/info, /ircd-hybrid/help/users/notice, 
+	  /ircd-hybrid/help/users/privmsg, /ircd-hybrid/help/users/stats, 
+	  /ircd-hybrid/help/users/umode, /ircd-hybrid/include/balloc.h, 
+	  /ircd-hybrid/include/channel.h, 
+	  /ircd-hybrid/include/channel_mode.h, 
+	  /ircd-hybrid/include/client.h, /ircd-hybrid/include/common.h, 
+	  /ircd-hybrid/include/dalloca.h, /ircd-hybrid/include/dbuf.h, 
+	  /ircd-hybrid/include/defaults.h, /ircd-hybrid/include/event.h, 
+	  /ircd-hybrid/include/fdlist.h, /ircd-hybrid/include/fileio.h, 
+	  /ircd-hybrid/include/handlers.h, /ircd-hybrid/include/hash.h, 
+	  /ircd-hybrid/include/hook.h, /ircd-hybrid/include/hostmask.h, 
+	  /ircd-hybrid/include/inet_misc.h, 
+	  /ircd-hybrid/include/irc_getaddrinfo.h, 
+	  /ircd-hybrid/include/irc_getnameinfo.h, 
+	  /ircd-hybrid/include/irc_res.h, 
+	  /ircd-hybrid/include/irc_reslib.h, 
+	  /ircd-hybrid/include/irc_string.h, /ircd-hybrid/include/ircd.h, 
+	  /ircd-hybrid/include/ircd_defs.h, 
+	  /ircd-hybrid/include/ircd_getopt.h, 
+	  /ircd-hybrid/include/ircd_handler.h, 
+	  /ircd-hybrid/include/ircd_signal.h, 
+	  /ircd-hybrid/include/list.h, /ircd-hybrid/include/listener.h, 
+	  /ircd-hybrid/include/m_info.h, /ircd-hybrid/include/memory.h, 
+	  /ircd-hybrid/include/modules.h, /ircd-hybrid/include/motd.h, 
+	  /ircd-hybrid/include/msg.h, /ircd-hybrid/include/numeric.h, 
+	  /ircd-hybrid/include/packet.h, /ircd-hybrid/include/parse.h, 
+	  /ircd-hybrid/include/patchlevel.h, 
+	  /ircd-hybrid/include/restart.h, /ircd-hybrid/include/resv.h, 
+	  /ircd-hybrid/include/rlimits.h, /ircd-hybrid/include/rsa.h, 
+	  /ircd-hybrid/include/s_auth.h, /ircd-hybrid/include/s_bsd.h, 
+	  /ircd-hybrid/include/s_conf.h, /ircd-hybrid/include/s_gline.h, 
+	  /ircd-hybrid/include/s_log.h, /ircd-hybrid/include/s_misc.h, 
+	  /ircd-hybrid/include/s_serv.h, /ircd-hybrid/include/s_stats.h, 
+	  /ircd-hybrid/include/s_user.h, /ircd-hybrid/include/send.h, 
+	  /ircd-hybrid/include/serno.h, /ircd-hybrid/include/setup.h.in, 
+	  /ircd-hybrid/include/sprintf_irc.h, 
+	  /ircd-hybrid/include/stdinc.h, 
+	  /ircd-hybrid/include/supported.h, /ircd-hybrid/include/tools.h, 
+	  /ircd-hybrid/include/userhost.h, /ircd-hybrid/include/whowas.h, 
+	  /ircd-hybrid/install-sh, /ircd-hybrid/lib/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/AUTHORS, /ircd-hybrid/lib/pcre/LICENCE, 
+	  /ircd-hybrid/lib/pcre/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/README, /ircd-hybrid/lib/pcre/pcre.h, 
+	  /ircd-hybrid/lib/pcre/pcre_chartables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_compile.c, 
+	  /ircd-hybrid/lib/pcre/pcre_exec.c, 
+	  /ircd-hybrid/lib/pcre/pcre_fullinfo.c, 
+	  /ircd-hybrid/lib/pcre/pcre_globals.c, 
+	  /ircd-hybrid/lib/pcre/pcre_internal.h, 
+	  /ircd-hybrid/lib/pcre/pcre_study.c, 
+	  /ircd-hybrid/lib/pcre/pcre_tables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_try_flipped.c, 
+	  /ircd-hybrid/messages/Makefile.in, 
+	  /ircd-hybrid/messages/README, /ircd-hybrid/messages/ayb.lang, 
+	  /ircd-hybrid/messages/custom.lang, 
+	  /ircd-hybrid/messages/ircd-croatian.lang, 
+	  /ircd-hybrid/messages/ircd-danish.lang, 
+	  /ircd-hybrid/messages/ircd-dutch.lang, 
+	  /ircd-hybrid/messages/ircd-french.lang, 
+	  /ircd-hybrid/messages/ircd-german.lang, 
+	  /ircd-hybrid/messages/ircd-norwegian.lang, 
+	  /ircd-hybrid/messages/ircd-polish.lang, 
+	  /ircd-hybrid/messages/ircd-russian.lang, 
+	  /ircd-hybrid/messages/ircd-spanish.lang, 
+	  /ircd-hybrid/messages/ircd-standard.example.lang, 
+	  /ircd-hybrid/messages/ircd-swedish.lang, 
+	  /ircd-hybrid/modules/Makefile.in, 
+	  /ircd-hybrid/modules/core/m_die.c, 
+	  /ircd-hybrid/modules/core/m_join.c, 
+	  /ircd-hybrid/modules/core/m_kick.c, 
+	  /ircd-hybrid/modules/core/m_kill.c, 
+	  /ircd-hybrid/modules/core/m_message.c, 
+	  /ircd-hybrid/modules/core/m_mode.c, 
+	  /ircd-hybrid/modules/core/m_nick.c, 
+	  /ircd-hybrid/modules/core/m_part.c, 
+	  /ircd-hybrid/modules/core/m_quit.c, 
+	  /ircd-hybrid/modules/core/m_server.c, 
+	  /ircd-hybrid/modules/core/m_sjoin.c, 
+	  /ircd-hybrid/modules/core/m_squit.c, 
+	  /ircd-hybrid/modules/m_accept.c, 
+	  /ircd-hybrid/modules/m_admin.c, /ircd-hybrid/modules/m_away.c, 
+	  /ircd-hybrid/modules/m_capab.c, 
+	  /ircd-hybrid/modules/m_cburst.c, 
+	  /ircd-hybrid/modules/m_challenge.c, 
+	  /ircd-hybrid/modules/m_close.c, 
+	  /ircd-hybrid/modules/m_connect.c, 
+	  /ircd-hybrid/modules/m_cryptlink.c, 
+	  /ircd-hybrid/modules/m_drop.c, /ircd-hybrid/modules/m_encap.c, 
+	  /ircd-hybrid/modules/m_eob.c, /ircd-hybrid/modules/m_etrace.c, 
+	  /ircd-hybrid/modules/m_gline.c, /ircd-hybrid/modules/m_hash.c, 
+	  /ircd-hybrid/modules/m_help.c, /ircd-hybrid/modules/m_info.c, 
+	  /ircd-hybrid/modules/m_invite.c, /ircd-hybrid/modules/m_ison.c, 
+	  /ircd-hybrid/modules/m_kline.c, /ircd-hybrid/modules/m_knock.c, 
+	  /ircd-hybrid/modules/m_links.c, /ircd-hybrid/modules/m_list.c, 
+	  /ircd-hybrid/modules/m_lljoin.c, 
+	  /ircd-hybrid/modules/m_llnick.c, 
+	  /ircd-hybrid/modules/m_locops.c, 
+	  /ircd-hybrid/modules/m_lusers.c, /ircd-hybrid/modules/m_map.c, 
+	  /ircd-hybrid/modules/m_motd.c, /ircd-hybrid/modules/m_names.c, 
+	  /ircd-hybrid/modules/m_nburst.c, 
+	  /ircd-hybrid/modules/m_omotd.c, /ircd-hybrid/modules/m_oper.c, 
+	  /ircd-hybrid/modules/m_operwall.c, 
+	  /ircd-hybrid/modules/m_pass.c, /ircd-hybrid/modules/m_ping.c, 
+	  /ircd-hybrid/modules/m_pong.c, /ircd-hybrid/modules/m_post.c, 
+	  /ircd-hybrid/modules/m_rehash.c, 
+	  /ircd-hybrid/modules/m_restart.c, 
+	  /ircd-hybrid/modules/m_resv.c, /ircd-hybrid/modules/m_rkline.c, 
+	  /ircd-hybrid/modules/m_rxline.c, /ircd-hybrid/modules/m_set.c, 
+	  /ircd-hybrid/modules/m_stats.c, 
+	  /ircd-hybrid/modules/m_svinfo.c, /ircd-hybrid/modules/m_tb.c, 
+	  /ircd-hybrid/modules/m_testline.c, 
+	  /ircd-hybrid/modules/m_testmask.c, 
+	  /ircd-hybrid/modules/m_time.c, /ircd-hybrid/modules/m_topic.c, 
+	  /ircd-hybrid/modules/m_trace.c, /ircd-hybrid/modules/m_user.c, 
+	  /ircd-hybrid/modules/m_userhost.c, 
+	  /ircd-hybrid/modules/m_users.c, 
+	  /ircd-hybrid/modules/m_version.c, 
+	  /ircd-hybrid/modules/m_wallops.c, /ircd-hybrid/modules/m_who.c, 
+	  /ircd-hybrid/modules/m_whois.c, 
+	  /ircd-hybrid/modules/m_whowas.c, 
+	  /ircd-hybrid/modules/m_xline.c, 
+	  /ircd-hybrid/servlink/Makefile.in, 
+	  /ircd-hybrid/servlink/README, /ircd-hybrid/servlink/TODO, 
+	  /ircd-hybrid/servlink/control.c, 
+	  /ircd-hybrid/servlink/control.h, /ircd-hybrid/servlink/io.c, 
+	  /ircd-hybrid/servlink/io.h, /ircd-hybrid/servlink/servlink.c, 
+	  /ircd-hybrid/servlink/servlink.h, /ircd-hybrid/src/Makefile.in, 
+	  /ircd-hybrid/src/balloc.c, /ircd-hybrid/src/channel.c, 
+	  /ircd-hybrid/src/channel_mode.c, /ircd-hybrid/src/client.c, 
+	  /ircd-hybrid/src/crypt.c, /ircd-hybrid/src/csvlib.c, 
+	  /ircd-hybrid/src/dbuf.c, /ircd-hybrid/src/dynlink.c, 
+	  /ircd-hybrid/src/event.c, /ircd-hybrid/src/fdlist.c, 
+	  /ircd-hybrid/src/fileio.c, /ircd-hybrid/src/getopt.c, 
+	  /ircd-hybrid/src/hash.c, /ircd-hybrid/src/hook.c, 
+	  /ircd-hybrid/src/hostmask.c, /ircd-hybrid/src/inet_misc.c, 
+	  /ircd-hybrid/src/irc_getaddrinfo.c, 
+	  /ircd-hybrid/src/irc_getnameinfo.c, /ircd-hybrid/src/irc_res.c, 
+	  /ircd-hybrid/src/irc_reslib.c, /ircd-hybrid/src/irc_string.c, 
+	  /ircd-hybrid/src/ircd.c, /ircd-hybrid/src/ircd_lexer.l, 
+	  /ircd-hybrid/src/ircd_parser.y, /ircd-hybrid/src/ircd_signal.c, 
+	  /ircd-hybrid/src/lex.yy.c, /ircd-hybrid/src/list.c, 
+	  /ircd-hybrid/src/listener.c, /ircd-hybrid/src/m_error.c, 
+	  /ircd-hybrid/src/match.c, /ircd-hybrid/src/memory.c, 
+	  /ircd-hybrid/src/messages.tab, /ircd-hybrid/src/modules.c, 
+	  /ircd-hybrid/src/motd.c, /ircd-hybrid/src/numeric.c, 
+	  /ircd-hybrid/src/packet.c, /ircd-hybrid/src/parse.c, 
+	  /ircd-hybrid/src/restart.c, /ircd-hybrid/src/resv.c, 
+	  /ircd-hybrid/src/rsa.c, /ircd-hybrid/src/s_auth.c, 
+	  /ircd-hybrid/src/s_bsd.c, /ircd-hybrid/src/s_bsd_devpoll.c, 
+	  /ircd-hybrid/src/s_bsd_epoll.c, 
+	  /ircd-hybrid/src/s_bsd_kqueue.c, /ircd-hybrid/src/s_bsd_poll.c, 
+	  /ircd-hybrid/src/s_bsd_select.c, 
+	  /ircd-hybrid/src/s_bsd_sigio.c, /ircd-hybrid/src/s_bsd_win32.c, 
+	  /ircd-hybrid/src/s_conf.c, /ircd-hybrid/src/s_gline.c, 
+	  /ircd-hybrid/src/s_log.c, /ircd-hybrid/src/s_misc.c, 
+	  /ircd-hybrid/src/s_serv.c, /ircd-hybrid/src/s_stats.c, 
+	  /ircd-hybrid/src/s_user.c, /ircd-hybrid/src/send.c, 
+	  /ircd-hybrid/src/snprintf.c, /ircd-hybrid/src/sprintf_irc.c, 
+	  /ircd-hybrid/src/tools.c, /ircd-hybrid/src/version.c, 
+	  /ircd-hybrid/src/whowas.c, /ircd-hybrid/src/y.tab.c, 
+	  /ircd-hybrid/src/y.tab.h, /ircd-hybrid/tools/Makefile.in, 
+	  /ircd-hybrid/tools/README, /ircd-hybrid/tools/README.mkpasswd, 
+	  /ircd-hybrid/tools/encspeed.c, /ircd-hybrid/tools/mkkeypair, 
+	  /ircd-hybrid/tools/mkpasswd.c, 
+	  /ircd-hybrid/tools/rsa_respond/Makefile.in, 
+	  /ircd-hybrid/tools/rsa_respond/README, 
+	  /ircd-hybrid/tools/rsa_respond/configure, 
+	  /ircd-hybrid/tools/rsa_respond/configure.ac, 
+	  /ircd-hybrid/tools/rsa_respond/respond.c, 
+	  /ircd-hybrid/tools/untabify, /ircd-hybrid/tools/win32/kill.c, 
+	  /ircd-hybrid/tools/win32/rehash.c, 
+	  /ircd-hybrid/tools/win32/remotd.c:
+	  - svn:keywords
+
+2005-10-02 16:34:05  knight
+
+	* [r31] /ircd-hybrid/BUGS, /ircd-hybrid/Hybrid-team, 
+	  /ircd-hybrid/INSTALL, /ircd-hybrid/LICENSE, 
+	  /ircd-hybrid/Makefile.in, /ircd-hybrid/README.FIRST, 
+	  /ircd-hybrid/README.PLATFORMS, /ircd-hybrid/RELNOTES, 
+	  /ircd-hybrid/TODO, /ircd-hybrid/configure, 
+	  /ircd-hybrid/configure.ac, /ircd-hybrid/contrib/Makefile.in, 
+	  /ircd-hybrid/contrib/README, 
+	  /ircd-hybrid/contrib/README.cloaking, 
+	  /ircd-hybrid/contrib/challenge.irc, 
+	  /ircd-hybrid/contrib/example_module.c, 
+	  /ircd-hybrid/contrib/help/Makefile.in, 
+	  /ircd-hybrid/contrib/help/opers/capture, 
+	  /ircd-hybrid/contrib/help/opers/chghost, 
+	  /ircd-hybrid/contrib/help/opers/chgident, 
+	  /ircd-hybrid/contrib/help/opers/chgname, 
+	  /ircd-hybrid/contrib/help/opers/classlist, 
+	  /ircd-hybrid/contrib/help/opers/clearchan, 
+	  /ircd-hybrid/contrib/help/opers/ctrace, 
+	  /ircd-hybrid/contrib/help/opers/delspoof, 
+	  /ircd-hybrid/contrib/help/opers/flags, 
+	  /ircd-hybrid/contrib/help/opers/forcejoin, 
+	  /ircd-hybrid/contrib/help/opers/forcepart, 
+	  /ircd-hybrid/contrib/help/opers/index, 
+	  /ircd-hybrid/contrib/help/opers/jupe, 
+	  /ircd-hybrid/contrib/help/opers/ltrace, 
+	  /ircd-hybrid/contrib/help/opers/mkpasswd, 
+	  /ircd-hybrid/contrib/help/opers/ojoin, 
+	  /ircd-hybrid/contrib/help/opers/opme, 
+	  /ircd-hybrid/contrib/help/opers/spoof, 
+	  /ircd-hybrid/contrib/help/opers/svsnick, 
+	  /ircd-hybrid/contrib/help/opers/uncapture, 
+	  /ircd-hybrid/contrib/help/users/index, 
+	  /ircd-hybrid/contrib/ip_cloaking.c, 
+	  /ircd-hybrid/contrib/ircd-hybrid.spec, 
+	  /ircd-hybrid/contrib/ircd.init.in, 
+	  /ircd-hybrid/contrib/libc_vprintf.c, 
+	  /ircd-hybrid/contrib/m_capture.c, 
+	  /ircd-hybrid/contrib/m_change.c, 
+	  /ircd-hybrid/contrib/m_classlist.c, 
+	  /ircd-hybrid/contrib/m_clearchan.c, 
+	  /ircd-hybrid/contrib/m_ctrace.c, 
+	  /ircd-hybrid/contrib/m_flags.c, /ircd-hybrid/contrib/m_force.c, 
+	  /ircd-hybrid/contrib/m_jupe.c, 
+	  /ircd-hybrid/contrib/m_killhost.c, 
+	  /ircd-hybrid/contrib/m_ltrace.c, 
+	  /ircd-hybrid/contrib/m_mkpasswd.c, 
+	  /ircd-hybrid/contrib/m_ojoin.c, 
+	  /ircd-hybrid/contrib/m_operspy.c, 
+	  /ircd-hybrid/contrib/m_opme.c, 
+	  /ircd-hybrid/contrib/m_services.c, 
+	  /ircd-hybrid/contrib/m_spoof.c, 
+	  /ircd-hybrid/contrib/spy_admin_notice.c, 
+	  /ircd-hybrid/contrib/spy_info_notice.c, 
+	  /ircd-hybrid/contrib/spy_links_notice.c, 
+	  /ircd-hybrid/contrib/spy_motd_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_p_notice.c, 
+	  /ircd-hybrid/contrib/spy_trace_notice.c, 
+	  /ircd-hybrid/contrib/spy_whois_notice.c, 
+	  /ircd-hybrid/contrib/vprintf_fix.patch, 
+	  /ircd-hybrid/doc/CIDR.txt, /ircd-hybrid/doc/LazyLinks.txt, 
+	  /ircd-hybrid/doc/Makefile.in, /ircd-hybrid/doc/challenge.txt, 
+	  /ircd-hybrid/doc/guidelines.txt, /ircd-hybrid/doc/index.txt, 
+	  /ircd-hybrid/doc/ircd.8, /ircd-hybrid/doc/kline.txt, 
+	  /ircd-hybrid/doc/messages.txt, /ircd-hybrid/doc/modeg.txt, 
+	  /ircd-hybrid/doc/modes.txt, /ircd-hybrid/doc/resv.txt, 
+	  /ircd-hybrid/doc/server-version-info, 
+	  /ircd-hybrid/doc/serverhide.txt, 
+	  /ircd-hybrid/doc/technical/Persistent_Clients.txt, 
+	  /ircd-hybrid/doc/technical/README.openssl, 
+	  /ircd-hybrid/doc/technical/cryptlink.txt, 
+	  /ircd-hybrid/doc/technical/event.txt, 
+	  /ircd-hybrid/doc/technical/fd-management.txt, 
+	  /ircd-hybrid/doc/technical/file-management.txt, 
+	  /ircd-hybrid/doc/technical/hostmask.txt, 
+	  /ircd-hybrid/doc/technical/index.txt, 
+	  /ircd-hybrid/doc/technical/network.txt, 
+	  /ircd-hybrid/doc/technical/rfc1459.txt, 
+	  /ircd-hybrid/doc/technical/rfc2812.txt, 
+	  /ircd-hybrid/doc/technical/rfc2813.txt, 
+	  /ircd-hybrid/doc/technical/send.txt, 
+	  /ircd-hybrid/doc/technical/ts3.txt, 
+	  /ircd-hybrid/doc/technical/ts5.txt, 
+	  /ircd-hybrid/doc/technical/ts6.txt, 
+	  /ircd-hybrid/doc/technical/whats-new-code.txt, 
+	  /ircd-hybrid/doc/whats-new.txt, /ircd-hybrid/doxygen.conf, 
+	  /ircd-hybrid/etc/Makefile.in, /ircd-hybrid/etc/example.conf, 
+	  /ircd-hybrid/etc/example.conf.quick, 
+	  /ircd-hybrid/etc/example.efnet.conf, 
+	  /ircd-hybrid/etc/simple.conf, /ircd-hybrid/help/Makefile.in, 
+	  /ircd-hybrid/help/opers/cmode, /ircd-hybrid/help/opers/dline, 
+	  /ircd-hybrid/help/opers/index, /ircd-hybrid/help/opers/info, 
+	  /ircd-hybrid/help/opers/join, /ircd-hybrid/help/opers/kline, 
+	  /ircd-hybrid/help/opers/motd, /ircd-hybrid/help/opers/omotd, 
+	  /ircd-hybrid/help/opers/rkline, /ircd-hybrid/help/opers/rxline, 
+	  /ircd-hybrid/help/opers/set, /ircd-hybrid/help/opers/squit, 
+	  /ircd-hybrid/help/opers/stats, 
+	  /ircd-hybrid/help/opers/testmask, 
+	  /ircd-hybrid/help/opers/umode, /ircd-hybrid/help/opers/undline, 
+	  /ircd-hybrid/help/opers/ungline, 
+	  /ircd-hybrid/help/opers/unkline, 
+	  /ircd-hybrid/help/opers/unresv, 
+	  /ircd-hybrid/help/opers/unxline, 
+	  /ircd-hybrid/help/opers/version, /ircd-hybrid/help/opers/xline, 
+	  /ircd-hybrid/help/users/index, /ircd-hybrid/help/users/umode, 
+	  /ircd-hybrid/include/balloc.h, /ircd-hybrid/include/channel.h, 
+	  /ircd-hybrid/include/channel_mode.h, 
+	  /ircd-hybrid/include/client.h, /ircd-hybrid/include/common.h, 
+	  /ircd-hybrid/include/dalloca.h, /ircd-hybrid/include/dbuf.h, 
+	  /ircd-hybrid/include/defaults.h, /ircd-hybrid/include/event.h, 
+	  /ircd-hybrid/include/fdlist.h, /ircd-hybrid/include/fileio.h, 
+	  /ircd-hybrid/include/handlers.h, /ircd-hybrid/include/hash.h, 
+	  /ircd-hybrid/include/hook.h, /ircd-hybrid/include/hostmask.h, 
+	  /ircd-hybrid/include/inet_misc.h, 
+	  /ircd-hybrid/include/irc_getaddrinfo.h, 
+	  /ircd-hybrid/include/irc_getnameinfo.h, 
+	  /ircd-hybrid/include/irc_res.h, 
+	  /ircd-hybrid/include/irc_reslib.h, 
+	  /ircd-hybrid/include/irc_string.h, /ircd-hybrid/include/ircd.h, 
+	  /ircd-hybrid/include/ircd_defs.h, 
+	  /ircd-hybrid/include/ircd_getopt.h, 
+	  /ircd-hybrid/include/ircd_handler.h, 
+	  /ircd-hybrid/include/ircd_signal.h, 
+	  /ircd-hybrid/include/list.h, /ircd-hybrid/include/listener.h, 
+	  /ircd-hybrid/include/m_info.h, /ircd-hybrid/include/memory.h, 
+	  /ircd-hybrid/include/modules.h, /ircd-hybrid/include/motd.h, 
+	  /ircd-hybrid/include/msg.h, /ircd-hybrid/include/numeric.h, 
+	  /ircd-hybrid/include/packet.h, /ircd-hybrid/include/parse.h, 
+	  /ircd-hybrid/include/patchlevel.h, 
+	  /ircd-hybrid/include/restart.h, /ircd-hybrid/include/resv.h, 
+	  /ircd-hybrid/include/rlimits.h, /ircd-hybrid/include/rsa.h, 
+	  /ircd-hybrid/include/s_auth.h, /ircd-hybrid/include/s_bsd.h, 
+	  /ircd-hybrid/include/s_conf.h, /ircd-hybrid/include/s_gline.h, 
+	  /ircd-hybrid/include/s_log.h, /ircd-hybrid/include/s_misc.h, 
+	  /ircd-hybrid/include/s_serv.h, /ircd-hybrid/include/s_stats.h, 
+	  /ircd-hybrid/include/s_user.h, /ircd-hybrid/include/send.h, 
+	  /ircd-hybrid/include/sprintf_irc.h, 
+	  /ircd-hybrid/include/stdinc.h, 
+	  /ircd-hybrid/include/supported.h, /ircd-hybrid/include/tools.h, 
+	  /ircd-hybrid/include/userhost.h, /ircd-hybrid/include/whowas.h, 
+	  /ircd-hybrid/install-sh, /ircd-hybrid/lib/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/AUTHORS, /ircd-hybrid/lib/pcre/LICENCE, 
+	  /ircd-hybrid/lib/pcre/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/README, /ircd-hybrid/lib/pcre/pcre.h, 
+	  /ircd-hybrid/lib/pcre/pcre_chartables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_compile.c, 
+	  /ircd-hybrid/lib/pcre/pcre_exec.c, 
+	  /ircd-hybrid/lib/pcre/pcre_fullinfo.c, 
+	  /ircd-hybrid/lib/pcre/pcre_globals.c, 
+	  /ircd-hybrid/lib/pcre/pcre_internal.h, 
+	  /ircd-hybrid/lib/pcre/pcre_study.c, 
+	  /ircd-hybrid/lib/pcre/pcre_tables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_try_flipped.c, 
+	  /ircd-hybrid/messages/Makefile.in, 
+	  /ircd-hybrid/messages/README, /ircd-hybrid/messages/ayb.lang, 
+	  /ircd-hybrid/messages/custom.lang, 
+	  /ircd-hybrid/messages/ircd-croatian.lang, 
+	  /ircd-hybrid/messages/ircd-danish.lang, 
+	  /ircd-hybrid/messages/ircd-dutch.lang, 
+	  /ircd-hybrid/messages/ircd-french.lang, 
+	  /ircd-hybrid/messages/ircd-german.lang, 
+	  /ircd-hybrid/messages/ircd-norwegian.lang, 
+	  /ircd-hybrid/messages/ircd-polish.lang, 
+	  /ircd-hybrid/messages/ircd-russian.lang, 
+	  /ircd-hybrid/messages/ircd-spanish.lang, 
+	  /ircd-hybrid/messages/ircd-standard.example.lang, 
+	  /ircd-hybrid/messages/ircd-swedish.lang, 
+	  /ircd-hybrid/modules/Makefile.in, 
+	  /ircd-hybrid/modules/core/m_die.c, 
+	  /ircd-hybrid/modules/core/m_join.c, 
+	  /ircd-hybrid/modules/core/m_kick.c, 
+	  /ircd-hybrid/modules/core/m_kill.c, 
+	  /ircd-hybrid/modules/core/m_message.c, 
+	  /ircd-hybrid/modules/core/m_mode.c, 
+	  /ircd-hybrid/modules/core/m_nick.c, 
+	  /ircd-hybrid/modules/core/m_part.c, 
+	  /ircd-hybrid/modules/core/m_quit.c, 
+	  /ircd-hybrid/modules/core/m_server.c, 
+	  /ircd-hybrid/modules/core/m_sjoin.c, 
+	  /ircd-hybrid/modules/core/m_squit.c, 
+	  /ircd-hybrid/modules/m_accept.c, 
+	  /ircd-hybrid/modules/m_admin.c, /ircd-hybrid/modules/m_away.c, 
+	  /ircd-hybrid/modules/m_capab.c, 
+	  /ircd-hybrid/modules/m_cburst.c, 
+	  /ircd-hybrid/modules/m_challenge.c, 
+	  /ircd-hybrid/modules/m_close.c, 
+	  /ircd-hybrid/modules/m_connect.c, 
+	  /ircd-hybrid/modules/m_cryptlink.c, 
+	  /ircd-hybrid/modules/m_drop.c, /ircd-hybrid/modules/m_encap.c, 
+	  /ircd-hybrid/modules/m_eob.c, /ircd-hybrid/modules/m_etrace.c, 
+	  /ircd-hybrid/modules/m_gline.c, /ircd-hybrid/modules/m_hash.c, 
+	  /ircd-hybrid/modules/m_help.c, /ircd-hybrid/modules/m_info.c, 
+	  /ircd-hybrid/modules/m_invite.c, /ircd-hybrid/modules/m_ison.c, 
+	  /ircd-hybrid/modules/m_kline.c, /ircd-hybrid/modules/m_knock.c, 
+	  /ircd-hybrid/modules/m_links.c, /ircd-hybrid/modules/m_list.c, 
+	  /ircd-hybrid/modules/m_lljoin.c, 
+	  /ircd-hybrid/modules/m_llnick.c, 
+	  /ircd-hybrid/modules/m_locops.c, 
+	  /ircd-hybrid/modules/m_lusers.c, /ircd-hybrid/modules/m_map.c, 
+	  /ircd-hybrid/modules/m_motd.c, /ircd-hybrid/modules/m_names.c, 
+	  /ircd-hybrid/modules/m_nburst.c, 
+	  /ircd-hybrid/modules/m_omotd.c, /ircd-hybrid/modules/m_oper.c, 
+	  /ircd-hybrid/modules/m_operwall.c, 
+	  /ircd-hybrid/modules/m_pass.c, /ircd-hybrid/modules/m_ping.c, 
+	  /ircd-hybrid/modules/m_pong.c, /ircd-hybrid/modules/m_post.c, 
+	  /ircd-hybrid/modules/m_rehash.c, 
+	  /ircd-hybrid/modules/m_restart.c, 
+	  /ircd-hybrid/modules/m_resv.c, /ircd-hybrid/modules/m_rkline.c, 
+	  /ircd-hybrid/modules/m_rxline.c, /ircd-hybrid/modules/m_set.c, 
+	  /ircd-hybrid/modules/m_stats.c, 
+	  /ircd-hybrid/modules/m_svinfo.c, /ircd-hybrid/modules/m_tb.c, 
+	  /ircd-hybrid/modules/m_testline.c, 
+	  /ircd-hybrid/modules/m_testmask.c, 
+	  /ircd-hybrid/modules/m_time.c, /ircd-hybrid/modules/m_topic.c, 
+	  /ircd-hybrid/modules/m_trace.c, /ircd-hybrid/modules/m_user.c, 
+	  /ircd-hybrid/modules/m_userhost.c, 
+	  /ircd-hybrid/modules/m_users.c, 
+	  /ircd-hybrid/modules/m_version.c, 
+	  /ircd-hybrid/modules/m_wallops.c, /ircd-hybrid/modules/m_who.c, 
+	  /ircd-hybrid/modules/m_whois.c, 
+	  /ircd-hybrid/modules/m_whowas.c, 
+	  /ircd-hybrid/modules/m_xline.c, 
+	  /ircd-hybrid/servlink/Makefile.in, 
+	  /ircd-hybrid/servlink/README, /ircd-hybrid/servlink/TODO, 
+	  /ircd-hybrid/servlink/control.c, 
+	  /ircd-hybrid/servlink/control.h, /ircd-hybrid/servlink/io.c, 
+	  /ircd-hybrid/servlink/io.h, /ircd-hybrid/servlink/servlink.c, 
+	  /ircd-hybrid/servlink/servlink.h, /ircd-hybrid/src/Makefile.in, 
+	  /ircd-hybrid/src/balloc.c, /ircd-hybrid/src/channel.c, 
+	  /ircd-hybrid/src/channel_mode.c, /ircd-hybrid/src/client.c, 
+	  /ircd-hybrid/src/crypt.c, /ircd-hybrid/src/csvlib.c, 
+	  /ircd-hybrid/src/dbuf.c, /ircd-hybrid/src/dynlink.c, 
+	  /ircd-hybrid/src/event.c, /ircd-hybrid/src/fdlist.c, 
+	  /ircd-hybrid/src/fileio.c, /ircd-hybrid/src/getopt.c, 
+	  /ircd-hybrid/src/hash.c, /ircd-hybrid/src/hook.c, 
+	  /ircd-hybrid/src/hostmask.c, /ircd-hybrid/src/inet_misc.c, 
+	  /ircd-hybrid/src/irc_getaddrinfo.c, 
+	  /ircd-hybrid/src/irc_getnameinfo.c, /ircd-hybrid/src/irc_res.c, 
+	  /ircd-hybrid/src/irc_reslib.c, /ircd-hybrid/src/irc_string.c, 
+	  /ircd-hybrid/src/ircd.c, /ircd-hybrid/src/ircd_lexer.l, 
+	  /ircd-hybrid/src/ircd_parser.y, /ircd-hybrid/src/ircd_signal.c, 
+	  /ircd-hybrid/src/lex.yy.c, /ircd-hybrid/src/list.c, 
+	  /ircd-hybrid/src/listener.c, /ircd-hybrid/src/m_error.c, 
+	  /ircd-hybrid/src/match.c, /ircd-hybrid/src/memory.c, 
+	  /ircd-hybrid/src/messages.tab, /ircd-hybrid/src/modules.c, 
+	  /ircd-hybrid/src/motd.c, /ircd-hybrid/src/numeric.c, 
+	  /ircd-hybrid/src/packet.c, /ircd-hybrid/src/parse.c, 
+	  /ircd-hybrid/src/restart.c, /ircd-hybrid/src/resv.c, 
+	  /ircd-hybrid/src/rsa.c, /ircd-hybrid/src/s_auth.c, 
+	  /ircd-hybrid/src/s_bsd.c, /ircd-hybrid/src/s_bsd_devpoll.c, 
+	  /ircd-hybrid/src/s_bsd_epoll.c, 
+	  /ircd-hybrid/src/s_bsd_kqueue.c, /ircd-hybrid/src/s_bsd_poll.c, 
+	  /ircd-hybrid/src/s_bsd_select.c, 
+	  /ircd-hybrid/src/s_bsd_sigio.c, /ircd-hybrid/src/s_bsd_win32.c, 
+	  /ircd-hybrid/src/s_conf.c, /ircd-hybrid/src/s_gline.c, 
+	  /ircd-hybrid/src/s_log.c, /ircd-hybrid/src/s_misc.c, 
+	  /ircd-hybrid/src/s_serv.c, /ircd-hybrid/src/s_stats.c, 
+	  /ircd-hybrid/src/s_user.c, /ircd-hybrid/src/send.c, 
+	  /ircd-hybrid/src/snprintf.c, /ircd-hybrid/src/sprintf_irc.c, 
+	  /ircd-hybrid/src/tools.c, /ircd-hybrid/src/whowas.c, 
+	  /ircd-hybrid/src/y.tab.c, /ircd-hybrid/src/y.tab.h, 
+	  /ircd-hybrid/tools/Makefile.in, /ircd-hybrid/tools/README, 
+	  /ircd-hybrid/tools/README.mkpasswd, 
+	  /ircd-hybrid/tools/encspeed.c, /ircd-hybrid/tools/mkkeypair, 
+	  /ircd-hybrid/tools/mkpasswd.c, 
+	  /ircd-hybrid/tools/rsa_respond/Makefile.in, 
+	  /ircd-hybrid/tools/rsa_respond/README, 
+	  /ircd-hybrid/tools/rsa_respond/configure, 
+	  /ircd-hybrid/tools/rsa_respond/configure.ac, 
+	  /ircd-hybrid/tools/rsa_respond/respond.c, 
+	  /ircd-hybrid/tools/untabify, /ircd-hybrid/tools/win32/kill.c, 
+	  /ircd-hybrid/tools/win32/rehash.c, 
+	  /ircd-hybrid/tools/win32/remotd.c:
+	  - Fix svn:keywords
+
+2005-10-02 16:03:27  adx
+
+	* [r30] /ircd-hybrid/BUGS, /ircd-hybrid/Hybrid-team, 
+	  /ircd-hybrid/INSTALL, /ircd-hybrid/LICENSE, 
+	  /ircd-hybrid/Makefile.in, /ircd-hybrid/README.FIRST, 
+	  /ircd-hybrid/README.PLATFORMS, /ircd-hybrid/RELNOTES, 
+	  /ircd-hybrid/TODO, /ircd-hybrid/configure, 
+	  /ircd-hybrid/configure.ac, /ircd-hybrid/contrib, 
+	  /ircd-hybrid/contrib/Makefile.in, /ircd-hybrid/contrib/README, 
+	  /ircd-hybrid/contrib/README.cloaking, 
+	  /ircd-hybrid/contrib/challenge.irc, 
+	  /ircd-hybrid/contrib/example_module.c, 
+	  /ircd-hybrid/contrib/help, 
+	  /ircd-hybrid/contrib/help/Makefile.in, 
+	  /ircd-hybrid/contrib/help/opers, 
+	  /ircd-hybrid/contrib/help/opers/capture, 
+	  /ircd-hybrid/contrib/help/opers/chghost, 
+	  /ircd-hybrid/contrib/help/opers/chgident, 
+	  /ircd-hybrid/contrib/help/opers/chgname, 
+	  /ircd-hybrid/contrib/help/opers/classlist, 
+	  /ircd-hybrid/contrib/help/opers/clearchan, 
+	  /ircd-hybrid/contrib/help/opers/ctrace, 
+	  /ircd-hybrid/contrib/help/opers/delspoof, 
+	  /ircd-hybrid/contrib/help/opers/flags, 
+	  /ircd-hybrid/contrib/help/opers/forcejoin, 
+	  /ircd-hybrid/contrib/help/opers/forcepart, 
+	  /ircd-hybrid/contrib/help/opers/index, 
+	  /ircd-hybrid/contrib/help/opers/jupe, 
+	  /ircd-hybrid/contrib/help/opers/ltrace, 
+	  /ircd-hybrid/contrib/help/opers/mkpasswd, 
+	  /ircd-hybrid/contrib/help/opers/ojoin, 
+	  /ircd-hybrid/contrib/help/opers/opme, 
+	  /ircd-hybrid/contrib/help/opers/spoof, 
+	  /ircd-hybrid/contrib/help/opers/svsnick, 
+	  /ircd-hybrid/contrib/help/opers/uncapture, 
+	  /ircd-hybrid/contrib/help/users, 
+	  /ircd-hybrid/contrib/help/users/index, 
+	  /ircd-hybrid/contrib/ip_cloaking.c, 
+	  /ircd-hybrid/contrib/ircd-hybrid.spec, 
+	  /ircd-hybrid/contrib/ircd.init.in, 
+	  /ircd-hybrid/contrib/libc_vprintf.c, 
+	  /ircd-hybrid/contrib/m_capture.c, 
+	  /ircd-hybrid/contrib/m_change.c, 
+	  /ircd-hybrid/contrib/m_classlist.c, 
+	  /ircd-hybrid/contrib/m_clearchan.c, 
+	  /ircd-hybrid/contrib/m_ctrace.c, 
+	  /ircd-hybrid/contrib/m_flags.c, /ircd-hybrid/contrib/m_force.c, 
+	  /ircd-hybrid/contrib/m_jupe.c, 
+	  /ircd-hybrid/contrib/m_killhost.c, 
+	  /ircd-hybrid/contrib/m_ltrace.c, 
+	  /ircd-hybrid/contrib/m_mkpasswd.c, 
+	  /ircd-hybrid/contrib/m_ojoin.c, 
+	  /ircd-hybrid/contrib/m_operspy.c, 
+	  /ircd-hybrid/contrib/m_opme.c, 
+	  /ircd-hybrid/contrib/m_services.c, 
+	  /ircd-hybrid/contrib/m_spoof.c, 
+	  /ircd-hybrid/contrib/setup-win32.h, 
+	  /ircd-hybrid/contrib/spy_admin_notice.c, 
+	  /ircd-hybrid/contrib/spy_info_notice.c, 
+	  /ircd-hybrid/contrib/spy_links_notice.c, 
+	  /ircd-hybrid/contrib/spy_motd_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_notice.c, 
+	  /ircd-hybrid/contrib/spy_stats_p_notice.c, 
+	  /ircd-hybrid/contrib/spy_trace_notice.c, 
+	  /ircd-hybrid/contrib/spy_whois_notice.c, 
+	  /ircd-hybrid/contrib/vprintf_fix.patch, 
+	  /ircd-hybrid/contrib/win32build.bat, /ircd-hybrid/doc, 
+	  /ircd-hybrid/doc/CIDR.txt, /ircd-hybrid/doc/LazyLinks.txt, 
+	  /ircd-hybrid/doc/Makefile.in, /ircd-hybrid/doc/challenge.txt, 
+	  /ircd-hybrid/doc/guidelines.txt, /ircd-hybrid/doc/index.txt, 
+	  /ircd-hybrid/doc/ircd.8, /ircd-hybrid/doc/kline.txt, 
+	  /ircd-hybrid/doc/messages.txt, /ircd-hybrid/doc/modeg.txt, 
+	  /ircd-hybrid/doc/modes.txt, /ircd-hybrid/doc/resv.txt, 
+	  /ircd-hybrid/doc/server-version-info, 
+	  /ircd-hybrid/doc/serverhide.txt, /ircd-hybrid/doc/technical, 
+	  /ircd-hybrid/doc/technical/Persistent_Clients.txt, 
+	  /ircd-hybrid/doc/technical/README.openssl, 
+	  /ircd-hybrid/doc/technical/cryptlink.txt, 
+	  /ircd-hybrid/doc/technical/event.txt, 
+	  /ircd-hybrid/doc/technical/fd-management.txt, 
+	  /ircd-hybrid/doc/technical/file-management.txt, 
+	  /ircd-hybrid/doc/technical/hostmask.txt, 
+	  /ircd-hybrid/doc/technical/index.txt, 
+	  /ircd-hybrid/doc/technical/network.txt, 
+	  /ircd-hybrid/doc/technical/rfc1459.txt, 
+	  /ircd-hybrid/doc/technical/rfc2812.txt, 
+	  /ircd-hybrid/doc/technical/rfc2813.txt, 
+	  /ircd-hybrid/doc/technical/send.txt, 
+	  /ircd-hybrid/doc/technical/ts3.txt, 
+	  /ircd-hybrid/doc/technical/ts5.txt, 
+	  /ircd-hybrid/doc/technical/ts6.txt, 
+	  /ircd-hybrid/doc/technical/whats-new-code.txt, 
+	  /ircd-hybrid/doc/whats-new.txt, /ircd-hybrid/doxygen.conf, 
+	  /ircd-hybrid/etc, /ircd-hybrid/etc/Makefile.in, 
+	  /ircd-hybrid/etc/example.conf, 
+	  /ircd-hybrid/etc/example.conf.quick, 
+	  /ircd-hybrid/etc/example.efnet.conf, 
+	  /ircd-hybrid/etc/simple.conf, /ircd-hybrid/foo.txt, 
+	  /ircd-hybrid/help, /ircd-hybrid/help/Makefile.in, 
+	  /ircd-hybrid/help/opers, /ircd-hybrid/help/opers/accept, 
+	  /ircd-hybrid/help/opers/admin, /ircd-hybrid/help/opers/away, 
+	  /ircd-hybrid/help/opers/capab, /ircd-hybrid/help/opers/cburst, 
+	  /ircd-hybrid/help/opers/challenge, 
+	  /ircd-hybrid/help/opers/client, /ircd-hybrid/help/opers/close, 
+	  /ircd-hybrid/help/opers/cmode, /ircd-hybrid/help/opers/connect, 
+	  /ircd-hybrid/help/opers/cryptlink, /ircd-hybrid/help/opers/die, 
+	  /ircd-hybrid/help/opers/dline, /ircd-hybrid/help/opers/drop, 
+	  /ircd-hybrid/help/opers/eob, /ircd-hybrid/help/opers/error, 
+	  /ircd-hybrid/help/opers/etrace, /ircd-hybrid/help/opers/gline, 
+	  /ircd-hybrid/help/opers/hash, /ircd-hybrid/help/opers/help, 
+	  /ircd-hybrid/help/opers/index, /ircd-hybrid/help/opers/info, 
+	  /ircd-hybrid/help/opers/invite, /ircd-hybrid/help/opers/ison, 
+	  /ircd-hybrid/help/opers/join, /ircd-hybrid/help/opers/kick, 
+	  /ircd-hybrid/help/opers/kill, /ircd-hybrid/help/opers/kline, 
+	  /ircd-hybrid/help/opers/knock, /ircd-hybrid/help/opers/knockll, 
+	  /ircd-hybrid/help/opers/links, /ircd-hybrid/help/opers/list, 
+	  /ircd-hybrid/help/opers/lljoin, /ircd-hybrid/help/opers/llnick, 
+	  /ircd-hybrid/help/opers/locops, /ircd-hybrid/help/opers/lusers, 
+	  /ircd-hybrid/help/opers/map, /ircd-hybrid/help/opers/modlist, 
+	  /ircd-hybrid/help/opers/modload, 
+	  /ircd-hybrid/help/opers/modrestart, 
+	  /ircd-hybrid/help/opers/modunload, 
+	  /ircd-hybrid/help/opers/motd, /ircd-hybrid/help/opers/names, 
+	  /ircd-hybrid/help/opers/nburst, /ircd-hybrid/help/opers/nick, 
+	  /ircd-hybrid/help/opers/notice, /ircd-hybrid/help/opers/omotd, 
+	  /ircd-hybrid/help/opers/oper, /ircd-hybrid/help/opers/operwall, 
+	  /ircd-hybrid/help/opers/part, /ircd-hybrid/help/opers/pass, 
+	  /ircd-hybrid/help/opers/ping, /ircd-hybrid/help/opers/pong, 
+	  /ircd-hybrid/help/opers/post, /ircd-hybrid/help/opers/privmsg, 
+	  /ircd-hybrid/help/opers/quit, /ircd-hybrid/help/opers/rehash, 
+	  /ircd-hybrid/help/opers/restart, /ircd-hybrid/help/opers/resv, 
+	  /ircd-hybrid/help/opers/rkline, /ircd-hybrid/help/opers/rxline, 
+	  /ircd-hybrid/help/opers/server, /ircd-hybrid/help/opers/set, 
+	  /ircd-hybrid/help/opers/sjoin, /ircd-hybrid/help/opers/squit, 
+	  /ircd-hybrid/help/opers/stats, /ircd-hybrid/help/opers/svinfo, 
+	  /ircd-hybrid/help/opers/testgecos, 
+	  /ircd-hybrid/help/opers/testline, 
+	  /ircd-hybrid/help/opers/testmask, /ircd-hybrid/help/opers/time, 
+	  /ircd-hybrid/help/opers/topic, /ircd-hybrid/help/opers/trace, 
+	  /ircd-hybrid/help/opers/uhelp, /ircd-hybrid/help/opers/umode, 
+	  /ircd-hybrid/help/opers/undline, 
+	  /ircd-hybrid/help/opers/ungline, 
+	  /ircd-hybrid/help/opers/unkline, 
+	  /ircd-hybrid/help/opers/unresv, 
+	  /ircd-hybrid/help/opers/unxline, /ircd-hybrid/help/opers/user, 
+	  /ircd-hybrid/help/opers/userhost, 
+	  /ircd-hybrid/help/opers/users, /ircd-hybrid/help/opers/version, 
+	  /ircd-hybrid/help/opers/wallops, /ircd-hybrid/help/opers/who, 
+	  /ircd-hybrid/help/opers/whois, /ircd-hybrid/help/opers/whowas, 
+	  /ircd-hybrid/help/opers/xline, /ircd-hybrid/help/users, 
+	  /ircd-hybrid/help/users/index, /ircd-hybrid/help/users/info, 
+	  /ircd-hybrid/help/users/notice, 
+	  /ircd-hybrid/help/users/privmsg, /ircd-hybrid/help/users/stats, 
+	  /ircd-hybrid/help/users/umode, /ircd-hybrid/include, 
+	  /ircd-hybrid/include/balloc.h, /ircd-hybrid/include/channel.h, 
+	  /ircd-hybrid/include/channel_mode.h, 
+	  /ircd-hybrid/include/client.h, /ircd-hybrid/include/common.h, 
+	  /ircd-hybrid/include/dalloca.h, /ircd-hybrid/include/dbuf.h, 
+	  /ircd-hybrid/include/defaults.h, /ircd-hybrid/include/event.h, 
+	  /ircd-hybrid/include/fdlist.h, /ircd-hybrid/include/fileio.h, 
+	  /ircd-hybrid/include/handlers.h, /ircd-hybrid/include/hash.h, 
+	  /ircd-hybrid/include/hook.h, /ircd-hybrid/include/hostmask.h, 
+	  /ircd-hybrid/include/inet_misc.h, 
+	  /ircd-hybrid/include/irc_getaddrinfo.h, 
+	  /ircd-hybrid/include/irc_getnameinfo.h, 
+	  /ircd-hybrid/include/irc_res.h, 
+	  /ircd-hybrid/include/irc_reslib.h, 
+	  /ircd-hybrid/include/irc_string.h, /ircd-hybrid/include/ircd.h, 
+	  /ircd-hybrid/include/ircd_defs.h, 
+	  /ircd-hybrid/include/ircd_getopt.h, 
+	  /ircd-hybrid/include/ircd_handler.h, 
+	  /ircd-hybrid/include/ircd_signal.h, 
+	  /ircd-hybrid/include/list.h, /ircd-hybrid/include/listener.h, 
+	  /ircd-hybrid/include/m_info.h, /ircd-hybrid/include/memory.h, 
+	  /ircd-hybrid/include/modules.h, /ircd-hybrid/include/motd.h, 
+	  /ircd-hybrid/include/msg.h, /ircd-hybrid/include/numeric.h, 
+	  /ircd-hybrid/include/packet.h, /ircd-hybrid/include/parse.h, 
+	  /ircd-hybrid/include/patchlevel.h, 
+	  /ircd-hybrid/include/restart.h, /ircd-hybrid/include/resv.h, 
+	  /ircd-hybrid/include/rlimits.h, /ircd-hybrid/include/rsa.h, 
+	  /ircd-hybrid/include/s_auth.h, /ircd-hybrid/include/s_bsd.h, 
+	  /ircd-hybrid/include/s_conf.h, /ircd-hybrid/include/s_gline.h, 
+	  /ircd-hybrid/include/s_log.h, /ircd-hybrid/include/s_misc.h, 
+	  /ircd-hybrid/include/s_serv.h, /ircd-hybrid/include/s_stats.h, 
+	  /ircd-hybrid/include/s_user.h, /ircd-hybrid/include/send.h, 
+	  /ircd-hybrid/include/serno.h, /ircd-hybrid/include/setup.h.in, 
+	  /ircd-hybrid/include/sprintf_irc.h, 
+	  /ircd-hybrid/include/stdinc.h, 
+	  /ircd-hybrid/include/supported.h, /ircd-hybrid/include/tools.h, 
+	  /ircd-hybrid/include/userhost.h, /ircd-hybrid/include/whowas.h, 
+	  /ircd-hybrid/install-sh, /ircd-hybrid/lib, 
+	  /ircd-hybrid/lib/Makefile.in, /ircd-hybrid/lib/pcre, 
+	  /ircd-hybrid/lib/pcre/AUTHORS, /ircd-hybrid/lib/pcre/LICENCE, 
+	  /ircd-hybrid/lib/pcre/Makefile.in, 
+	  /ircd-hybrid/lib/pcre/README, /ircd-hybrid/lib/pcre/pcre.h, 
+	  /ircd-hybrid/lib/pcre/pcre_chartables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_compile.c, 
+	  /ircd-hybrid/lib/pcre/pcre_exec.c, 
+	  /ircd-hybrid/lib/pcre/pcre_fullinfo.c, 
+	  /ircd-hybrid/lib/pcre/pcre_globals.c, 
+	  /ircd-hybrid/lib/pcre/pcre_internal.h, 
+	  /ircd-hybrid/lib/pcre/pcre_study.c, 
+	  /ircd-hybrid/lib/pcre/pcre_tables.c, 
+	  /ircd-hybrid/lib/pcre/pcre_try_flipped.c, 
+	  /ircd-hybrid/messages, /ircd-hybrid/messages/Makefile.in, 
+	  /ircd-hybrid/messages/README, /ircd-hybrid/messages/ayb.lang, 
+	  /ircd-hybrid/messages/custom.lang, 
+	  /ircd-hybrid/messages/ircd-croatian.lang, 
+	  /ircd-hybrid/messages/ircd-danish.lang, 
+	  /ircd-hybrid/messages/ircd-dutch.lang, 
+	  /ircd-hybrid/messages/ircd-french.lang, 
+	  /ircd-hybrid/messages/ircd-german.lang, 
+	  /ircd-hybrid/messages/ircd-norwegian.lang, 
+	  /ircd-hybrid/messages/ircd-polish.lang, 
+	  /ircd-hybrid/messages/ircd-russian.lang, 
+	  /ircd-hybrid/messages/ircd-spanish.lang, 
+	  /ircd-hybrid/messages/ircd-standard.example.lang, 
+	  /ircd-hybrid/messages/ircd-swedish.lang, /ircd-hybrid/modules, 
+	  /ircd-hybrid/modules/Makefile.in, /ircd-hybrid/modules/core, 
+	  /ircd-hybrid/modules/core/m_die.c, 
+	  /ircd-hybrid/modules/core/m_join.c, 
+	  /ircd-hybrid/modules/core/m_kick.c, 
+	  /ircd-hybrid/modules/core/m_kill.c, 
+	  /ircd-hybrid/modules/core/m_message.c, 
+	  /ircd-hybrid/modules/core/m_mode.c, 
+	  /ircd-hybrid/modules/core/m_nick.c, 
+	  /ircd-hybrid/modules/core/m_part.c, 
+	  /ircd-hybrid/modules/core/m_quit.c, 
+	  /ircd-hybrid/modules/core/m_server.c, 
+	  /ircd-hybrid/modules/core/m_sjoin.c, 
+	  /ircd-hybrid/modules/core/m_squit.c, 
+	  /ircd-hybrid/modules/m_accept.c, 
+	  /ircd-hybrid/modules/m_admin.c, /ircd-hybrid/modules/m_away.c, 
+	  /ircd-hybrid/modules/m_capab.c, 
+	  /ircd-hybrid/modules/m_cburst.c, 
+	  /ircd-hybrid/modules/m_challenge.c, 
+	  /ircd-hybrid/modules/m_close.c, 
+	  /ircd-hybrid/modules/m_connect.c, 
+	  /ircd-hybrid/modules/m_cryptlink.c, 
+	  /ircd-hybrid/modules/m_drop.c, /ircd-hybrid/modules/m_encap.c, 
+	  /ircd-hybrid/modules/m_eob.c, /ircd-hybrid/modules/m_etrace.c, 
+	  /ircd-hybrid/modules/m_gline.c, /ircd-hybrid/modules/m_hash.c, 
+	  /ircd-hybrid/modules/m_help.c, /ircd-hybrid/modules/m_info.c, 
+	  /ircd-hybrid/modules/m_invite.c, /ircd-hybrid/modules/m_ison.c, 
+	  /ircd-hybrid/modules/m_kline.c, /ircd-hybrid/modules/m_knock.c, 
+	  /ircd-hybrid/modules/m_links.c, /ircd-hybrid/modules/m_list.c, 
+	  /ircd-hybrid/modules/m_lljoin.c, 
+	  /ircd-hybrid/modules/m_llnick.c, 
+	  /ircd-hybrid/modules/m_locops.c, 
+	  /ircd-hybrid/modules/m_lusers.c, /ircd-hybrid/modules/m_map.c, 
+	  /ircd-hybrid/modules/m_motd.c, /ircd-hybrid/modules/m_names.c, 
+	  /ircd-hybrid/modules/m_nburst.c, 
+	  /ircd-hybrid/modules/m_omotd.c, /ircd-hybrid/modules/m_oper.c, 
+	  /ircd-hybrid/modules/m_operwall.c, 
+	  /ircd-hybrid/modules/m_pass.c, /ircd-hybrid/modules/m_ping.c, 
+	  /ircd-hybrid/modules/m_pong.c, /ircd-hybrid/modules/m_post.c, 
+	  /ircd-hybrid/modules/m_rehash.c, 
+	  /ircd-hybrid/modules/m_restart.c, 
+	  /ircd-hybrid/modules/m_resv.c, /ircd-hybrid/modules/m_rkline.c, 
+	  /ircd-hybrid/modules/m_rxline.c, /ircd-hybrid/modules/m_set.c, 
+	  /ircd-hybrid/modules/m_stats.c, 
+	  /ircd-hybrid/modules/m_svinfo.c, /ircd-hybrid/modules/m_tb.c, 
+	  /ircd-hybrid/modules/m_testline.c, 
+	  /ircd-hybrid/modules/m_testmask.c, 
+	  /ircd-hybrid/modules/m_time.c, /ircd-hybrid/modules/m_topic.c, 
+	  /ircd-hybrid/modules/m_trace.c, /ircd-hybrid/modules/m_user.c, 
+	  /ircd-hybrid/modules/m_userhost.c, 
+	  /ircd-hybrid/modules/m_users.c, 
+	  /ircd-hybrid/modules/m_version.c, 
+	  /ircd-hybrid/modules/m_wallops.c, /ircd-hybrid/modules/m_who.c, 
+	  /ircd-hybrid/modules/m_whois.c, 
+	  /ircd-hybrid/modules/m_whowas.c, 
+	  /ircd-hybrid/modules/m_xline.c, /ircd-hybrid/servlink, 
+	  /ircd-hybrid/servlink/Makefile.in, 
+	  /ircd-hybrid/servlink/README, /ircd-hybrid/servlink/TODO, 
+	  /ircd-hybrid/servlink/control.c, 
+	  /ircd-hybrid/servlink/control.h, /ircd-hybrid/servlink/io.c, 
+	  /ircd-hybrid/servlink/io.h, /ircd-hybrid/servlink/servlink.c, 
+	  /ircd-hybrid/servlink/servlink.h, /ircd-hybrid/src, 
+	  /ircd-hybrid/src/Makefile.in, /ircd-hybrid/src/balloc.c, 
+	  /ircd-hybrid/src/channel.c, /ircd-hybrid/src/channel_mode.c, 
+	  /ircd-hybrid/src/client.c, /ircd-hybrid/src/crypt.c, 
+	  /ircd-hybrid/src/csvlib.c, /ircd-hybrid/src/dbuf.c, 
+	  /ircd-hybrid/src/dynlink.c, /ircd-hybrid/src/event.c, 
+	  /ircd-hybrid/src/fdlist.c, /ircd-hybrid/src/fileio.c, 
+	  /ircd-hybrid/src/getopt.c, /ircd-hybrid/src/hash.c, 
+	  /ircd-hybrid/src/hook.c, /ircd-hybrid/src/hostmask.c, 
+	  /ircd-hybrid/src/inet_misc.c, 
+	  /ircd-hybrid/src/irc_getaddrinfo.c, 
+	  /ircd-hybrid/src/irc_getnameinfo.c, /ircd-hybrid/src/irc_res.c, 
+	  /ircd-hybrid/src/irc_reslib.c, /ircd-hybrid/src/irc_string.c, 
+	  /ircd-hybrid/src/ircd.c, /ircd-hybrid/src/ircd_lexer.l, 
+	  /ircd-hybrid/src/ircd_parser.y, /ircd-hybrid/src/ircd_signal.c, 
+	  /ircd-hybrid/src/lex.yy.c, /ircd-hybrid/src/list.c, 
+	  /ircd-hybrid/src/listener.c, /ircd-hybrid/src/m_error.c, 
+	  /ircd-hybrid/src/match.c, /ircd-hybrid/src/memory.c, 
+	  /ircd-hybrid/src/messages.tab, /ircd-hybrid/src/modules.c, 
+	  /ircd-hybrid/src/motd.c, /ircd-hybrid/src/numeric.c, 
+	  /ircd-hybrid/src/packet.c, /ircd-hybrid/src/parse.c, 
+	  /ircd-hybrid/src/restart.c, /ircd-hybrid/src/resv.c, 
+	  /ircd-hybrid/src/rsa.c, /ircd-hybrid/src/s_auth.c, 
+	  /ircd-hybrid/src/s_bsd.c, /ircd-hybrid/src/s_bsd_devpoll.c, 
+	  /ircd-hybrid/src/s_bsd_epoll.c, 
+	  /ircd-hybrid/src/s_bsd_kqueue.c, /ircd-hybrid/src/s_bsd_poll.c, 
+	  /ircd-hybrid/src/s_bsd_select.c, 
+	  /ircd-hybrid/src/s_bsd_sigio.c, /ircd-hybrid/src/s_bsd_win32.c, 
+	  /ircd-hybrid/src/s_conf.c, /ircd-hybrid/src/s_gline.c, 
+	  /ircd-hybrid/src/s_log.c, /ircd-hybrid/src/s_misc.c, 
+	  /ircd-hybrid/src/s_serv.c, /ircd-hybrid/src/s_stats.c, 
+	  /ircd-hybrid/src/s_user.c, /ircd-hybrid/src/send.c, 
+	  /ircd-hybrid/src/snprintf.c, /ircd-hybrid/src/sprintf_irc.c, 
+	  /ircd-hybrid/src/tools.c, /ircd-hybrid/src/version.c, 
+	  /ircd-hybrid/src/whowas.c, /ircd-hybrid/src/y.tab.c, 
+	  /ircd-hybrid/src/y.tab.h, /ircd-hybrid/tools, 
+	  /ircd-hybrid/tools/Makefile.in, /ircd-hybrid/tools/README, 
+	  /ircd-hybrid/tools/README.mkpasswd, 
+	  /ircd-hybrid/tools/encspeed.c, /ircd-hybrid/tools/mkkeypair, 
+	  /ircd-hybrid/tools/mkpasswd.c, /ircd-hybrid/tools/rsa_respond, 
+	  /ircd-hybrid/tools/rsa_respond/Makefile.in, 
+	  /ircd-hybrid/tools/rsa_respond/README, 
+	  /ircd-hybrid/tools/rsa_respond/configure, 
+	  /ircd-hybrid/tools/rsa_respond/configure.ac, 
+	  /ircd-hybrid/tools/rsa_respond/respond.c, 
+	  /ircd-hybrid/tools/untabify, /ircd-hybrid/tools/win32, 
+	  /ircd-hybrid/tools/win32/kill.c, 
+	  /ircd-hybrid/tools/win32/rehash.c, 
+	  /ircd-hybrid/tools/win32/remotd.c:
+	  - imported sources
+	  - can be moved later according to the directory/branching scheme,
+	    but we need the svn up
+
+2005-09-30 23:40:06  lusky
+
+	* [r29] /ircd-hybrid/foo.txt:
+	  x
+
+2005-09-30 23:38:54  lusky
+
+	* [r28] /ircd-hybrid/foo.txt:
+	  test 12312431241
+
+2005-09-30 23:37:28  lusky
+
+	* [r27] /ircd-hybrid/foo.txt:
+	  blah
+
+2005-09-30 23:11:04  lusky
+
+	* [r26] /ircd-hybrid/foo.txt:
+	  xxx
+
+2005-09-30 23:09:18  lusky
+
+	* [r25] /ircd-hybrid/foo.txt:
+	  zzz
+
+2005-09-30 23:06:59  lusky
+
+	* [r24] /ircd-hybrid/foo.txt:
+	  test
+
+2005-09-30 23:04:18  lusky
+
+	* [r23] /ircd-hybrid/foo.txt:
+	  another
+
+2005-09-30 23:02:23  lusky
+
+	* [r22] /ircd-hybrid/foo.txt:
+	  test 123
+
+2005-09-30 22:59:38  lusky
+
+	* [r21] /ircd-hybrid/foo.txt:
+	  this is a test
+
+2005-09-30 22:58:38  lusky
+
+	* [r20] /ircd-hybrid/foo.txt:
+	  yet another test commit
+
+2005-09-30 22:55:26  lusky
+
+	* [r19] /ircd-hybrid/foo.txt:
+	  yet another test commit
+
+2005-09-30 22:24:09  lusky
+
+	* [r18] /ircd-hybrid/foo.txt:
+	  test commit.  will it email?
+
+2005-09-30 21:35:59  lusky
+
+	* [r14] /ircd-hybrid/trunk:
+	  Deleted ircd-hybrid/trunk
+
+2005-09-30 21:35:51  lusky
+
+	* [r13] /ircd-hybrid/tags:
+	  Deleted ircd-hybrid/tags
+
+2005-09-30 21:35:45  lusky
+
+	* [r12] /ircd-hybrid/branches:
+	  Deleted ircd-hybrid/branches
+
+2005-09-30 18:20:48  adx
+
+	* [r5] /ircd-hybrid/trunk/RELNOTES:
+	  - test commit
+
+2005-09-28 22:24:21  lusky
+
+	* [r3] /ircd-hybrid, /ircd-hybrid/branches, /ircd-hybrid/tags, 
+	  /ircd-hybrid/trunk:
+	  Initial import
+

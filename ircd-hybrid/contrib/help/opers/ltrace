@@ -1,0 +1,5 @@
+# $Id: ltrace 33 2005-10-02 20:50:00Z knight $
+LTRACE [nickname/server mask]
+
+This command is similar to TRACE, but it doesn't display plain users
+or definitions of connection classes.

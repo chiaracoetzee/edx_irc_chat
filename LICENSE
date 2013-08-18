@@ -1,3 +1,12 @@
+This repository contains forked and patched versions of two major
+projects, ircd-hybrid and qwebirc. These were both released under
+the GNU General Public License 2.0 (GPLv2), and these modified
+versions are released under the same license. See LICENSE files under
+those subdirectories for full details.
+
+All other content in this repository is released under the following
+terms (Unlicense):
+
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or

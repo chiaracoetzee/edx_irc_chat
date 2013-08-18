@@ -1,0 +1,5 @@
+# $Id: opme 33 2005-10-02 20:50:00Z knight $
+OPME <channel>
+
+OPME will give chanop status to the operator in the given channel.
+OPME will only work if the channel is opless.

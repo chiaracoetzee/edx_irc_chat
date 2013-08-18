@@ -1,0 +1,28 @@
+        _,met$$$$$gg.       ircd-hybrid 7.2.2
+     ,g$$$$$$$$$$$$$$$P.    -----------------
+   ,g$$P""       """Y$$.".  
+  ,$$P'              `$$$.  If you are seeing this, you have
+',$$P       ,ggs.     `$$b: installed the ircd-hybrid package and
+`d$$'     ,$P"'   .    $$$  you are now connected to your new IRC
+ $$P      d$'     ,    $$P  server -- congratulations.
+ $$:      $$.   -    ,d$$'  
+ $$;      Y$b._   _,d$P'    Since you have just installed the
+ Y$$.    `.`"Y$$$$P"'       package, there are some things you
+ `$$b      "-.__            should do before going any further:
+  `Y$$b                     
+   `Y$$.                    1. Edit /etc/ircd-hybrid/ircd.conf to
+     `$$b.                  suit your needs. Beware some options have
+       `Y$$b.               been removed or moved into other blocks in
+         `"Y$b._            the configuration file since
+            `""""           ircd-hybrid 7.0.3.
+
+                            2. Edit /etc/ircd-hybrid/ircd.motd (this
+                            MOTD) to suit your needs. You are free
+                            to use this Debian swirl under the
+                            Debian Open Use Logo License. :)
+
+                            3. Restart the server using invoke-rc.d
+                            ircd-hybrid restart.
+
+                            -- Joshua Kwan <joshk@triplehelix.org>
+                            -- Aurélien GÉRÔME <ag@roxor.cx>

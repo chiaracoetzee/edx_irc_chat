@@ -1,0 +1,39 @@
+<script>
+function getContentInContainer(matchClass) {
+    var elems = document.getElementsByTagName('*'), i;
+    for (i in elems) {
+        if((' ' + elems[i].className + ' ').indexOf(' ' + matchClass + ' ')
+                > -1) {
+            return elems[i].textContent;
+        }
+    }
+}
+  
+if (document.getElementById('chatiframe')) {
+  username = getContentInContainer("user-link").replace("Dashboard for:", "").replace(/^\s+|\s+$/g, '');
+  document.getElementById('chatiframe').src += "&nick=" + encodeURI(username);
+} else {
+  window.onload = init;
+}
+
+function init(){
+  username = getContentInContainer("user-link").replace("Dashboard for:", "").replace(/^\s+|\s+$/g, '');
+  document.getElementById('chatiframe').src += "&nick=" + encodeURI(username);
+}
+
+function showDelayed(delaySeconds, element, elementHide) {
+  setTimeout(function(){
+    element.style.position='static';
+    element.style.visibility='visible';
+    document.getElementById(elementHide).style.display='none';
+  }, 1000*delaySeconds);
+}
+</script>
+
+<p>Below is our course's live chatroom, where you can talk with World TAs and other students currently taking the course in real-time. You will find this chatroom throughout the course.</p>
+<p><span id="loadingchat">Loading chat...</span>
+<iframe id="chatiframe" style="position: absolute; top: -9999em; visibility: hidden;" onload="showDelayed(5,this,'loadingchat');"  src="http://cs1692x.moocforums.org:9090/?channels=%23cs1692x" height="600" width="100%"></iframe></p>
+<p>You can also connect to the chatroom with your own IRC client, such as mIRC or Chatzilla:</p>
+<ul>
+<li><span style="font-size: 1em; line-height: 1.6em;">add the host cs1692x.moocforums.org port 6667, SSL disabled, and autojoin channel #cs1692x. We recommend that you <a href="http://wiki.xkcd.com/irc/hide_join_part_messages">disable join/part notifications</a>.</span></li>
+</ul>

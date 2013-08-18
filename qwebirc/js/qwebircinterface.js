@@ -1,4 +1,6 @@
 function qwebirc_ui_onbeforeunload(e) { /* IE sucks */
+// dcc - disabled warning when leaving - annoying when chat is autoloaded
+/*
   if(qwebirc.connected) {
     var message = "This action will close all active IRC connections.";
     var e = e || window.event;
@@ -6,6 +8,7 @@ function qwebirc_ui_onbeforeunload(e) { /* IE sucks */
       e.returnValue = message;
     return message;
   }
+*/
 }
 
 qwebirc.ui.Interface = new Class({

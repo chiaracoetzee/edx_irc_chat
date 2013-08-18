@@ -1,6 +1,8 @@
 qwebirc.ui.GenericLoginBox = function(parentElement, callback, initialNickname, initialChannels, autoConnect, autoNick, networkName) {
   if(autoConnect) {
-    qwebirc.ui.ConfirmBox(parentElement, callback, initialNickname, initialChannels, autoNick, networkName);
+    // dcc - Force login immediately with no confirm
+    // qwebirc.ui.ConfirmBox(parentElement, callback, initialNickname, initialChannels, autoNick, networkName);
+    callback({"nickname": initialNickname, "autojoin": initialChannels});
   } else {
     qwebirc.ui.LoginBox(parentElement, callback, initialNickname, initialChannels, networkName);
   }

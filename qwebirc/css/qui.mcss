@@ -79,7 +79,7 @@ html {
 }
 
 .qwebirc-qui .ircwindow div {
-  font-family: Consolas, "Lucida Console", monospace;
+  font-family: Verdana, Arial;
   text-indent: $(timestamp_text_indent);
   padding-left: $(timestamp_padding_left);
   word-wrap: break-word;

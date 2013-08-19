@@ -118,6 +118,45 @@ qwebirc.irc.IRCClient = new Class({
     if(!w) {
       w = this.windows[this.toIRCLower(name)] = this.ui.newWindow(this, type, name);
       
+      // dcc - Prepopulate based on ircd activity log
+      try {
+        if (type == qwebirc.ui.WINDOW_CHANNEL) {
+          // Make synchronous so that past messages appear before any new ones
+          // Any short freeze should be hidden by the loading delay
+          var ircClient = this;
+          var r = new Request({url: qwebirc.global.dynamicBaseURL + "activitylog" + "?channel=" + encodeURIComponent(name), method: 'get', async: false, onSuccess: function(data) {
+              saveFlash = ircClient.ui.uiOptions.FLASH_ON_MENTION;
+              saveBeep = ircClient.ui.uiOptions.BEEP_ON_MENTION;
+              ircClient.ui.uiOptions.FLASH_ON_MENTION = false;
+              ircClient.ui.uiOptions.BEEP_ON_MENTION = false;
+
+              var lines = data.split("\n");
+              for (var i = 0; i < lines.length; i++) {
+                var line = lines[i];
+                tokens = line.split(' ');
+                /*if (tokens.length >= 3 && tokens[1] == 'CONNECT') {
+                   TODO: Track hostnames of nicks, for now using fixed hostname
+                }*/
+                if (tokens.length >= 4 && tokens[1] == 'PRIVMSG' && tokens[3] == name) {
+                  unixTimestamp = parseInt(tokens[0]);
+                  user = tokens[2] + '!~webchat@54.235.222.247';
+                  tokens.splice(0,4);
+                  message = tokens.join(' ');
+                  ircClient.channelPrivmsgDate(user, name, message, unixTimestamp*1000/*convert to ms*/);
+                }
+              }
+
+              ircClient.ui.uiOptions.FLASH_ON_MENTION = saveFlash;
+              ircClient.ui.uiOptions.BEEP_ON_MENTION = saveBeep;
+          }, onFailure: function() {
+              // Ignore error, give up on showing past activity
+          }.bind(this)}).send();
+        }
+      } catch(e) {
+        // Something went wrong, give up on showing past activity
+        // TODO: log error for debugging
+      }
+
       w.addEvent("close", function(w) {
         delete this.windows[this.toIRCLower(name)];
       }.bind(this));
@@ -415,11 +454,14 @@ qwebirc.irc.IRCClient = new Class({
       
     return n.prefixes.charAt(0);
   },
-  channelPrivmsg: function(user, channel, message) {
+  channelPrivmsgDate: function(user, channel, message, date) {
     var nick = user.hostToNick();
-    
-    this.tracker.updateLastSpoke(nick, channel, new Date().getTime()); 
-    this.newChanLine(channel, "CHANMSG", user, {"m": message, "@": this.getNickStatus(channel, nick)});
+
+    this.tracker.updateLastSpoke(nick, channel, date); 
+    this.newChanLine(channel, "CHANMSG", user, {"m": message, "@": this.getNickStatus(channel, nick), "date": date});
+  },
+  channelPrivmsg: function(user, channel, message) {
+    this.channelPrivmsgDate(user, channel, message, new Date().getTime());
   },
   channelNotice: function(user, channel, message) {
     this.newChanLine(channel, "CHANNOTICE", user, {"m": message, "@": this.getNickStatus(channel, user.hostToNick())});

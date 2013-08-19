@@ -82,5 +82,6 @@ class RootSite(server.Site):
     register(engines.FeedbackEngine, "feedback")
     register(engines.AuthgateEngine, "auth")
     register(engines.AdminEngine, "adminengine", services)
+    register(engines.ActivityLogEngine, "activitylog")
     
 mimetypes.types_map[".ico"] = "image/vnd.microsoft.icon"

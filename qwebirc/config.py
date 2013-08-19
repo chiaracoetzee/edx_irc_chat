@@ -306,3 +306,11 @@ AUTH_OK_REGEX = "^You are now logged in as [^ ]+\\.$"
 #         Authgate module to use, normally imported directly.
 #         dummyauthgate does nothing.
 import dummyauthgate as AUTHGATEPROVIDER
+
+# OPTION: IRCD_ACTIVITY_LOG_URL
+#         An activity log is emitted by a modified IRC server and logs
+#         every event, and this web service allows retrieval of all
+#         past events that occurred in a given channel. It can be used
+#         by the webclient to show recent history when joining a
+#         channel.
+IRCD_ACTIVITY_LOG_URL = "http://cs1692x.moocforums.org/chatlog/raw/"

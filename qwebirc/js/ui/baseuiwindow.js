@@ -98,6 +98,7 @@ qwebirc.ui.Window = new Class({
   addLine: function(type, line, colour, element) {
     var hilight = qwebirc.ui.HILIGHT_NONE;
     var lhilight = false;
+    date = (line && line.hasOwnProperty('date')) ? new Date(line['date']) : new Date();
     
     if(type) {
       hilight = qwebirc.ui.HILIGHT_ACTIVITY;
@@ -131,7 +132,7 @@ qwebirc.ui.Window = new Class({
     
     var tsE = document.createElement("span");
     tsE.className = "timestamp";
-    tsE.appendChild(document.createTextNode(qwebirc.irc.IRCTimestamp(new Date()) + " "));
+    tsE.appendChild(document.createTextNode(qwebirc.irc.IRCTimestamp(date) + " "));
     element.appendChild(tsE);
     
     qwebirc.ui.Colourise(line, element, this.client.exec, this.parentObject.urlDispatcher.bind(this.parentObject), this);

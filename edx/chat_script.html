@@ -1,4 +1,6 @@
 <script>
+var chatChannels = "#cs1692x";
+
 function getContentInContainer(matchClass) {
     var elems = document.getElementsByTagName('*'), i;
     for (i in elems) {
@@ -8,17 +10,22 @@ function getContentInContainer(matchClass) {
         }
     }
 }
+
+function updateChatUrl() {
+  username = getContentInContainer("user-link").replace("Dashboard for:", "").replace(/^\s+|\s+$/g, '');
+  document.getElementById('chatiframe').src +=
+      '?channels=' + encodeURIComponent(chatChannels) +
+      '&nick=' + encodeURI(username);
+}
   
 if (document.getElementById('chatiframe')) {
-  username = getContentInContainer("user-link").replace("Dashboard for:", "").replace(/^\s+|\s+$/g, '');
-  document.getElementById('chatiframe').src += "&nick=" + encodeURI(username);
+  updateChatUrl();
 } else {
   window.onload = init;
 }
 
 function init(){
-  username = getContentInContainer("user-link").replace("Dashboard for:", "").replace(/^\s+|\s+$/g, '');
-  document.getElementById('chatiframe').src += "&nick=" + encodeURI(username);
+  updateChatUrl();
 }
 
 function showDelayed(delaySeconds, element, elementHide) {
@@ -31,4 +38,8 @@ function showDelayed(delaySeconds, element, elementHide) {
 </script>
 
 <p><span id="loadingchat">Loading chat...</span>
-<iframe id="chatiframe" style="position: absolute; top: -9999em; visibility: hidden;" onload="showDelayed(5,this,'loadingchat');"  src="http://cs1692x.moocforums.org:9090/?channels=%23cs1692x" height="300" width="100%"></iframe></p>
+<iframe id="chatiframe"
+        style="position: absolute; top: -9999em; visibility: hidden;"
+        onload="showDelayed(5,this,'loadingchat');" 
+        src="https://cs1692x.moocforums.org:9001/"
+        height="300" width="100%"></iframe></p>
